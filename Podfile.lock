@@ -1,0 +1,64 @@
+PODS:
+  - Alamofire (5.1.0)
+  - GRDB.swift (4.14.0):
+    - GRDB.swift/standard (= 4.14.0)
+  - GRDB.swift/standard (4.14.0)
+  - Neumann (1.1.1)
+  - RxAlamofire (5.2.0):
+    - RxAlamofire/Core (= 5.2.0)
+  - RxAlamofire/Core (5.2.0):
+    - Alamofire (~> 5.1)
+    - RxSwift (~> 5.1)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxGRDB (0.18.0):
+    - RxGRDB/default (= 0.18.0)
+    - RxSwift (~> 5.0)
+  - RxGRDB/default (0.18.0):
+    - GRDB.swift (~> 4.1)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSejima (0.9.2):
+    - RxCocoa
+    - RxSwift
+    - Sejima
+  - RxSwift (5.1.1)
+  - Sejima (1.5.0):
+    - Neumann
+
+DEPENDENCIES:
+  - RxAlamofire
+  - RxCocoa
+  - RxGRDB
+  - RxSejima
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - GRDB.swift
+    - Neumann
+    - RxAlamofire
+    - RxCocoa
+    - RxGRDB
+    - RxRelay
+    - RxSejima
+    - RxSwift
+    - Sejima
+
+SPEC CHECKSUMS:
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
+  Neumann: d1319141c9c374c3e8a0b0107bbc751e1c4cac6c
+  RxAlamofire: 878eb06baefd76df6062889be11592434e6c4a95
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxGRDB: 41dfd8f987aad7a7bdd7c420319d3eb23ee383f3
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSejima: cae934ea22d478e8ce884bbf37a976afc321f74f
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  Sejima: 392535f758adc4708ae1d08b9238c8ee0ee816ed
+
+PODFILE CHECKSUM: f552fa278d113052488d2f1269e276d4538b2344
+
+COCOAPODS: 1.9.0
