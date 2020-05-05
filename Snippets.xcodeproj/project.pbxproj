@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BADFF2461B3FE00BF0AA6 /* SQLSnippet.swift */; };
+		B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */; };
+		B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE032461B6F000BF0AA6 /* SQLTag.swift */; };
+		B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
 		B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */; };
 		B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */; };
@@ -20,6 +24,10 @@
 /* Begin PBXFileReference section */
 		1B76EB0059402CE80BB95FBC /* Pods-Snippets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snippets.debug.xcconfig"; path = "Target Support Files/Pods-Snippets/Pods-Snippets.debug.xcconfig"; sourceTree = "<group>"; };
 		5526B0F7E148F4720D0AF81A /* Pods-Snippets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snippets.release.xcconfig"; path = "Target Support Files/Pods-Snippets/Pods-Snippets.release.xcconfig"; sourceTree = "<group>"; };
+		B30BADFF2461B3FE00BF0AA6 /* SQLSnippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSnippet.swift; sourceTree = "<group>"; };
+		B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSmartTag.swift; sourceTree = "<group>"; };
+		B30BAE032461B6F000BF0AA6 /* SQLTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTag.swift; sourceTree = "<group>"; };
+		B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTagsIndex.swift; sourceTree = "<group>"; };
 		B3E77A30245AE65B001F08A4 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E77A33245AE65B001F08A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +69,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B30BAE072461B91C00BF0AA6 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				B30BADFF2461B3FE00BF0AA6 /* SQLSnippet.swift */,
+				B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */,
+				B30BAE032461B6F000BF0AA6 /* SQLTag.swift */,
+				B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */,
+			);
+			path = SQLite;
+			sourceTree = "<group>";
+		};
 		B3E77A27245AE65B001F08A4 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +101,7 @@
 		B3E77A32245AE65B001F08A4 /* Snippets */ = {
 			isa = PBXGroup;
 			children = (
+				B30BAE072461B91C00BF0AA6 /* SQLite */,
 				B3E77A33245AE65B001F08A4 /* AppDelegate.swift */,
 				B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */,
 				B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */,
@@ -209,10 +229,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */,
+				B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */,
 				B3E77A48245AF054001F08A4 /* SnippetListViewModel.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
+				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
 				B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */,
 				B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */,
+				B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
