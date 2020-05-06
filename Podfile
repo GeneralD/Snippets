@@ -9,5 +9,6 @@ target 'Snippets' do
 	pod 'RxCocoa'
   pod 'RxAlamofire'
   pod 'RxGRDB'
+	pod 'Sourceful'
 
 end
