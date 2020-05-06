@@ -18,6 +18,7 @@ protocol SnippetListViewModelInput {
 
 protocol SnippetListViewModelOutput {
 	var items: Observable<[SQLSnippet]> { get }
+	var present: Observable<SQLSnippet?> { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
@@ -27,18 +28,29 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	
 	// MARK: Outputs
 	let items: Observable<[SQLSnippet]>
+	let present: Observable<SQLSnippet?>
 	
 	private let disposeBag = DisposeBag()
 	
 	init() {
+		// Inputs
 		let _itemSelected = PublishRelay<IndexPath>()
-		self.itemSelected = AnyObserver<IndexPath> { event in
-			guard case .next(let element) = event else { return }
-			_itemSelected.accept(element)
-		}
+		self.itemSelected = _itemSelected.asObserver()
 		
+		// Outputs
 		let _items = BehaviorRelay<[SQLSnippet]>(value: [])
 		self.items = _items.asObservable()
+		
+		let _present = BehaviorRelay<SQLSnippet?>(value: nil)
+		self.present = _present.asObservable()
+		
+		// Bind them
+		_itemSelected
+			.map { $0.row }
+			.filter { _items.value.count > $0 }
+			.map { _items.value[$0] }
+			.bind(to: _present)
+			.disposed(by: disposeBag)
 		
 		database?.rx.read { db in try SQLSnippet.fetchAll(db) }
 			.asObservable()

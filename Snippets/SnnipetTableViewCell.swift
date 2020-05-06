@@ -10,6 +10,6 @@ import UIKit
 
 class SnnipetTableViewCell: UITableViewCell {
 	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var codeTextView: UITextView!
-	@IBOutlet weak var tagsLabel: UILabel!
+	@IBOutlet weak var codeLabel: UILabel!
+	@IBOutlet weak var syntaxLabel: UILabel!
 }

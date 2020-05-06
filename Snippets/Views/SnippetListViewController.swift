@@ -43,8 +43,12 @@ class SnippetListViewController: UIViewController {
 		
 		output.items.bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: SnnipetTableViewCell.self)) { row, element, cell in
 			cell.titleLabel.text = element.title
-			cell.codeTextView.text = element.body
-		}
-		.disposed(by: disposeBag)
+			cell.codeLabel.text = element.body
+			cell.syntaxLabel.text = element.syntax
+		}.disposed(by: disposeBag)
+		
+		output.present.subscribe(onNext: { snippet in
+			print("TODO: present a snippet on next view. \(snippet?.title ?? "")")
+		}).disposed(by: disposeBag)
 	}
 }
