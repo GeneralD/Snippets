@@ -9,11 +9,27 @@
 import Foundation
 import GRDB
 
-class SQLSmartTag: Record {
-	
+class SQLSmartTag: FetchableRecord {
+
 	var stid: Int64?
 	var name: String?
 	var query: String?
 	
-	override class var databaseTableName: String { "smartTags" }
+	required init(row: Row) {
+		stid = row["stid"]
+		name = row["name"]
+		query = row["query"]
+	}
+}
+
+extension SQLSmartTag: TableRecord {
+	static var databaseTableName: String { "smartTags" }
+}
+
+extension SQLSmartTag: PersistableRecord {
+	func encode(to container: inout PersistenceContainer) {
+		container["stid"] = stid
+		container["name"] = name
+		container["query"] = query
+	}
 }

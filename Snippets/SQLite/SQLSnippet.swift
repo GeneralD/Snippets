@@ -9,7 +9,7 @@
 import Foundation
 import GRDB
 
-class SQLSnippet: Record {
+class SQLSnippet: FetchableRecord {
 
 	var sid: Int64?
 	var title: String?
@@ -17,5 +17,25 @@ class SQLSnippet: Record {
 	var syntax: String?
 	var usageCount: Int?
 	
-	override class var databaseTableName: String { "snippets" }
+	required init(row: Row) {
+		sid = row["sid"]
+		title = row["title"]
+		body = row["body"]
+		syntax = row["syntax"]
+		usageCount = row["usageCount"]
+	}
+}
+
+extension SQLSnippet: TableRecord {
+	static var databaseTableName: String { "snippets" }
+}
+
+extension SQLSnippet: PersistableRecord {
+	func encode(to container: inout PersistenceContainer) {
+		container["sid"] = sid
+		container["title"] = title
+		container["body"] = body
+		container["syntax"] = syntax
+		container["usageCount"] = usageCount
+	}
 }

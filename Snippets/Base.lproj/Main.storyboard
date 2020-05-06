@@ -7,17 +7,78 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Snippet List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Snippets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SnippetListViewController" customModule="Snippets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BBe-gh-QhA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="170" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BBe-gh-QhA">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="170" id="mHJ-Mi-xeS" customClass="SnnipetTableViewCell" customModule="Snippets" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="170"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mHJ-Mi-xeS" id="H0z-t3-FOn">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCB-fu-Xod">
+                                                    <rect key="frame" x="8" y="8" width="398" height="154"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd2-TW-Eig">
+                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iLd-eL-WuM">
+                                                            <rect key="frame" x="0.0" y="29" width="398" height="96"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4I-0R-uZt">
+                                                            <rect key="frame" x="0.0" y="133" width="398" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="iLd-eL-WuM" secondAttribute="trailing" id="46m-17-L8i"/>
+                                                        <constraint firstAttribute="bottom" secondItem="B4I-0R-uZt" secondAttribute="bottom" id="6wM-AB-jTt"/>
+                                                        <constraint firstItem="Vd2-TW-Eig" firstAttribute="leading" secondItem="vCB-fu-Xod" secondAttribute="leading" id="7qb-xo-3KZ"/>
+                                                        <constraint firstItem="B4I-0R-uZt" firstAttribute="leading" secondItem="vCB-fu-Xod" secondAttribute="leading" id="Buq-rb-7BP"/>
+                                                        <constraint firstAttribute="trailing" secondItem="B4I-0R-uZt" secondAttribute="trailing" id="Xhs-Wa-64R"/>
+                                                        <constraint firstItem="iLd-eL-WuM" firstAttribute="top" secondItem="Vd2-TW-Eig" secondAttribute="bottom" constant="8" id="Ysd-eV-ZmU"/>
+                                                        <constraint firstItem="iLd-eL-WuM" firstAttribute="leading" secondItem="vCB-fu-Xod" secondAttribute="leading" id="bAH-F3-Og8"/>
+                                                        <constraint firstItem="Vd2-TW-Eig" firstAttribute="top" secondItem="vCB-fu-Xod" secondAttribute="top" id="fty-7D-UOH"/>
+                                                        <constraint firstItem="B4I-0R-uZt" firstAttribute="top" secondItem="iLd-eL-WuM" secondAttribute="bottom" constant="8" id="jog-Rx-zlT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Vd2-TW-Eig" secondAttribute="trailing" id="ndW-Hb-kaN"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="vCB-fu-Xod" secondAttribute="trailing" constant="8" id="PkP-E1-zfd"/>
+                                                <constraint firstItem="vCB-fu-Xod" firstAttribute="top" secondItem="H0z-t3-FOn" secondAttribute="top" constant="8" id="pXg-vS-bJW"/>
+                                                <constraint firstAttribute="bottom" secondItem="vCB-fu-Xod" secondAttribute="bottom" constant="8" id="t8h-w6-bU5"/>
+                                                <constraint firstItem="vCB-fu-Xod" firstAttribute="leading" secondItem="H0z-t3-FOn" secondAttribute="leading" constant="8" id="y9A-iG-8FF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="codeTextView" destination="iLd-eL-WuM" id="KtU-Xe-sAK"/>
+                                            <outlet property="tagsLabel" destination="B4I-0R-uZt" id="Q9z-p5-7Hi"/>
+                                            <outlet property="titleLabel" destination="Vd2-TW-Eig" id="c15-yl-GGE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -35,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="139"/>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </scene>
     </scenes>
 </document>

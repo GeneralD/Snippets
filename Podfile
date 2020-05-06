@@ -6,9 +6,8 @@ target 'Snippets' do
   use_frameworks!
 
   # Pods for Snippets
+	pod 'RxCocoa'
   pod 'RxAlamofire'
-  pod 'RxCocoa'
   pod 'RxGRDB'
-  pod 'RxSejima'
 
 end
