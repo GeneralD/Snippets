@@ -86,6 +86,44 @@
 			path = SQLite;
 			sourceTree = "<group>";
 		};
+		B334D7E5246307E000898BAD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B334D7E32463060600898BAD /* AnyObserverConvertible.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B334D7E62463080600898BAD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B334D7E72463084600898BAD /* App */,
+				B37739EF24628BF500B0D1F1 /* Views */,
+				B37739F024628BFA00B0D1F1 /* ViewModels */,
+				B334D7E5246307E000898BAD /* Extensions */,
+				B334D7E82463086400898BAD /* Components */,
+				B30BAE072461B91C00BF0AA6 /* SQLite */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B334D7E72463084600898BAD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B3E77A33245AE65B001F08A4 /* AppDelegate.swift */,
+				B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B334D7E82463086400898BAD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B334D7E12462B56100898BAD /* SnnipetTableViewCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		B36B11F72462A84200FA189D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,18 +169,12 @@
 		B3E77A32245AE65B001F08A4 /* Snippets */ = {
 			isa = PBXGroup;
 			children = (
+				B334D7E62463080600898BAD /* Sources */,
 				B36B11F72462A84200FA189D /* Resources */,
-				B37739EF24628BF500B0D1F1 /* Views */,
-				B37739F024628BFA00B0D1F1 /* ViewModels */,
-				B30BAE072461B91C00BF0AA6 /* SQLite */,
-				B334D7E12462B56100898BAD /* SnnipetTableViewCell.swift */,
-				B3E77A33245AE65B001F08A4 /* AppDelegate.swift */,
-				B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */,
 				B3E77A3C245AE65F001F08A4 /* Assets.xcassets */,
 				B3E77A39245AE65B001F08A4 /* Main.storyboard */,
 				B3E77A3E245AE65F001F08A4 /* LaunchScreen.storyboard */,
 				B3E77A41245AE65F001F08A4 /* Info.plist */,
-				B334D7E32463060600898BAD /* AnyObserverConvertible.swift */,
 			);
 			path = Snippets;
 			sourceTree = "<group>";
