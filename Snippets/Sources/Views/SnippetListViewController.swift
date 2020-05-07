@@ -41,14 +41,28 @@ class SnippetListViewController: UIViewController {
 			.bind(to: input.itemSelected)
 			.disposed(by: disposeBag)
 		
-		output.items.bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: SnnipetTableViewCell.self)) { row, element, cell in
-			cell.titleLabel.text = element.title
-			cell.codeTextView.text = element.body ?? ""
-			cell.syntaxLabel.text = element.syntax
-		}.disposed(by: disposeBag)
+		let refreshControl = UIRefreshControl()
+		tableView.refreshControl = refreshControl
+		refreshControl.rx.controlEvent(.valueChanged)
+			.bind(to: input.refresherPulled)
+			.disposed(by: disposeBag)
 		
-		output.present.subscribe(onNext: { snippet in
-			print("TODO: present a snippet on next view. \(snippet?.title ?? "")")
-		}).disposed(by: disposeBag)
+		output.items
+			.bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: SnnipetTableViewCell.self), curriedArgument: { row, element, cell in
+					cell.titleLabel.text = element.title
+					cell.codeTextView.text = element.body ?? ""
+					cell.syntaxLabel.text = element.syntax
+			})
+			.disposed(by: disposeBag)
+		
+		output.isRefreshing
+			.bind(to: refreshControl.rx.isRefreshing)
+			.disposed(by: disposeBag)
+		
+		output.present
+			.subscribe(onNext: { snippet in
+				print("TODO: present a snippet on next view. \(snippet?.title ?? "")")
+			})
+			.disposed(by: disposeBag)
 	}
 }
