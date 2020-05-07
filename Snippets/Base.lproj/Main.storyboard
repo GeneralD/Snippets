@@ -29,38 +29,38 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCB-fu-Xod">
                                                     <rect key="frame" x="8" y="8" width="398" height="184"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vv-qv-Raj" customClass="SyntaxTextView" customModule="Sourceful">
-                                                            <rect key="frame" x="0.0" y="29" width="398" height="155"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Syntax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4I-0R-uZt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="52.5" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Syntax" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4I-0R-uZt">
+                                                            <rect key="frame" x="8" y="10.5" width="41.5" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vd2-TW-Eig">
-                                                            <rect key="frame" x="60.5" y="0.0" width="337.5" height="21"/>
+                                                            <rect key="frame" x="53.5" y="8" width="336.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vv-qv-Raj" customClass="SyntaxTextView" customModule="Sourceful">
+                                                            <rect key="frame" x="8" y="37" width="382" height="139"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="9Vv-qv-Raj" firstAttribute="leading" secondItem="vCB-fu-Xod" secondAttribute="leading" id="363-sx-q8g"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Vd2-TW-Eig" secondAttribute="trailing" id="7cs-Qr-VeB"/>
-                                                        <constraint firstItem="B4I-0R-uZt" firstAttribute="leading" secondItem="vCB-fu-Xod" secondAttribute="leading" id="AQG-jh-zAg"/>
+                                                        <constraint firstItem="9Vv-qv-Raj" firstAttribute="leading" secondItem="vCB-fu-Xod" secondAttribute="leading" constant="8" id="363-sx-q8g"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Vd2-TW-Eig" secondAttribute="trailing" constant="8" id="7cs-Qr-VeB"/>
+                                                        <constraint firstItem="B4I-0R-uZt" firstAttribute="leading" secondItem="vCB-fu-Xod" secondAttribute="leading" constant="8" id="AQG-jh-zAg"/>
+                                                        <constraint firstItem="B4I-0R-uZt" firstAttribute="centerY" secondItem="Vd2-TW-Eig" secondAttribute="centerY" id="Bky-Qx-aGF"/>
                                                         <constraint firstItem="9Vv-qv-Raj" firstAttribute="top" secondItem="Vd2-TW-Eig" secondAttribute="bottom" constant="8" id="PvG-Fk-2fF"/>
-                                                        <constraint firstAttribute="bottom" secondItem="9Vv-qv-Raj" secondAttribute="bottom" id="YJa-ow-zfX"/>
-                                                        <constraint firstItem="B4I-0R-uZt" firstAttribute="top" secondItem="vCB-fu-Xod" secondAttribute="top" id="ZEf-0D-bSa"/>
-                                                        <constraint firstItem="Vd2-TW-Eig" firstAttribute="leading" secondItem="B4I-0R-uZt" secondAttribute="trailing" constant="8" id="bKW-BN-d2Y"/>
-                                                        <constraint firstItem="Vd2-TW-Eig" firstAttribute="top" secondItem="vCB-fu-Xod" secondAttribute="top" id="rUF-iA-Dio"/>
-                                                        <constraint firstAttribute="trailing" secondItem="9Vv-qv-Raj" secondAttribute="trailing" id="ujx-wy-heK"/>
-                                                        <constraint firstItem="9Vv-qv-Raj" firstAttribute="top" secondItem="B4I-0R-uZt" secondAttribute="bottom" constant="8" id="z7G-rO-xkd"/>
+                                                        <constraint firstAttribute="bottom" secondItem="9Vv-qv-Raj" secondAttribute="bottom" constant="8" id="YJa-ow-zfX"/>
+                                                        <constraint firstItem="Vd2-TW-Eig" firstAttribute="leading" secondItem="B4I-0R-uZt" secondAttribute="trailing" constant="4" id="bKW-BN-d2Y"/>
+                                                        <constraint firstItem="Vd2-TW-Eig" firstAttribute="top" secondItem="vCB-fu-Xod" secondAttribute="top" constant="8" id="rUF-iA-Dio"/>
+                                                        <constraint firstAttribute="trailing" secondItem="9Vv-qv-Raj" secondAttribute="trailing" constant="8" id="ujx-wy-heK"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="vCB-fu-Xod" secondAttribute="trailing" constant="8" id="PkP-E1-zfd"/>
                                                 <constraint firstItem="vCB-fu-Xod" firstAttribute="top" secondItem="H0z-t3-FOn" secondAttribute="top" constant="8" id="pXg-vS-bJW"/>
@@ -70,6 +70,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="codeTextView" destination="9Vv-qv-Raj" id="vjl-uL-Ot5"/>
+                                            <outlet property="contentPaddingTopConstraint" destination="pXg-vS-bJW" id="hYz-Ue-3bo"/>
+                                            <outlet property="mainView" destination="vCB-fu-Xod" id="HXq-8J-Za3"/>
                                             <outlet property="syntaxLabel" destination="B4I-0R-uZt" id="Q9z-p5-7Hi"/>
                                             <outlet property="titleLabel" destination="Vd2-TW-Eig" id="c15-yl-GGE"/>
                                         </connections>
