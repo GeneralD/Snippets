@@ -12,20 +12,20 @@ import DynamicColor
 import SwiftyJSON
 
 public extension UIColor {
-	static func adustedColor(for language: String) -> UIColor {
-		let c = themeColor(for: language)
+	
+	var adusted: UIColor {
 		// Get brightness
 		var brightness: CGFloat = 0
-		guard c.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil) else { return c }
+		guard getHue(nil, saturation: nil, brightness: &brightness, alpha: nil) else { return self }
 		// Too dark?
 		if (0..<0.45).contains(brightness) {
-			return c.lighter()
+			return lighter()
 		}
 		// Too light?
 		if (0.85...).contains(brightness) {
-			return c.darkened()
+			return darkened()
 		}
-		return c
+		return self
 	}
 	
 	static func themeColor(for language: String) -> UIColor {

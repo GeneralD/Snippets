@@ -8,14 +8,15 @@
 
 import Foundation
 
-enum Surrounder {
+public enum Surrounder {
 	case parentheses
 	case braces
 	case squareBrackets
 	case angleBrackets
+	case character(_ char: String)
 }
 
-extension String {
+public extension String {
 	func surrounded(by surrounder: Surrounder) -> String {
 		switch surrounder {
 		case .parentheses:
@@ -26,6 +27,8 @@ extension String {
 			return "[\(self)]"
 		case .angleBrackets:
 			return "<\(self)>"
+		case .character(let char):
+			return "\(char)\(self)\(char)"
 		}
 	}
 }

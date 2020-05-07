@@ -24,7 +24,7 @@ class SnnipetTableViewCell: UITableViewCell {
 		codeTextView.text = code
 		syntaxLabel.text = language
 		syntaxLabel.isHidden = language.isEmpty
-		syntaxLabel.backgroundColor = .adustedColor(for: language)
+		syntaxLabel.backgroundColor = UIColor.themeColor(for: language).adusted
 		contentPaddingTopConstraint.constant = isFirstRow ? 8 : 0
 	}
 	
