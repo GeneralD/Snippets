@@ -49,10 +49,7 @@ class SnippetListViewController: UIViewController {
 		
 		output.items
 			.bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: SnnipetTableViewCell.self), curriedArgument: { row, element, cell in
-				cell.titleLabel.text = element.title
-				cell.codeTextView.text = element.body ?? ""
-				cell.syntaxLabel.text = element.syntax
-				cell.isFirstRow = row == 0
+				cell.apply(title: element.title ?? "", code: element.body ?? "", language: element.syntax ?? "", isFirstRow: row == 0)
 			})
 			.disposed(by: disposeBag)
 		

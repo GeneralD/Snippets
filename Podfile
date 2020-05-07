@@ -5,10 +5,15 @@ target 'Snippets' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Snippets
+  # RxSwift
 	pod 'RxCocoa'
   pod 'RxAlamofire'
   pod 'RxGRDB'
+	# Encode/Decode
+	pod 'SwiftyJSON'
+	# UIColor
+	pod 'Hex'
+	pod 'DynamicColor'
+	# Others
 	pod 'Sourceful'
-
 end
