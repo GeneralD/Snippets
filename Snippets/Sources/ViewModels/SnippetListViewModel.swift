@@ -15,6 +15,7 @@ import RxGRDB
 protocol SnippetListViewModelInput {
 	var itemSelected: AnyObserver<IndexPath> { get }
 	var refresherPulled: AnyObserver<()> { get }
+	var searchBarText: AnyObserver<String?> { get }
 }
 
 protocol SnippetListViewModelOutput {
@@ -28,6 +29,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	// MARK: Inputs
 	let itemSelected: AnyObserver<IndexPath>
 	let refresherPulled: AnyObserver<()>
+	let searchBarText: AnyObserver<String?>
 	
 	// MARK: Outputs
 	let items: Observable<[SQLSnippet]>
@@ -43,6 +45,9 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		let _refresherPulled = PublishRelay<()>()
 		self.refresherPulled = _refresherPulled.asObserver()
+		
+		let _searchBarText = BehaviorRelay<(String?)>(value: nil)
+		self.searchBarText = _searchBarText.asObserver()
 		
 		// Outputs
 		let _items = BehaviorRelay<[SQLSnippet]>(value: [])
@@ -61,10 +66,14 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.bind(to: _present)
 			.disposed(by: disposeBag)
 		
-		Observable.merge(Observable.just(()), _refresherPulled.asObservable())
+		_refresherPulled
+			.merge(Observable.just(()))
 			.compactMap { self.database }
 			.flatMap { db in db.rx.read { try SQLSnippet.fetchAll($0) } }
-			.asObservable()
+			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in
+				guard let str = text, !str.isEmpty else { return items }
+				return items.filter { $0.title?.range(of: str, options: [.caseInsensitive, .widthInsensitive]) != nil || $0.body?.range(of: str, options: [.caseInsensitive, .widthInsensitive]) != nil || $0.syntax?.range(of: str, options: [.caseInsensitive, .widthInsensitive]) != nil }
+			})
 			.bind(to: _items)
 			.disposed(by: disposeBag)
 	}

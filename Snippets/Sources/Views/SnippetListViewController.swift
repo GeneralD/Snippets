@@ -47,6 +47,13 @@ class SnippetListViewController: UIViewController {
 			.bind(to: input.refresherPulled)
 			.disposed(by: disposeBag)
 		
+		let searchBar = UISearchBar()
+		searchBar.sizeToFit()
+		tableView.tableHeaderView = searchBar
+		searchBar.rx.text
+			.bind(to: input.searchBarText)
+			.disposed(by: disposeBag)
+		
 		output.items
 			.bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: SnnipetTableViewCell.self), curriedArgument: { row, element, cell in
 				cell.apply(title: element.title ?? "", code: element.body ?? "", language: element.syntax ?? "", isFirstRow: row == 0)
