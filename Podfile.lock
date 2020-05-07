@@ -1,15 +1,9 @@
 PODS:
-  - Alamofire (5.1.0)
   - DynamicColor (4.2.0)
   - GRDB.swift (4.14.0):
     - GRDB.swift/standard (= 4.14.0)
   - GRDB.swift/standard (4.14.0)
   - Hex (6.1.0)
-  - RxAlamofire (5.2.0):
-    - RxAlamofire/Core (= 5.2.0)
-  - RxAlamofire/Core (5.2.0):
-    - Alamofire (~> 5.1)
-    - RxSwift (~> 5.1)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -28,7 +22,6 @@ PODS:
 DEPENDENCIES:
   - DynamicColor
   - Hex
-  - RxAlamofire
   - RxCocoa
   - RxGRDB
   - Sourceful
@@ -36,11 +29,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - DynamicColor
     - GRDB.swift
     - Hex
-    - RxAlamofire
     - RxCocoa
     - RxGRDB
     - RxRelay
@@ -49,11 +40,9 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   DynamicColor: c475f66bda1cabf602f2c54ac1171c0c07148a5a
   GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
-  RxAlamofire: 878eb06baefd76df6062889be11592434e6c4a95
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxGRDB: 41dfd8f987aad7a7bdd7c420319d3eb23ee383f3
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -61,6 +50,6 @@ SPEC CHECKSUMS:
   Sourceful: f514447f2ee886f238face3ce8e8b5648c0dc365
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 8c0912068c04234091b2968b6aacfb3fc4548dde
+PODFILE CHECKSUM: 485de61e6186f0c3b28c1352413676c93a37be9e
 
 COCOAPODS: 1.9.1
