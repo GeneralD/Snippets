@@ -13,9 +13,21 @@ class SnnipetTableViewCell: UITableViewCell {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var codeTextView: SyntaxTextView!
 	@IBOutlet weak var syntaxLabel: UILabel!
+
+	private static let sharedTheme = MySourceCodeTheme()
 	
 	override func awakeFromNib() {
-		codeTextView.theme = MySourceCodeTheme()
+		codeTextView.delegate = self
+		codeTextView.theme = type(of: self).sharedTheme
+	}
+}
+
+extension SnnipetTableViewCell: SyntaxTextViewDelegate {
+	
+	private static let sharedLexer =  SwiftLexer()
+	
+	func lexerForSource(_ source: String) -> Lexer {
+		type(of: self).sharedLexer
 	}
 }
 
@@ -23,43 +35,36 @@ fileprivate struct MySourceCodeTheme: SourceCodeTheme {
 	
 	public init() {}
 	
-	private static var lineNumbersColor: Color {
-		.init(red: 100/255, green: 100/255, blue: 100/255, alpha: 1.0)
-	}
+	public let lineNumbersStyle: LineNumbersStyle? = .init(font: Font(name: "Menlo", size: 13)!, textColor: #colorLiteral(red: 0.06850594435, green: 0.4366983606, blue: 1, alpha: 1))
 	
-	public let lineNumbersStyle: LineNumbersStyle? = LineNumbersStyle(font: Font(name: "Menlo", size: 13)!, textColor: .systemBlue)
+	public let gutterStyle: GutterStyle = .init(backgroundColor: #colorLiteral(red: 0.0973376611, green: 0.1433584707, blue: 0.1722420302, alpha: 1), minimumWidth: 32)
 	
-	public let gutterStyle: GutterStyle = GutterStyle(backgroundColor: Color(red: 21/255.0, green: 22/255, blue: 31/255, alpha: 1.0), minimumWidth: 32)
+	public let font: Font = Font(name: "Menlo", size: 12)!
 	
-	public let font = Font(name: "Menlo", size: 12)!
-	
-	public let backgroundColor = Color(red: 31/255.0, green: 32/255, blue: 41/255, alpha: 1.0)
+	public let backgroundColor: Color = #colorLiteral(red: 0.1530647022, green: 0.1530647022, blue: 0.1530647022, alpha: 1)
 	
 	public func color(for syntaxColorType: SourceCodeTokenType) -> Color {
-		
 		switch syntaxColorType {
 		case .plain:
-			return .white
+			return #colorLiteral(red: 0.6281992662, green: 0.7925334909, blue: 1, alpha: 1)
 			
 		case .number:
-			return .init(red: 116/255, green: 109/255, blue: 176/255, alpha: 1.0)
-			
+			return #colorLiteral(red: 1, green: 0.7238472174, blue: 0.8219243077, alpha: 1)
+		
 		case .string:
-			return .init(red: 211/255, green: 35/255, blue: 46/255, alpha: 1.0)
+			return #colorLiteral(red: 0.6872529771, green: 0.6763295318, blue: 1, alpha: 1)
 			
 		case .identifier:
-			return .init(red: 20/255, green: 156/255, blue: 146/255, alpha: 1.0)
+			return #colorLiteral(red: 1, green: 0.937737156, blue: 0.6770503595, alpha: 1)
 			
 		case .keyword:
-			return .init(red: 215/255, green: 0, blue: 143/255, alpha: 1.0)
+			return #colorLiteral(red: 0.7079717554, green: 1, blue: 0.730431033, alpha: 1)
 			
 		case .comment:
-			return .init(red: 69.0/255.0, green: 187.0/255.0, blue: 62.0/255.0, alpha: 1.0)
+			return #colorLiteral(red: 0.4938922177, green: 0.5403475639, blue: 0.6957975042, alpha: 1)
 			
 		case .editorPlaceholder:
 			return backgroundColor
 		}
-		
 	}
-	
 }
