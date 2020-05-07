@@ -104,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				B334D7EB2463A9D500898BAD /* StringExtension.swift */,
-				B334D7E32463060600898BAD /* AnyObserverConvertible.swift */,
 				B334D7F42463F30200898BAD /* ColorExtension.swift */,
+				B334D7E32463060600898BAD /* AnyObserverConvertible.swift */,
 				B334D7F62464071500898BAD /* ObservableTypeExtension.swift */,
 			);
 			path = Extensions;

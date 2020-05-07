@@ -13,7 +13,7 @@ import SwiftyJSON
 
 public extension UIColor {
 	
-	var adusted: UIColor {
+	var comfortable: UIColor {
 		// Get brightness
 		var brightness: CGFloat = 0
 		guard getHue(nil, saturation: nil, brightness: &brightness, alpha: nil) else { return self }
