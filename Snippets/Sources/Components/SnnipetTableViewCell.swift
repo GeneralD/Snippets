@@ -19,6 +19,13 @@ class SnnipetTableViewCell: UITableViewCell {
 	override func awakeFromNib() {
 		codeTextView.delegate = self
 		codeTextView.theme = type(of: self).sharedTheme
+		codeTextView.layer.masksToBounds = true
+		codeTextView.layer.cornerRadius = 8
+		
+		syntaxLabel.textColor = .white
+		syntaxLabel.backgroundColor = .systemBlue
+		syntaxLabel.layer.masksToBounds = true
+		syntaxLabel.layer.cornerRadius = 8
 	}
 }
 
