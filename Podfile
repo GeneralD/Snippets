@@ -7,7 +7,6 @@ target 'Snippets' do
 	
 	# RxSwift
 	pod 'RxCocoa'
-	pod 'RxAlamofire'
 	pod 'RxGRDB'
 	# Encode/Decode
 	pod 'SwiftyJSON'
