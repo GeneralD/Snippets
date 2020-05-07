@@ -1,4 +1,5 @@
 PODS:
+  - appstore-card-transition (1.0.4)
   - DynamicColor (4.2.0)
   - GRDB.swift (4.14.0):
     - GRDB.swift/standard (= 4.14.0)
@@ -20,6 +21,7 @@ PODS:
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
+  - appstore-card-transition
   - DynamicColor
   - Hex
   - RxCocoa
@@ -29,6 +31,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - appstore-card-transition
     - DynamicColor
     - GRDB.swift
     - Hex
@@ -40,6 +43,7 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  appstore-card-transition: 660c136cb8a0f0004b2e99e99f1305bfa041f05c
   DynamicColor: c475f66bda1cabf602f2c54ac1171c0c07148a5a
   GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
@@ -50,6 +54,6 @@ SPEC CHECKSUMS:
   Sourceful: f514447f2ee886f238face3ce8e8b5648c0dc365
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 485de61e6186f0c3b28c1352413676c93a37be9e
+PODFILE CHECKSUM: 51e157d2b2aa667e07c21d5f1f8dc257beb535be
 
 COCOAPODS: 1.9.1

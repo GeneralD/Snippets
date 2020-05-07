@@ -15,4 +15,5 @@ target 'Snippets' do
 	pod 'DynamicColor'
 	# Others
 	pod 'Sourceful'
+	pod 'appstore-card-transition'	
 end

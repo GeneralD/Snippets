@@ -41,7 +41,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vv-qv-Raj" customClass="SyntaxTextView" customModule="Sourceful">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vv-qv-Raj" customClass="CodeView" customModule="Snippets" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="37" width="382" height="139"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         </view>
@@ -69,7 +69,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="codeTextView" destination="9Vv-qv-Raj" id="vjl-uL-Ot5"/>
+                                            <outlet property="codeView" destination="9Vv-qv-Raj" id="vjl-uL-Ot5"/>
                                             <outlet property="contentPaddingTopConstraint" destination="pXg-vS-bJW" id="hYz-Ue-3bo"/>
                                             <outlet property="mainView" destination="vCB-fu-Xod" id="HXq-8J-Za3"/>
                                             <outlet property="syntaxLabel" destination="B4I-0R-uZt" id="Q9z-p5-7Hi"/>
@@ -95,21 +95,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="VGZ-FQ-Pev">
-            <objects>
-                <viewController id="D6W-ry-yPU" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="m7D-vt-dAD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="22y-Uv-yDT"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QIH-gI-MCW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1006" y="139"/>
         </scene>
     </scenes>
 </document>
