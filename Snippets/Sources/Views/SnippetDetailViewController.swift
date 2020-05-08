@@ -25,7 +25,7 @@ class SnippetDetailViewController: UIViewController {
 	private let disposeBag = DisposeBag()
 	
 	static func instantiate(model: SQLSnippet) -> SnippetDetailViewController {
-		let instance = UIStoryboard(name: "Detail", bundle: nil).instantiateInitialViewController() as! SnippetDetailViewController
+		let instance = R.storyboard.detail.instantiateInitialViewController()!
 		instance.input.model.onNext(model)
 		return instance
 	}

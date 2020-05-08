@@ -94,7 +94,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	}
 	
 	private var database: DatabaseQueue? {
-		guard let path = Bundle.main.path(forResource: "Snippets", ofType: "dash") else { return nil }
+		guard let path = R.file.snippetsDash.path() else { return nil }
 		return try? DatabaseQueue(path: path)
 	}
 }

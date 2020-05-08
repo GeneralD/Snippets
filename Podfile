@@ -18,4 +18,7 @@ target 'Snippets' do
 	# UI Parts
 	pod 'Sourceful'
 	pod 'TagListView'
+	# Coding
+	pod 'R.swift'
+	
 end

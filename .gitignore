@@ -228,3 +228,5 @@ fastlane/test_output
 iOSInjectionProject/
 
 
+# Manually added
+*.generated.swift

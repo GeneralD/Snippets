@@ -34,8 +34,8 @@ public extension UIColor {
 	}
 	
 	private static let colorsJson = { () -> JSON? in
-		guard let url = Bundle.main.url(forResource: "language_colors", withExtension: "json") else { return nil }
-		guard let data = try? Data.init(contentsOf: url) else { return nil }
+		guard let url = R.file.language_colorsJson(),
+			let data = try? Data.init(contentsOf: url) else { return nil }
 		return try? JSON(data: data)
 	} ()
 }

@@ -4,6 +4,9 @@ PODS:
     - GRDB.swift/standard (= 4.14.0)
   - GRDB.swift/standard (4.14.0)
   - Hex (6.1.0)
+  - R.swift (5.2.2):
+    - R.swift.Library (~> 5.2.0)
+  - R.swift.Library (5.2.0)
   - Reusable (4.1.1):
     - Reusable/Storyboard (= 4.1.1)
     - Reusable/View (= 4.1.1)
@@ -39,6 +42,7 @@ PODS:
 DEPENDENCIES:
   - DynamicColor
   - Hex
+  - R.swift
   - RxAnimated
   - RxCells
   - RxCocoa
@@ -52,6 +56,8 @@ SPEC REPOS:
     - DynamicColor
     - GRDB.swift
     - Hex
+    - R.swift
+    - R.swift.Library
     - Reusable
     - RxAnimated
     - RxCells
@@ -67,6 +73,8 @@ SPEC CHECKSUMS:
   DynamicColor: c475f66bda1cabf602f2c54ac1171c0c07148a5a
   GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
+  R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
+  R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
   Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
   RxAnimated: 8540892468e906e7404595bc51ed4b36b3737ab5
   RxCells: bdf6673a05f8ee58b3dd7b28c3e236da7b5e0e98
@@ -78,6 +86,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: afa94ef03aed0314677bec33b7144200f1e8fc22
+PODFILE CHECKSUM: e92b357db8cd0d26c29c2614c39ee47b8b2c3c1a
 
 COCOAPODS: 1.9.1
