@@ -72,8 +72,9 @@ class SnippetListViewController: UIViewController {
 		output.present
 			.compactMap { $0 }
 			.subscribe(onNext: { [weak self] in
-				let (index, snippet) = $0
-				// TODO
+				let (_, snippet) = $0
+				let viewController = SnippetDetailViewController.instantiate(model: snippet)
+				self?.showDetailViewController(viewController, sender: nil)
 			})
 			.disposed(by: disposeBag)
 		

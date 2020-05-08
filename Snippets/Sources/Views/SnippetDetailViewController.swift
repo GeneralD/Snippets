@@ -24,6 +24,12 @@ class SnippetDetailViewController: UIViewController {
 	private let output: Output
 	private let disposeBag = DisposeBag()
 	
+	static func instantiate(model: SQLSnippet) -> SnippetDetailViewController {
+		let instance = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SnippetDetail") as! SnippetDetailViewController
+		instance.input.model.onNext(model)
+		return instance
+	}
+	
 	init(viewModel: Input & Output = SnippetDetailViewModel()) {
 		self.input = viewModel
 		self.output = viewModel
@@ -39,6 +45,13 @@ class SnippetDetailViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+	
+		output.title
+			.bind(to: titleLabel.rx.text)
+			.disposed(by: disposeBag)
 		
+		output.code
+			.bind(to: codeView.rx.text)
+			.disposed(by: disposeBag)
 	}
 }

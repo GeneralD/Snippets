@@ -18,6 +18,4 @@ target 'Snippets' do
 	# UI Parts
 	pod 'Sourceful'
 	pod 'TagListView'
-	# UI Transition
-	pod 'Hero'
 end

@@ -11,29 +11,43 @@ import RxSwift
 import RxRelay
 
 protocol SnippetDetailViewModelInput {
-	var selected: AnyObserver<Int> { get }
+	var model: AnyObserver<SQLSnippet?> { get }
 }
 
 protocol SnippetDetailViewModelOutput {
 	var title: Observable<String?> { get }
+	var code: Observable<String?> { get }
 }
 
 final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {
 	
 	// MARK: Inputs
-	let selected: AnyObserver<Int>
+	var model: AnyObserver<SQLSnippet?>
 	
 	// MARK: Outputs
 	let title: Observable<String?>
+	let code: Observable<String?>
 	
 	private let disposeBag = DisposeBag()
 	
 	init() {
-		let selectedRelay = PublishRelay<Int>()
-		selected = selectedRelay.asObserver()
-		let titleRelay = BehaviorRelay<String?>(value: nil)
-		title = titleRelay.asObservable()
+		let _model = PublishRelay<SQLSnippet?>()
+		model = _model.asObserver()
 		
-		// Do something here...
+		let _title = BehaviorRelay<String?>(value: nil)
+		title = _title.asObservable()
+		
+		let _code = BehaviorRelay<String?>(value: nil)
+		code = _code.asObservable()
+		
+		_model
+			.map { $0?.title }
+			.bind(to: _title)
+			.disposed(by: disposeBag)
+		
+		_model
+			.map { $0?.body }
+			.bind(to: _code)
+			.disposed(by: disposeBag)
 	}
 }

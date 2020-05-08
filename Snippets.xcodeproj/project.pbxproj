@@ -24,6 +24,8 @@
 		B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */; };
 		B334D8012464282900898BAD /* SnippetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */; };
 		B334D8022464282900898BAD /* SnippetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */; };
+		B334D804246505B700898BAD /* PrimarySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D803246505B700898BAD /* PrimarySplitViewController.swift */; };
+		B334D8072465193100898BAD /* SyntaxTextViewReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */; };
 		B36B11F92462AEC600FA189D /* Snippets.dash in Resources */ = {isa = PBXBuildFile; fileRef = B36B11F82462A84A00FA189D /* Snippets.dash */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
 		B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */; };
@@ -55,6 +57,8 @@
 		B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailViewModel.swift; sourceTree = "<group>"; };
 		B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCollectionViewCell.swift; sourceTree = "<group>"; };
 		B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnippetCollectionViewCell.xib; sourceTree = "<group>"; };
+		B334D803246505B700898BAD /* PrimarySplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimarySplitViewController.swift; sourceTree = "<group>"; };
+		B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTextViewReactiveExtension.swift; sourceTree = "<group>"; };
 		B36B11F82462A84A00FA189D /* Snippets.dash */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snippets.dash; sourceTree = "<group>"; };
 		B3E77A30245AE65B001F08A4 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E77A33245AE65B001F08A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				B334D7F42463F30200898BAD /* ColorExtension.swift */,
 				B334D7E32463060600898BAD /* AnyObserverConvertible.swift */,
 				B334D7F62464071500898BAD /* ObservableTypeExtension.swift */,
+				B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -124,11 +129,11 @@
 			children = (
 				B334D7E72463084600898BAD /* App */,
 				B334D7ED2463AAA900898BAD /* Utilities */,
+				B334D80524650C1600898BAD /* Models */,
 				B37739EF24628BF500B0D1F1 /* Views */,
 				B37739F024628BFA00B0D1F1 /* ViewModels */,
 				B334D7E5246307E000898BAD /* Extensions */,
 				B334D7E82463086400898BAD /* Components */,
-				B30BAE072461B91C00BF0AA6 /* SQLite */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -162,6 +167,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		B334D80524650C1600898BAD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B30BAE072461B91C00BF0AA6 /* SQLite */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B36B11F72462A84200FA189D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +189,7 @@
 			children = (
 				B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */,
 				B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */,
+				B334D803246505B700898BAD /* PrimarySplitViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,6 +368,8 @@
 				B334D7F52463F30200898BAD /* ColorExtension.swift in Sources */,
 				B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */,
 				B334D7F92464136100898BAD /* CodeView.swift in Sources */,
+				B334D804246505B700898BAD /* PrimarySplitViewController.swift in Sources */,
+				B334D8072465193100898BAD /* SyntaxTextViewReactiveExtension.swift in Sources */,
 				B334D7EC2463A9D500898BAD /* StringExtension.swift in Sources */,
 				B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */,
 				B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */,
