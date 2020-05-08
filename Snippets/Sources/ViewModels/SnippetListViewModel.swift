@@ -16,6 +16,7 @@ protocol SnippetListViewModelInput {
 	var contentOffset: AnyObserver<CGPoint> { get }
 	var refresherPulled: AnyObserver<()> { get }
 	var searchBarText: AnyObserver<String?> { get }
+	var viewWillLayoutSubviews: AnyObserver<UIEdgeInsets> { get }
 }
 
 protocol SnippetListViewModelOutput {
@@ -23,6 +24,7 @@ protocol SnippetListViewModelOutput {
 	var present: Observable<(IndexPath, SQLSnippet)?> { get }
 	var isRefreshing: Observable<Bool> { get }
 	var isSearchBarHidden: Observable<Bool> { get }
+	var itemSize: Observable<CGSize> { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
@@ -32,12 +34,14 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	let contentOffset: AnyObserver<CGPoint>
 	let refresherPulled: AnyObserver<()>
 	let searchBarText: AnyObserver<String?>
+	let viewWillLayoutSubviews: AnyObserver<UIEdgeInsets>
 	
 	// MARK: Outputs
 	let items: Observable<[SQLSnippet]>
 	let present: Observable<(IndexPath, SQLSnippet)?>
 	let isRefreshing: Observable<Bool>
 	let isSearchBarHidden: Observable<Bool>
+	let itemSize: Observable<CGSize>
 	
 	private let disposeBag = DisposeBag()
 	
@@ -55,6 +59,9 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let _searchBarText = BehaviorRelay<(String?)>(value: nil)
 		self.searchBarText = _searchBarText.asObserver()
 		
+		let _viewWillLayoutSubviews = PublishRelay<UIEdgeInsets>()
+		viewWillLayoutSubviews = _viewWillLayoutSubviews.asObserver()
+		
 		// Outputs
 		let _items = BehaviorRelay<[SQLSnippet]>(value: [])
 		self.items = _items.asObservable()
@@ -66,6 +73,9 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		let _isSearchBarHidden = BehaviorRelay<Bool>(value: true)
 		self.isSearchBarHidden = _isSearchBarHidden.asObservable()
+		
+		let _itemSize = BehaviorRelay<CGSize>(value: .zero)
+		self.itemSize = _itemSize.asObservable()
 		
 		// Bind them
 		_itemSelected
@@ -89,6 +99,11 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				return items.filter { $0.contains(keyword: str) }
 			})
 			.bind(to: _items)
+			.disposed(by: disposeBag)
+		
+		_viewWillLayoutSubviews
+			.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
+			.bind(to: _itemSize)
 			.disposed(by: disposeBag)
 	}
 }

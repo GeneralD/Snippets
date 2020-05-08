@@ -48,6 +48,7 @@ class SnippetListViewController: UIViewController {
 		collectionView.refreshControl = refreshControl
 		collectionView.register(cellType: SnippetCollectionViewCell.self)
 		
+		// Bind inputs
 		collectionView.rx.itemSelected
 			.bind(to: input.itemSelected)
 			.disposed(by: disposeBag)
@@ -64,6 +65,12 @@ class SnippetListViewController: UIViewController {
 			.bind(to: input.searchBarText)
 			.disposed(by: disposeBag)
 		
+		self.rx.viewWillLayoutSubviews
+			.compactMap { [weak self] _ in self?.view.window?.safeAreaInsets }
+			.bind(to: input.viewWillLayoutSubviews)
+			.disposed(by: disposeBag)
+		
+		// Bind outputs
 		output.items
 			.map { $0.enumerated() }
 			.bind(to: collectionView.rx.cells(SnippetCollectionViewCell.self))
@@ -89,9 +96,7 @@ class SnippetListViewController: UIViewController {
 		// This should be UICollectionViewFlowLayout, otherwise fix it on storyboard
 		let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		
-		rx.viewWillLayoutSubviews
-			.compactMap { [weak self] _ in self?.view.window?.safeAreaInsets }
-			.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
+		output.itemSize
 			.bind(to: layout.rx.itemSize)
 			.disposed(by: disposeBag)
 	}
