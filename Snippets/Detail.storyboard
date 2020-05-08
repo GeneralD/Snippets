@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N5z-a5-fsg">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Snippet Detail View Controller-->
+        <scene sceneID="00T-kZ-szR">
+            <objects>
+                <viewController id="N5z-a5-fsg" customClass="SnippetDetailViewController" customModule="Snippets" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jvd-LT-PrR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3k4-pd-o4e">
+                                <rect key="frame" x="8" y="8" width="600" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVH-g1-ZRd" customClass="TagListView" customModule="TagListView">
+                                <rect key="frame" x="8" y="36.5" width="600" height="16"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="has-K4-z5J"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seL-4s-TDf" customClass="CodeView" customModule="Snippets" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="60.5" width="600" height="539.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="seL-4s-TDf" secondAttribute="bottom" id="3Jh-Ya-ucn"/>
+                            <constraint firstItem="3k4-pd-o4e" firstAttribute="leading" secondItem="mAO-Jt-Sjb" secondAttribute="leading" constant="8" id="6g4-xJ-c4w"/>
+                            <constraint firstItem="3k4-pd-o4e" firstAttribute="trailing" secondItem="mAO-Jt-Sjb" secondAttribute="trailing" constant="8" id="DPs-fy-SNA"/>
+                            <constraint firstItem="KVH-g1-ZRd" firstAttribute="leading" secondItem="mAO-Jt-Sjb" secondAttribute="leading" constant="8" id="Kus-kr-uA5"/>
+                            <constraint firstItem="KVH-g1-ZRd" firstAttribute="top" secondItem="3k4-pd-o4e" secondAttribute="bottom" constant="8" id="ST8-bk-PVA"/>
+                            <constraint firstItem="seL-4s-TDf" firstAttribute="trailing" secondItem="mAO-Jt-Sjb" secondAttribute="trailing" id="VKM-0D-FfH"/>
+                            <constraint firstItem="seL-4s-TDf" firstAttribute="leading" secondItem="mAO-Jt-Sjb" secondAttribute="leading" id="gXg-TP-RFJ"/>
+                            <constraint firstItem="seL-4s-TDf" firstAttribute="top" secondItem="KVH-g1-ZRd" secondAttribute="bottom" constant="8" id="luN-L7-7Cu"/>
+                            <constraint firstItem="3k4-pd-o4e" firstAttribute="top" secondItem="mAO-Jt-Sjb" secondAttribute="top" constant="8" id="w1L-a0-9ca"/>
+                            <constraint firstItem="KVH-g1-ZRd" firstAttribute="trailing" secondItem="mAO-Jt-Sjb" secondAttribute="trailing" constant="8" id="yYe-h3-209"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mAO-Jt-Sjb"/>
+                    </view>
+                    <connections>
+                        <outlet property="codeView" destination="seL-4s-TDf" id="iFX-m3-ykE"/>
+                        <outlet property="tagsView" destination="KVH-g1-ZRd" id="xn7-2h-m79"/>
+                        <outlet property="titleLabel" destination="3k4-pd-o4e" id="T2H-pm-pqF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="szq-8o-r1K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1007" y="1535"/>
+        </scene>
+    </scenes>
+</document>

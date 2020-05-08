@@ -74,7 +74,7 @@ class SnippetListViewController: UIViewController {
 			.subscribe(onNext: { [weak self] in
 				let (_, snippet) = $0
 				let viewController = SnippetDetailViewController.instantiate(model: snippet)
-				self?.showDetailViewController(viewController, sender: nil)
+				self?.show(viewController, sender: nil)
 			})
 			.disposed(by: disposeBag)
 		
