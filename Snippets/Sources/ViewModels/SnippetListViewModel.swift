@@ -9,7 +9,6 @@
 import Foundation
 import RxSwift
 import RxRelay
-import GRDB
 import RxGRDB
 
 protocol SnippetListViewModelInput {
@@ -83,7 +82,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		_refresherPulled
 			.merge(Observable.just(()))
-			.compactMap { self.database }
+			.compactMap { R.file.snippetsDash.database }
 			.flatMap { db in db.rx.read { try SQLSnippet.fetchAll($0) } }
 			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in
 				guard let str = text, !str.isEmpty else { return items }
@@ -92,10 +91,4 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.bind(to: _items)
 			.disposed(by: disposeBag)
 	}
-	
-	private var database: DatabaseQueue? {
-		guard let path = R.file.snippetsDash.path() else { return nil }
-		return try? DatabaseQueue(path: path)
-	}
 }
-

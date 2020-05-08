@@ -14,17 +14,12 @@ extension SQLSnippet: ReactiveCompatible {}
 
 extension Reactive where Base: SQLSnippet {
 	var tags: Observable<[String]> {
-		guard let database = database else { return Observable.error(NSError()) }
+		guard let database = R.file.snippetsDash.database else { return Observable.error(NSError()) }
 		return database.rx.read { db in try SQLTagsIndex.filter(Column("sid") == self.base.sid).fetchAll(db) }
 			.compactMap { items in items.compactMap { $0.tid } }
 			.asObservable()
 			.flatMap { tids in database.rx.read { db in try SQLTag.filter(tids.contains(Column("tid"))).fetchAll(db) } }
 			.map { items in items.compactMap { $0.tag } }
 			.asObservable()
-	}
-	
-	private var database: DatabaseQueue? {
-		guard let path = R.file.snippetsDash.path() else { return nil }
-		return try? DatabaseQueue(path: path)
 	}
 }
