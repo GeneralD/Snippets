@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxCells
 import RxAnimated
+import RxViewController
 
 class SnippetListViewController: UIViewController {
 	
@@ -41,8 +42,11 @@ class SnippetListViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		setupView()
+		
+		collectionView.delegate = nil
+		collectionView.dataSource = nil
+		collectionView.refreshControl = refreshControl
+		collectionView.register(cellType: SnippetCollectionViewCell.self)
 		
 		collectionView.rx.itemSelected
 			.bind(to: input.itemSelected)
@@ -81,17 +85,14 @@ class SnippetListViewController: UIViewController {
 		output.isSearchBarHidden
 			.bind(to: searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive)
 			.disposed(by: disposeBag)
-	}
-	
-	private func setupView() {
-		collectionView.delegate = nil
-		collectionView.dataSource = nil
-		collectionView.refreshControl = refreshControl
-		collectionView.register(cellType: SnippetCollectionViewCell.self)
 		
-		let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-		layout?.itemSize = .init(width: UIScreen.main.bounds.width, height: 200)
-		layout?.minimumLineSpacing = 0
-		layout?.minimumLineSpacing = 0
+		// This should be UICollectionViewFlowLayout, otherwise fix it on storyboard
+		let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+		
+		rx.viewWillLayoutSubviews
+			.compactMap { [weak self] _ in self?.view.window?.safeAreaInsets }
+			.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
+			.bind(to: layout.rx.itemSize)
+			.disposed(by: disposeBag)
 	}
 }

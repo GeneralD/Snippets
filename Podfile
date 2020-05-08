@@ -10,6 +10,7 @@ target 'Snippets' do
 	pod 'RxAnimated'
 	pod 'RxGRDB'
 	pod 'RxCells'
+	pod 'RxViewController'
 	# Encode/Decode
 	pod 'SwiftyJSON'
 	# UIColor
