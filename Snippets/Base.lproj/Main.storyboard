@@ -17,7 +17,15 @@
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="arj-lO-kN9">
                                 <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="YxY-AI-KIp"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="YxY-AI-KIp"/>
+                                    </mask>
+                                </variation>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v4r-Wt-ICe">
                                 <rect key="frame" x="0.0" y="100" width="414" height="762"/>
@@ -44,8 +52,9 @@
                         <viewLayoutGuide key="safeArea" id="p8E-o5-sqy"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="v4r-Wt-ICe" id="IFa-PT-5kQ"/>
+                        <outlet property="collectionView" destination="v4r-Wt-ICe" id="jOV-NJ-HAM"/>
                         <outlet property="searchBar" destination="arj-lO-kN9" id="S5C-Th-TBe"/>
+                        <outlet property="searchBarHideConstraint" destination="YxY-AI-KIp" id="pUD-ZK-Wm1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EMb-IO-699" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

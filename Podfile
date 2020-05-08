@@ -7,6 +7,7 @@ target 'Snippets' do
 	
 	# RxSwift
 	pod 'RxCocoa'
+	pod 'RxAnimated'
 	pod 'RxGRDB'
 	pod 'RxCells'
 	# Encode/Decode

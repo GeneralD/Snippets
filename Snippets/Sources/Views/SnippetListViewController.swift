@@ -10,14 +10,16 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxCells
+import RxAnimated
 
 class SnippetListViewController: UIViewController {
 	
 	typealias Input = SnippetListViewModelInput
 	typealias Output = SnippetListViewModelOutput
 	
-	@IBOutlet private weak var searchBar: UISearchBar!
 	@IBOutlet private weak var collectionView: UICollectionView!
+	@IBOutlet private weak var searchBar: UISearchBar!
+	@IBOutlet weak var searchBarHideConstraint: NSLayoutConstraint!
 	private let refreshControl = UIRefreshControl()
 	
 	private let input: Input
@@ -46,6 +48,10 @@ class SnippetListViewController: UIViewController {
 			.bind(to: input.itemSelected)
 			.disposed(by: disposeBag)
 		
+		collectionView.rx.contentOffset
+			.bind(to: input.contentOffset)
+			.disposed(by: disposeBag)
+		
 		refreshControl.rx.controlEvent(.valueChanged)
 			.bind(to: input.refresherPulled)
 			.disposed(by: disposeBag)
@@ -66,10 +72,13 @@ class SnippetListViewController: UIViewController {
 		output.present
 			.compactMap { $0 }
 			.subscribe(onNext: { [weak self] in
-				guard let self = self else { return }
 				let (index, snippet) = $0
 				// TODO
 			})
+			.disposed(by: disposeBag)
+		
+		output.isSearchBarHidden
+			.bind(to: searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive)
 			.disposed(by: disposeBag)
 	}
 	

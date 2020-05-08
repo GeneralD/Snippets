@@ -14,6 +14,7 @@ import RxGRDB
 
 protocol SnippetListViewModelInput {
 	var itemSelected: AnyObserver<IndexPath> { get }
+	var contentOffset: AnyObserver<CGPoint> { get }
 	var refresherPulled: AnyObserver<()> { get }
 	var searchBarText: AnyObserver<String?> { get }
 }
@@ -22,12 +23,14 @@ protocol SnippetListViewModelOutput {
 	var items: Observable<[SQLSnippet]> { get }
 	var present: Observable<(IndexPath, SQLSnippet)?> { get }
 	var isRefreshing: Observable<Bool> { get }
+	var isSearchBarHidden: Observable<Bool> { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
 	
 	// MARK: Inputs
 	let itemSelected: AnyObserver<IndexPath>
+	let contentOffset: AnyObserver<CGPoint>
 	let refresherPulled: AnyObserver<()>
 	let searchBarText: AnyObserver<String?>
 	
@@ -35,6 +38,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	let items: Observable<[SQLSnippet]>
 	let present: Observable<(IndexPath, SQLSnippet)?>
 	let isRefreshing: Observable<Bool>
+	let isSearchBarHidden: Observable<Bool>
 	
 	private let disposeBag = DisposeBag()
 	
@@ -42,6 +46,9 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		// Inputs
 		let _itemSelected = PublishRelay<IndexPath>()
 		self.itemSelected = _itemSelected.asObserver()
+		
+		let _contentOffset = PublishRelay<CGPoint>()
+		self.contentOffset = _contentOffset.asObserver()
 		
 		let _refresherPulled = PublishRelay<()>()
 		self.refresherPulled = _refresherPulled.asObserver()
@@ -58,11 +65,20 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let _present = BehaviorRelay<(IndexPath, SQLSnippet)?>(value: nil)
 		self.present = _present.asObservable()
 		
+		let _isSearchBarHidden = BehaviorRelay<Bool>(value: true)
+		self.isSearchBarHidden = _isSearchBarHidden.asObservable()
+		
 		// Bind them
 		_itemSelected
 			.filter { _items.value.count > $0.row }
 			.map { ($0, _items.value[$0.row]) }
 			.bind(to: _present)
+			.disposed(by: disposeBag)
+		
+		_contentOffset
+			.filter { $0.y != 0 }
+			.map { $0.y > 0 }
+			.bind(to: _isSearchBarHidden)
 			.disposed(by: disposeBag)
 		
 		_refresherPulled
