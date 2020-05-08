@@ -45,8 +45,6 @@ class SnippetDetailViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		setupView()
 	
 		output.title
 			.bind(to: titleLabel.rx.text)
@@ -59,9 +57,5 @@ class SnippetDetailViewController: UIViewController {
 		output.tags
 			.bind(to: tagsView.rx.tags)
 			.disposed(by: disposeBag)
-	}
-	
-	private func setupView() {
-		codeView.contentTextView.isEditable = false
 	}
 }

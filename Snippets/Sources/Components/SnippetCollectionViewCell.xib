@@ -19,14 +19,26 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkO-g8-MZz">
                         <rect key="frame" x="8" y="8" width="273" height="191"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Syntax" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuS-cW-d8i">
-                                <rect key="frame" x="8" y="10.5" width="41.5" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Syntax" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuS-cW-d8i" customClass="EdgeInsetLabel" customModule="Snippets" customModuleProvider="target">
+                                <rect key="frame" x="8" y="10.5" width="51.5" height="16"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaV-xL-mds">
-                                <rect key="frame" x="53.5" y="8" width="211.5" height="21"/>
+                                <rect key="frame" x="63.5" y="8" width="201.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,6 +46,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsY-B8-W94" customClass="CodeView" customModule="Snippets" customModuleProvider="target">
                                 <rect key="frame" x="8" y="37" width="257" height="146"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -48,6 +66,11 @@
                             <constraint firstItem="TaV-xL-mds" firstAttribute="top" secondItem="MkO-g8-MZz" secondAttribute="top" constant="8" id="tgp-Vc-vxb"/>
                             <constraint firstItem="TaV-xL-mds" firstAttribute="leading" secondItem="GuS-cW-d8i" secondAttribute="trailing" constant="4" id="wfN-eU-Pog"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -62,7 +85,6 @@
             <connections>
                 <outlet property="codeView" destination="QsY-B8-W94" id="eCY-R5-CNm"/>
                 <outlet property="contentPaddingTopConstraint" destination="6Pu-2s-rXa" id="c3o-vw-o2q"/>
-                <outlet property="mainView" destination="MkO-g8-MZz" id="ijN-R5-saT"/>
                 <outlet property="syntaxLabel" destination="GuS-cW-d8i" id="5kB-1c-eeJ"/>
                 <outlet property="titleLabel" destination="TaV-xL-mds" id="d2g-aD-3DP"/>
             </connections>

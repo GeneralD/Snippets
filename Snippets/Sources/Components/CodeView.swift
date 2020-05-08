@@ -8,6 +8,7 @@
 
 import Sourceful
 
+@IBDesignable
 class CodeView: SyntaxTextView, SyntaxTextViewDelegate {
 
 	private static let sharedTheme = PastelSourceColorTheme()
@@ -21,4 +22,10 @@ class CodeView: SyntaxTextView, SyntaxTextViewDelegate {
 	func lexerForSource(_ source: String) -> Lexer {
 		type(of: self).sharedLexer
 	}
+	
+	@IBInspectable
+	var isEditable: Bool {
+		get { contentTextView.isEditable }
+		set { contentTextView.isEditable = newValue }
+ 	}
 }

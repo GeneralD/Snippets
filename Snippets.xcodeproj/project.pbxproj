@@ -30,6 +30,8 @@
 		B334D81E246537A900898BAD /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D8182465378900898BAD /* Detail.storyboard */; };
 		B334D81F246537A900898BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D8192465378A00898BAD /* LaunchScreen.storyboard */; };
 		B334D820246537E000898BAD /* SnippetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */; };
+		B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82124654CD200898BAD /* EdgeInsetLabel.swift */; };
+		B334D8242465510300898BAD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8232465510300898BAD /* UIViewExtension.swift */; };
 		B36B11F92462AEC600FA189D /* Snippets.dash in Resources */ = {isa = PBXBuildFile; fileRef = B36B11F82462A84A00FA189D /* Snippets.dash */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
 		B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */; };
@@ -65,6 +67,8 @@
 		B334D8182465378900898BAD /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		B334D8192465378A00898BAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B334D81A2465378A00898BAD /* List.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		B334D82124654CD200898BAD /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
+		B334D8232465510300898BAD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		B36B11F82462A84A00FA189D /* Snippets.dash */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snippets.dash; sourceTree = "<group>"; };
 		B3E77A30245AE65B001F08A4 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E77A33245AE65B001F08A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 				B334D80D24652E0100898BAD /* Rx */,
 				B334D7EB2463A9D500898BAD /* StringExtension.swift */,
 				B334D7F42463F30200898BAD /* ColorExtension.swift */,
+				B334D8232465510300898BAD /* UIViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 				B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */,
 				B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */,
 				B334D7F82464136100898BAD /* CodeView.swift */,
+				B334D82124654CD200898BAD /* EdgeInsetLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 				B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */,
 				B3E77A48245AF054001F08A4 /* SnippetListViewModel.swift in Sources */,
 				B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */,
+				B334D8242465510300898BAD /* UIViewExtension.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
 				B334D80924651CF700898BAD /* TagListViewReactiveExtension.swift in Sources */,
@@ -382,6 +389,7 @@
 				B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */,
 				B334D8012464282900898BAD /* SnippetCollectionViewCell.swift in Sources */,
 				B334D7F52463F30200898BAD /* ColorExtension.swift in Sources */,
+				B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */,
 				B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */,
 				B334D7F92464136100898BAD /* CodeView.swift in Sources */,
 				B334D80F24652E4700898BAD /* SQLSnippetReactiveExtension.swift in Sources */,

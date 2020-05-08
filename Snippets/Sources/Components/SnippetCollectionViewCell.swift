@@ -12,24 +12,10 @@ import Reusable
 
 class SnippetCollectionViewCell: UICollectionViewCell {
 
-	@IBOutlet private weak var mainView: UIView!
 	@IBOutlet private weak var titleLabel: UILabel!
 	@IBOutlet private weak var codeView: CodeView!
 	@IBOutlet private weak var syntaxLabel: UILabel!
 	@IBOutlet private weak var contentPaddingTopConstraint: NSLayoutConstraint!
-	
-	override func awakeFromNib() {
-		mainView.layer.masksToBounds = true
-		mainView.layer.cornerRadius = 8
-		
-		codeView.layer.masksToBounds = true
-		codeView.layer.cornerRadius = 8
-		codeView.contentTextView.isEditable = false
-		
-		syntaxLabel.textColor = .white
-		syntaxLabel.layer.masksToBounds = true
-		syntaxLabel.layer.cornerRadius = syntaxLabel.frame.height / 3
-	}
 }
 
 extension SnippetCollectionViewCell: NibLoadable, Reusable {}
