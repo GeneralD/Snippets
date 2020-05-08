@@ -33,9 +33,11 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 	private let disposeBag = DisposeBag()
 	
 	init() {
+		// Inputs
 		let _model = PublishRelay<SQLSnippet?>()
 		model = _model.asObserver()
 		
+		// Outputs
 		let _title = BehaviorRelay<String?>(value: nil)
 		title = _title.asObservable()
 		
@@ -45,6 +47,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		let _tags = BehaviorRelay<[String]>(value: [])
 		tags = _tags.asObservable()
 		
+		// Bind them
 		_model
 			.map { $0?.title }
 			.bind(to: _title)

@@ -24,6 +24,7 @@ class SnippetCollectionViewCell: UICollectionViewCell {
 		
 		codeView.layer.masksToBounds = true
 		codeView.layer.cornerRadius = 8
+		codeView.contentTextView.isEditable = false
 		
 		syntaxLabel.textColor = .white
 		syntaxLabel.layer.masksToBounds = true
