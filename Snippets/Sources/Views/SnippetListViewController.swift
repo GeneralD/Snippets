@@ -39,7 +39,7 @@ class SnippetListViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		setupView()
 		
 		collectionView.rx.itemSelected

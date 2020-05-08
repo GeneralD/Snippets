@@ -10,7 +10,7 @@ import Foundation
 import GRDB
 
 class SQLSnippet: FetchableRecord {
-
+	
 	var sid: Int64?
 	var title: String?
 	var body: String?
@@ -37,5 +37,11 @@ extension SQLSnippet: PersistableRecord {
 		container["body"] = body
 		container["syntax"] = syntax
 		container["usageCount"] = usageCount
+	}
+}
+
+extension SQLSnippet {
+	func contains(keyword: String, options: String.CompareOptions = [.caseInsensitive, .widthInsensitive]) -> Bool {
+		keyword.isEmpty || title?.range(of: keyword, options: options) != nil || body?.range(of: keyword, options: options) != nil || syntax?.range(of: keyword, options: options) != nil
 	}
 }

@@ -71,7 +71,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.flatMap { db in db.rx.read { try SQLSnippet.fetchAll($0) } }
 			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in
 				guard let str = text, !str.isEmpty else { return items }
-				return items.filter { $0.title?.range(of: str, options: [.caseInsensitive, .widthInsensitive]) != nil || $0.body?.range(of: str, options: [.caseInsensitive, .widthInsensitive]) != nil || $0.syntax?.range(of: str, options: [.caseInsensitive, .widthInsensitive]) != nil }
+				return items.filter { $0.contains(keyword: str) }
 			})
 			.bind(to: _items)
 			.disposed(by: disposeBag)
@@ -82,3 +82,4 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		return try? DatabaseQueue(path: path)
 	}
 }
+
