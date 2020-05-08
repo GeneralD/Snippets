@@ -12,22 +12,25 @@ import Reusable
 
 class SnippetCollectionViewCell: UICollectionViewCell {
 
+	@IBOutlet private weak var cardView: UIView!
 	@IBOutlet private weak var titleLabel: UILabel!
 	@IBOutlet private weak var codeView: CodeView!
 	@IBOutlet private weak var syntaxLabel: UILabel!
-	@IBOutlet private weak var contentPaddingTopConstraint: NSLayoutConstraint!
 }
 
 extension SnippetCollectionViewCell: NibLoadable, Reusable {}
 
 extension SnippetCollectionViewCell: Configurable {
 	func configure(with model: (offset: Int, element: SQLSnippet)) {
-		let language = model.element.syntax ?? ""
 		titleLabel.text = model.element.title
 		codeView.text = model.element.body ?? ""
+		
+		let language = model.element.syntax ?? ""
 		syntaxLabel.text = language
 		syntaxLabel.isHidden = language.isEmpty
-		syntaxLabel.backgroundColor = UIColor.themeColor(for: language).comfortable
-		contentPaddingTopConstraint.constant = model.offset == 0 ? 8 : 0
+		
+		let color = UIColor.themeColor(for: language).comfortable
+		syntaxLabel.backgroundColor = color
+		cardView.backgroundColor = color.adjustedAlpha(amount: -0.7)
 	}
 }

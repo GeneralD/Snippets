@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkO-g8-MZz">
-                        <rect key="frame" x="8" y="8" width="273" height="191"/>
+                        <rect key="frame" x="8" y="8" width="273" height="199"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Syntax" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuS-cW-d8i" customClass="EdgeInsetLabel" customModule="Snippets" customModuleProvider="target">
                                 <rect key="frame" x="8" y="10.5" width="51.5" height="16"/>
@@ -44,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsY-B8-W94" customClass="CodeView" customModule="Snippets" customModuleProvider="target">
-                                <rect key="frame" x="8" y="37" width="257" height="146"/>
+                                <rect key="frame" x="8" y="37" width="257" height="154"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isEditable" value="NO"/>
@@ -54,7 +54,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="QsY-B8-W94" firstAttribute="top" secondItem="TaV-xL-mds" secondAttribute="bottom" constant="8" id="4L1-Fb-dgt"/>
                             <constraint firstItem="GuS-cW-d8i" firstAttribute="centerY" secondItem="TaV-xL-mds" secondAttribute="centerY" id="FFq-hR-s34"/>
@@ -77,14 +77,14 @@
             <constraints>
                 <constraint firstItem="MkO-g8-MZz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="3IT-rg-KIy"/>
                 <constraint firstAttribute="trailing" secondItem="MkO-g8-MZz" secondAttribute="trailing" constant="8" id="5F4-Uo-pmm"/>
-                <constraint firstAttribute="bottom" secondItem="MkO-g8-MZz" secondAttribute="bottom" constant="8" id="6Pu-2s-rXa"/>
+                <constraint firstAttribute="bottom" secondItem="MkO-g8-MZz" secondAttribute="bottom" id="6Pu-2s-rXa"/>
                 <constraint firstItem="MkO-g8-MZz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="AVZ-pc-prl"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="289" height="207"/>
             <connections>
+                <outlet property="cardView" destination="MkO-g8-MZz" id="Vd6-Py-La9"/>
                 <outlet property="codeView" destination="QsY-B8-W94" id="eCY-R5-CNm"/>
-                <outlet property="contentPaddingTopConstraint" destination="6Pu-2s-rXa" id="c3o-vw-o2q"/>
                 <outlet property="syntaxLabel" destination="GuS-cW-d8i" id="5kB-1c-eeJ"/>
                 <outlet property="titleLabel" destination="TaV-xL-mds" id="d2g-aD-3DP"/>
             </connections>
