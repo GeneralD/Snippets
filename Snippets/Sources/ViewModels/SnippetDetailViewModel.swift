@@ -17,6 +17,7 @@ protocol SnippetDetailViewModelInput {
 protocol SnippetDetailViewModelOutput {
 	var title: Observable<String?> { get }
 	var code: Observable<String?> { get }
+	var tags: Observable<[String]> { get }
 }
 
 final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {
@@ -27,6 +28,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 	// MARK: Outputs
 	let title: Observable<String?>
 	let code: Observable<String?>
+	let tags: Observable<[String]>
 	
 	private let disposeBag = DisposeBag()
 	
@@ -40,6 +42,9 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		let _code = BehaviorRelay<String?>(value: nil)
 		code = _code.asObservable()
 		
+		let _tags = BehaviorRelay<[String]>(value: [])
+		tags = _tags.asObservable()
+		
 		_model
 			.map { $0?.title }
 			.bind(to: _title)
@@ -48,6 +53,12 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		_model
 			.map { $0?.body }
 			.bind(to: _code)
+			.disposed(by: disposeBag)
+		
+		_model
+			.compactMap { $0 }
+			.flatMap { a in a.rx.tags }
+			.bind(to: _tags)
 			.disposed(by: disposeBag)
 	}
 }

@@ -53,5 +53,9 @@ class SnippetDetailViewController: UIViewController {
 		output.code
 			.bind(to: codeView.rx.text)
 			.disposed(by: disposeBag)
+		
+		output.tags
+			.bind(to: tagsView.rx.tags)
+			.disposed(by: disposeBag)
 	}
 }
