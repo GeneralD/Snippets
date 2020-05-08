@@ -8,12 +8,15 @@ target 'Snippets' do
 	# RxSwift
 	pod 'RxCocoa'
 	pod 'RxGRDB'
+	pod 'RxCells'
 	# Encode/Decode
 	pod 'SwiftyJSON'
 	# UIColor
 	pod 'Hex'
 	pod 'DynamicColor'
-	# Others
+	# UI Parts
 	pod 'Sourceful'
-	pod 'appstore-card-transition'	
+	pod 'TagListView'
+	# UI Transition
+	pod 'Hero'
 end

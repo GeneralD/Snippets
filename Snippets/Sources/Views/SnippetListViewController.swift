@@ -9,13 +9,16 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxCells
 
 class SnippetListViewController: UIViewController {
 	
 	typealias Input = SnippetListViewModelInput
 	typealias Output = SnippetListViewModelOutput
 	
-	@IBOutlet private weak var tableView: UITableView!
+	@IBOutlet private weak var searchBar: UISearchBar!
+	@IBOutlet private weak var collectionView: UICollectionView!
+	private let refreshControl = UIRefreshControl()
 	
 	private let input: Input
 	private let output: Output
@@ -37,27 +40,23 @@ class SnippetListViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		tableView.rx.itemSelected
+		setupView()
+		
+		collectionView.rx.itemSelected
 			.bind(to: input.itemSelected)
 			.disposed(by: disposeBag)
 		
-		let refreshControl = UIRefreshControl()
-		tableView.refreshControl = refreshControl
 		refreshControl.rx.controlEvent(.valueChanged)
 			.bind(to: input.refresherPulled)
 			.disposed(by: disposeBag)
 		
-		let searchBar = UISearchBar()
-		searchBar.sizeToFit()
-		tableView.tableHeaderView = searchBar
 		searchBar.rx.text
 			.bind(to: input.searchBarText)
 			.disposed(by: disposeBag)
 		
 		output.items
-			.bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: SnnipetTableViewCell.self), curriedArgument: { row, element, cell in
-				cell.apply(title: element.title ?? "", code: element.body ?? "", language: element.syntax ?? "", isFirstRow: row == 0)
-			})
+			.map { $0.enumerated() }
+			.bind(to: collectionView.rx.cells(SnippetCollectionViewCell.self))
 			.disposed(by: disposeBag)
 		
 		output.isRefreshing
@@ -65,9 +64,24 @@ class SnippetListViewController: UIViewController {
 			.disposed(by: disposeBag)
 		
 		output.present
-			.subscribe(onNext: { snippet in
-				print("TODO: present a snippet on next view. \(snippet?.title ?? "")")
+			.compactMap { $0 }
+			.subscribe(onNext: { [weak self] in
+				guard let self = self else { return }
+				let (index, snippet) = $0
+				// TODO
 			})
 			.disposed(by: disposeBag)
+	}
+	
+	private func setupView() {
+		collectionView.delegate = nil
+		collectionView.dataSource = nil
+		collectionView.refreshControl = refreshControl
+		collectionView.register(cellType: SnippetCollectionViewCell.self)
+		
+		let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+		layout?.itemSize = .init(width: UIScreen.main.bounds.width, height: 200)
+		layout?.minimumLineSpacing = 0
+		layout?.minimumLineSpacing = 0
 	}
 }

@@ -11,7 +11,6 @@
 		B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */; };
 		B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE032461B6F000BF0AA6 /* SQLTag.swift */; };
 		B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */; };
-		B334D7E22462B56100898BAD /* SnnipetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E12462B56100898BAD /* SnnipetTableViewCell.swift */; };
 		B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E32463060600898BAD /* AnyObserverConvertible.swift */; };
 		B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */; };
 		B334D7EC2463A9D500898BAD /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7EB2463A9D500898BAD /* StringExtension.swift */; };
@@ -21,6 +20,10 @@
 		B334D7F52463F30200898BAD /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7F42463F30200898BAD /* ColorExtension.swift */; };
 		B334D7F72464071500898BAD /* ObservableTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7F62464071500898BAD /* ObservableTypeExtension.swift */; };
 		B334D7F92464136100898BAD /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7F82464136100898BAD /* CodeView.swift */; };
+		B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */; };
+		B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */; };
+		B334D8012464282900898BAD /* SnippetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */; };
+		B334D8022464282900898BAD /* SnippetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */; };
 		B36B11F92462AEC600FA189D /* Snippets.dash in Resources */ = {isa = PBXBuildFile; fileRef = B36B11F82462A84A00FA189D /* Snippets.dash */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
 		B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */; };
@@ -39,7 +42,6 @@
 		B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSmartTag.swift; sourceTree = "<group>"; };
 		B30BAE032461B6F000BF0AA6 /* SQLTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTag.swift; sourceTree = "<group>"; };
 		B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTagsIndex.swift; sourceTree = "<group>"; };
-		B334D7E12462B56100898BAD /* SnnipetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnnipetTableViewCell.swift; sourceTree = "<group>"; };
 		B334D7E32463060600898BAD /* AnyObserverConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObserverConvertible.swift; sourceTree = "<group>"; };
 		B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastelSourceColorTheme.swift; sourceTree = "<group>"; };
 		B334D7EB2463A9D500898BAD /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -49,6 +51,10 @@
 		B334D7F42463F30200898BAD /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		B334D7F62464071500898BAD /* ObservableTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableTypeExtension.swift; sourceTree = "<group>"; };
 		B334D7F82464136100898BAD /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
+		B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailViewController.swift; sourceTree = "<group>"; };
+		B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailViewModel.swift; sourceTree = "<group>"; };
+		B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCollectionViewCell.swift; sourceTree = "<group>"; };
+		B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnippetCollectionViewCell.xib; sourceTree = "<group>"; };
 		B36B11F82462A84A00FA189D /* Snippets.dash */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snippets.dash; sourceTree = "<group>"; };
 		B3E77A30245AE65B001F08A4 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E77A33245AE65B001F08A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,7 +145,8 @@
 		B334D7E82463086400898BAD /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				B334D7E12462B56100898BAD /* SnnipetTableViewCell.swift */,
+				B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */,
+				B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */,
 				B334D7F82464136100898BAD /* CodeView.swift */,
 			);
 			path = Components;
@@ -168,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */,
+				B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				B3E77A47245AF054001F08A4 /* SnippetListViewModel.swift */,
+				B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -275,6 +284,7 @@
 				B36B11F92462AEC600FA189D /* Snippets.dash in Resources */,
 				B3E77A3D245AE65F001F08A4 /* Assets.xcassets in Resources */,
 				B3E77A3B245AE65B001F08A4 /* Main.storyboard in Resources */,
+				B334D8022464282900898BAD /* SnippetCollectionViewCell.xib in Resources */,
 				B334D7F12463D29000898BAD /* language_colors.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,21 +339,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */,
+				B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */,
 				B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */,
 				B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */,
 				B3E77A48245AF054001F08A4 /* SnippetListViewModel.swift in Sources */,
+				B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
 				B334D7F72464071500898BAD /* ObservableTypeExtension.swift in Sources */,
 				B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */,
 				B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */,
 				B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */,
+				B334D8012464282900898BAD /* SnippetCollectionViewCell.swift in Sources */,
 				B334D7F52463F30200898BAD /* ColorExtension.swift in Sources */,
 				B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */,
 				B334D7F92464136100898BAD /* CodeView.swift in Sources */,
 				B334D7EC2463A9D500898BAD /* StringExtension.swift in Sources */,
 				B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */,
-				B334D7E22462B56100898BAD /* SnnipetTableViewCell.swift in Sources */,
 				B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
