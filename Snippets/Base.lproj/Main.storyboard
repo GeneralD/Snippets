@@ -28,7 +28,7 @@
                                 </variation>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v4r-Wt-ICe">
-                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="796"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dXq-7w-HbD">
                                     <size key="itemSize" width="0.0" height="0.0"/>
@@ -41,7 +41,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="p8E-o5-sqy" firstAttribute="bottom" secondItem="v4r-Wt-ICe" secondAttribute="bottom" id="C1z-eK-9IP"/>
+                            <constraint firstAttribute="bottom" secondItem="v4r-Wt-ICe" secondAttribute="bottom" id="C1z-eK-9IP"/>
                             <constraint firstItem="arj-lO-kN9" firstAttribute="trailing" secondItem="p8E-o5-sqy" secondAttribute="trailing" id="Tgl-2k-t30"/>
                             <constraint firstItem="p8E-o5-sqy" firstAttribute="trailing" secondItem="v4r-Wt-ICe" secondAttribute="trailing" id="bsQ-an-0gW"/>
                             <constraint firstItem="v4r-Wt-ICe" firstAttribute="leading" secondItem="p8E-o5-sqy" secondAttribute="leading" id="cPw-2L-5B7"/>
