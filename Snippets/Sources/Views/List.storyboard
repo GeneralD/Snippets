@@ -15,18 +15,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="arj-lO-kN9">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQa-2d-y6Y">
                                 <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="arj-lO-kN9">
+                                        <rect key="frame" x="0.0" y="0.0" width="358" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="W5R-dv-z2p"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="W5R-dv-z2p"/>
+                                            </mask>
+                                        </variation>
+                                    </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELU-w6-BhK">
+                                        <rect key="frame" x="358" y="0.0" width="56" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ELU-w6-BhK" secondAttribute="height" multiplier="1:1" id="lpk-w3-5DC"/>
+                                        </constraints>
+                                        <state key="normal" image="icloud.and.arrow.down" catalog="system"/>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" id="YxY-AI-KIp"/>
+                                    <constraint firstAttribute="height" priority="750" constant="56" id="wpu-XI-ftP"/>
                                 </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="YxY-AI-KIp"/>
-                                    </mask>
-                                </variation>
-                            </searchBar>
+                            </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v4r-Wt-ICe">
                                 <rect key="frame" x="0.0" y="100" width="414" height="796"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -42,20 +57,21 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="v4r-Wt-ICe" secondAttribute="bottom" id="C1z-eK-9IP"/>
-                            <constraint firstItem="arj-lO-kN9" firstAttribute="trailing" secondItem="p8E-o5-sqy" secondAttribute="trailing" id="Tgl-2k-t30"/>
+                            <constraint firstItem="BQa-2d-y6Y" firstAttribute="top" secondItem="p8E-o5-sqy" secondAttribute="top" id="DKL-Io-UUN"/>
+                            <constraint firstItem="v4r-Wt-ICe" firstAttribute="top" secondItem="BQa-2d-y6Y" secondAttribute="bottom" id="Qgz-YE-Gtq"/>
+                            <constraint firstItem="BQa-2d-y6Y" firstAttribute="trailing" secondItem="p8E-o5-sqy" secondAttribute="trailing" id="Sz2-gn-ki7"/>
                             <constraint firstItem="p8E-o5-sqy" firstAttribute="trailing" secondItem="v4r-Wt-ICe" secondAttribute="trailing" id="bsQ-an-0gW"/>
                             <constraint firstItem="v4r-Wt-ICe" firstAttribute="leading" secondItem="p8E-o5-sqy" secondAttribute="leading" id="cPw-2L-5B7"/>
-                            <constraint firstItem="arj-lO-kN9" firstAttribute="top" secondItem="p8E-o5-sqy" secondAttribute="top" id="dSe-CG-rex"/>
-                            <constraint firstItem="v4r-Wt-ICe" firstAttribute="top" secondItem="arj-lO-kN9" secondAttribute="bottom" id="yTs-S0-Qdf"/>
-                            <constraint firstItem="arj-lO-kN9" firstAttribute="leading" secondItem="p8E-o5-sqy" secondAttribute="leading" id="z3C-8H-MqF"/>
+                            <constraint firstItem="BQa-2d-y6Y" firstAttribute="leading" secondItem="p8E-o5-sqy" secondAttribute="leading" id="xJK-ye-8Dc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="p8E-o5-sqy"/>
                     </view>
                     <navigationItem key="navigationItem" id="NRN-7E-nuD"/>
                     <connections>
                         <outlet property="collectionView" destination="v4r-Wt-ICe" id="jOV-NJ-HAM"/>
+                        <outlet property="pickDocumentButton" destination="ELU-w6-BhK" id="7CN-NQ-bed"/>
                         <outlet property="searchBar" destination="arj-lO-kN9" id="S5C-Th-TBe"/>
-                        <outlet property="searchBarHideConstraint" destination="YxY-AI-KIp" id="pUD-ZK-Wm1"/>
+                        <outlet property="searchBarHideConstraint" destination="W5R-dv-z2p" id="5sX-MZ-cPt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EMb-IO-699" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -63,4 +79,7 @@
             <point key="canvasLocation" x="1776.5625" y="1534.7826086956522"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icloud.and.arrow.down" catalog="system" width="128" height="112"/>
+    </resources>
 </document>

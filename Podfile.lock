@@ -26,6 +26,9 @@ PODS:
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDocumentPicker (0.1.5):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxGRDB (0.18.0):
     - RxGRDB/default (= 0.18.0)
     - RxSwift (~> 5.0)
@@ -49,6 +52,7 @@ DEPENDENCIES:
   - RxAnimated
   - RxCells
   - RxCocoa
+  - RxDocumentPicker (from `RxDocumentPicker.podspec`)
   - RxGRDB
   - RxViewController
   - Sourceful
@@ -74,6 +78,10 @@ SPEC REPOS:
     - SwiftyJSON
     - TagListView
 
+EXTERNAL SOURCES:
+  RxDocumentPicker:
+    :podspec: RxDocumentPicker.podspec
+
 SPEC CHECKSUMS:
   DynamicColor: c475f66bda1cabf602f2c54ac1171c0c07148a5a
   GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
@@ -84,6 +92,7 @@ SPEC CHECKSUMS:
   RxAnimated: 8540892468e906e7404595bc51ed4b36b3737ab5
   RxCells: bdf6673a05f8ee58b3dd7b28c3e236da7b5e0e98
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDocumentPicker: 0093642481aadde538db1faeb86f0eb4e84d57b7
   RxGRDB: 41dfd8f987aad7a7bdd7c420319d3eb23ee383f3
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
@@ -92,6 +101,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: 6bb70c8bb5baa64e123aaf662af9da256b8f2376
+PODFILE CHECKSUM: 5acfa3f231e43129d0014c62f37abfe1c15447ac
 
 COCOAPODS: 1.9.1

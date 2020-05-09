@@ -1,8 +1,6 @@
-# Uncomment the next line to define a global platform for your project
 platform :ios, '13.4'
 
 target 'Snippets' do
-	# Comment the next line if you don't want to use dynamic frameworks
 	use_frameworks!
 	
 	# RxSwift
@@ -11,6 +9,7 @@ target 'Snippets' do
 	pod 'RxGRDB'
 	pod 'RxCells'
 	pod 'RxViewController'
+	pod 'RxDocumentPicker', :podspec => 'RxDocumentPicker.podspec' # This depends on RxSwift 4, but it's ok with 5 too!
 	# Encode/Decode
 	pod 'SwiftyJSON'
 	# UIColor
@@ -19,7 +18,7 @@ target 'Snippets' do
 	# UI Parts
 	pod 'Sourceful'
 	pod 'TagListView'
-	# Coding
+	# Resource Utilities
 	pod 'R.swift'
 	
 end

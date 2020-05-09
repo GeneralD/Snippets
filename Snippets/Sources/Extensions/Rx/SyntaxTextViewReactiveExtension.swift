@@ -10,7 +10,7 @@ import Sourceful
 import RxSwift
 import RxCocoa
 
-extension Reactive where Base: SyntaxTextView {
+public extension Reactive where Base: SyntaxTextView {
     /// Bindable sink for `text` property.
     var text: Binder<String?> {
         return Binder(self.base) { label, text in

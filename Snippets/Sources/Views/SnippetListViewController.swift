@@ -12,6 +12,7 @@ import RxCocoa
 import RxCells
 import RxAnimated
 import RxViewController
+import RxDocumentPicker
 
 class SnippetListViewController: UIViewController {
 	
@@ -20,6 +21,7 @@ class SnippetListViewController: UIViewController {
 	
 	@IBOutlet private weak var collectionView: UICollectionView!
 	@IBOutlet private weak var searchBar: UISearchBar!
+	@IBOutlet weak var pickDocumentButton: UIButton!
 	@IBOutlet weak var searchBarHideConstraint: NSLayoutConstraint!
 	private let refreshControl = UIRefreshControl()
 	
@@ -65,6 +67,10 @@ class SnippetListViewController: UIViewController {
 			.bind(to: input.searchBarText)
 			.disposed(by: disposeBag)
 		
+		pickDocumentButton.rx.tap
+			.bind(to: input.pickDocumentTap)
+			.disposed(by: disposeBag)
+		
 		self.rx.viewWillLayoutSubviews
 			.compactMap { [weak self] _ in self?.view.window?.safeAreaInsets }
 			.bind(to: input.viewWillLayoutSubviews)
@@ -80,15 +86,6 @@ class SnippetListViewController: UIViewController {
 			.bind(to: refreshControl.rx.isRefreshing)
 			.disposed(by: disposeBag)
 		
-		output.present
-			.compactMap { $0 }
-			.subscribe(onNext: { [weak self] in
-				let (_, snippet) = $0
-				let viewController = SnippetDetailViewController.instantiate(model: snippet)
-				self?.show(viewController, sender: nil)
-			})
-			.disposed(by: disposeBag)
-		
 		output.isSearchBarHidden
 			.bind(to: searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive)
 			.disposed(by: disposeBag)
@@ -98,6 +95,10 @@ class SnippetListViewController: UIViewController {
 		
 		output.itemSize
 			.bind(to: layout.rx.itemSize)
+			.disposed(by: disposeBag)
+		
+		output.presentView
+			.subscribe(onNext: { [weak self] v in self?.present(v, animated: true) })
 			.disposed(by: disposeBag)
 	}
 }

@@ -35,6 +35,7 @@
 		B334D8272465558E00898BAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8262465558E00898BAD /* R.generated.swift */; };
 		B334D8292465601800898BAD /* FileResourceTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8282465601800898BAD /* FileResourceTypeExtension.swift */; };
 		B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */; };
+		B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */; };
 		B36B11F92462AEC600FA189D /* Snippets.dash in Resources */ = {isa = PBXBuildFile; fileRef = B36B11F82462A84A00FA189D /* Snippets.dash */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
 		B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */; };
@@ -75,6 +76,7 @@
 		B334D8262465558E00898BAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		B334D8282465601800898BAD /* FileResourceTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileResourceTypeExtension.swift; sourceTree = "<group>"; };
 		B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutReactiveExtension.swift; sourceTree = "<group>"; };
+		B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsReactiveExtension.swift; sourceTree = "<group>"; };
 		B36B11F82462A84A00FA189D /* Snippets.dash */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snippets.dash; sourceTree = "<group>"; };
 		B3E77A30245AE65B001F08A4 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E77A33245AE65B001F08A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				B334D80824651CF700898BAD /* TagListViewReactiveExtension.swift */,
 				B334D80E24652E4700898BAD /* SQLSnippetReactiveExtension.swift */,
 				B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */,
+				B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				B334D80F24652E4700898BAD /* SQLSnippetReactiveExtension.swift in Sources */,
 				B334D8072465193100898BAD /* SyntaxTextViewReactiveExtension.swift in Sources */,
 				B334D7EC2463A9D500898BAD /* StringExtension.swift in Sources */,
+				B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */,
 				B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */,
 				B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */,
 			);
@@ -555,7 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DD4ZUKAH26;
+				DEVELOPMENT_TEAM = 9TZF3HUW22;
 				INFOPLIST_FILE = Snippets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -574,7 +578,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DD4ZUKAH26;
+				DEVELOPMENT_TEAM = 9TZF3HUW22;
 				INFOPLIST_FILE = Snippets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

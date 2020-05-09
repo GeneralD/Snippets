@@ -16,15 +16,16 @@ protocol SnippetListViewModelInput {
 	var contentOffset: AnyObserver<CGPoint> { get }
 	var refresherPulled: AnyObserver<()> { get }
 	var searchBarText: AnyObserver<String?> { get }
+	var pickDocumentTap: AnyObserver<()> { get }
 	var viewWillLayoutSubviews: AnyObserver<UIEdgeInsets> { get }
 }
 
 protocol SnippetListViewModelOutput {
 	var items: Observable<[SQLSnippet]> { get }
-	var present: Observable<(IndexPath, SQLSnippet)?> { get }
 	var isRefreshing: Observable<Bool> { get }
 	var isSearchBarHidden: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
+	var presentView: Observable<UIViewController> { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
@@ -34,14 +35,15 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	let contentOffset: AnyObserver<CGPoint>
 	let refresherPulled: AnyObserver<()>
 	let searchBarText: AnyObserver<String?>
+	let pickDocumentTap: AnyObserver<()>
 	let viewWillLayoutSubviews: AnyObserver<UIEdgeInsets>
 	
 	// MARK: Outputs
 	let items: Observable<[SQLSnippet]>
-	let present: Observable<(IndexPath, SQLSnippet)?>
 	let isRefreshing: Observable<Bool>
 	let isSearchBarHidden: Observable<Bool>
 	let itemSize: Observable<CGSize>
+	let presentView: Observable<UIViewController>
 	
 	private let disposeBag = DisposeBag()
 	
@@ -53,11 +55,14 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let _contentOffset = PublishRelay<CGPoint>()
 		self.contentOffset = _contentOffset.asObserver()
 		
-		let _refresherPulled = PublishRelay<()>()
+		let _refresherPulled = BehaviorRelay<()>(value: ())
 		self.refresherPulled = _refresherPulled.asObserver()
 		
 		let _searchBarText = BehaviorRelay<(String?)>(value: nil)
 		self.searchBarText = _searchBarText.asObserver()
+		
+		let _pickDocumentTap = PublishRelay<()>()
+		self.pickDocumentTap = _pickDocumentTap.asObserver()
 		
 		let _viewWillLayoutSubviews = PublishRelay<UIEdgeInsets>()
 		viewWillLayoutSubviews = _viewWillLayoutSubviews.asObserver()
@@ -68,20 +73,21 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		self.isRefreshing = _items.map { _ in false }.asObservable()
 		
-		let _present = BehaviorRelay<(IndexPath, SQLSnippet)?>(value: nil)
-		self.present = _present.asObservable()
-		
 		let _isSearchBarHidden = BehaviorRelay<Bool>(value: true)
 		self.isSearchBarHidden = _isSearchBarHidden.asObservable()
 		
 		let _itemSize = BehaviorRelay<CGSize>(value: .zero)
 		self.itemSize = _itemSize.asObservable()
 		
+		let _presentView = PublishRelay<UIViewController>()
+		self.presentView = _presentView.asObservable()
+		
 		// Bind them
 		_itemSelected
 			.filter { _items.value.count > $0.row }
-			.map { ($0, _items.value[$0.row]) }
-			.bind(to: _present)
+			.map { _items.value[$0.row] }
+			.map { snippet in SnippetDetailViewController.instantiate(model: snippet) }
+			.bind(to: _presentView)
 			.disposed(by: disposeBag)
 		
 		_contentOffset
@@ -90,14 +96,27 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.bind(to: _isSearchBarHidden)
 			.disposed(by: disposeBag)
 		
+		let defaults = UserDefaults.standard
+		let key = "documentUrl"
+		
 		_refresherPulled
-			.merge(Observable.just(()))
-			.flatMap { SQLSnippet.rx.all }
+			.combineLatest(defaults.rx.default(URL.self, forKey: key)) { _, url in url ?? R.file.snippetsDash.url() } // If no file chosen, use demo data
+			.compactMap { url in url }
+			.do(onNext: { print("loading database: \($0.lastPathComponent)") }) // FIXME: why always demo data comes here!?
+			.flatMap { _ in SQLSnippet.rx.all } // TODO load from the url
 			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in
 				guard let str = text, !str.isEmpty else { return items }
 				return items.filter { $0.contains(keyword: str) }
 			})
 			.bind(to: _items)
+			.disposed(by: disposeBag)
+		
+		_pickDocumentTap
+			.map { UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open) }
+			.do(onNext: _presentView.accept)
+			.flatMap { picker in picker.rx.didPickDocumentsAt }
+			.compactMap { $0.first }
+			.subscribe(onNext: { url in defaults.set(url, forKey: key) })
 			.disposed(by: disposeBag)
 		
 		_viewWillLayoutSubviews
