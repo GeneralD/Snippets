@@ -18,9 +18,13 @@ class DashLexer: SourceCodeRegexLexer {
 	}
 	
 	func generators(source: String) -> [TokenGenerator] {
-		let delimiter = "__".surrounded(by: .parentheses)
-		let dashGenerators = [regexGenerator("\(delimiter)[^\(delimiter)\\n]*\(delimiter)", tokenType: .editorPlaceholder)]
-		return baseLexer.generators(source: source) + dashGenerators.compactMap { $0 }
+		let delimiter = "__"
+		let dashGenerators = [
+			regexGenerator("\(delimiter)[^\(delimiter)|\\n]*\(delimiter)", tokenType: .editorPlaceholder),
+//			keywordGenerator(["@clipboard", "@cursor", "@time", "@date"], tokenType: .editorPlaceholder)
+			].compactMap { $0 }
+		let baseGenerators = baseLexer.generators(source: source)
+		return baseGenerators + dashGenerators
 	}
 }
 
@@ -65,5 +69,3 @@ fileprivate extension SourceCodeToken {
 		type == .plain
 	}
 }
-
-
