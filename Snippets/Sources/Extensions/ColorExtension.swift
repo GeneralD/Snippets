@@ -29,8 +29,12 @@ public extension UIColor {
 	}
 	
 	static func themeColor(for language: String) -> UIColor {
-		guard let hex = colorsJson?[language].string else { return ColorHash(language).color }
-		return UIColor(hex: hex)
+		guard let hex = colorsJson?[language].string else { return .from(seed: language) }
+		return .init(hex: hex)
+	}
+
+	static func from(seed: String) -> UIColor {
+		ColorHash(seed: seed).color
 	}
 	
 	private static let colorsJson = { () -> JSON? in
