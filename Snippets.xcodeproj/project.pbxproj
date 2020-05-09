@@ -37,6 +37,8 @@
 		B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */; };
 		B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */; };
 		B36B11F92462AEC600FA189D /* Snippets.dash in Resources */ = {isa = PBXBuildFile; fileRef = B36B11F82462A84A00FA189D /* Snippets.dash */; };
+		B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B42466E505009AEDB9 /* ObservableConvertible.swift */; };
+		B39235B72466EBC8009AEDB9 /* DefaultsKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B62466EBC8009AEDB9 /* DefaultsKeyExtension.swift */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
 		B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */; };
 		B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */; };
@@ -78,6 +80,8 @@
 		B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsReactiveExtension.swift; sourceTree = "<group>"; };
 		B36B11F82462A84A00FA189D /* Snippets.dash */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snippets.dash; sourceTree = "<group>"; };
+		B39235B42466E505009AEDB9 /* ObservableConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableConvertible.swift; sourceTree = "<group>"; };
+		B39235B62466EBC8009AEDB9 /* DefaultsKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeyExtension.swift; sourceTree = "<group>"; };
 		B3E77A30245AE65B001F08A4 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E77A33245AE65B001F08A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				B334D7F42463F30200898BAD /* ColorExtension.swift */,
 				B334D8232465510300898BAD /* UIViewExtension.swift */,
 				B334D8282465601800898BAD /* FileResourceTypeExtension.swift */,
+				B39235B62466EBC8009AEDB9 /* DefaultsKeyExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				B334D7E32463060600898BAD /* AnyObserverConvertible.swift */,
+				B39235B42466E505009AEDB9 /* ObservableConvertible.swift */,
 				B334D7F62464071500898BAD /* ObservableTypeExtension.swift */,
 				B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */,
 				B334D80824651CF700898BAD /* TagListViewReactiveExtension.swift */,
@@ -415,8 +421,10 @@
 				B334D8242465510300898BAD /* UIViewExtension.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
 				B334D8292465601800898BAD /* FileResourceTypeExtension.swift in Sources */,
+				B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
 				B334D80924651CF700898BAD /* TagListViewReactiveExtension.swift in Sources */,
+				B39235B72466EBC8009AEDB9 /* DefaultsKeyExtension.swift in Sources */,
 				B334D7F72464071500898BAD /* ObservableTypeExtension.swift in Sources */,
 				B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */,
 				B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxRelay
 import RxGRDB
+import SwiftyUserDefaults
 
 protocol SnippetListViewModelInput {
 	var itemSelected: AnyObserver<IndexPath> { get }
@@ -96,18 +97,17 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.bind(to: _isSearchBarHidden)
 			.disposed(by: disposeBag)
 		
-		let defaults = UserDefaults.standard
-		let key = "documentUrl"
+		let documentUrl = UserDefaults.standard.rx.url(forKey: "documentUrl")
 		
 		_refresherPulled
-			.combineLatest(defaults.rx.default(URL.self, forKey: key)) { _, url in url ?? R.file.snippetsDash.url() } // If no file chosen, use demo data
+			.combineLatest(documentUrl) { _, url in url ?? R.file.snippetsDash.url() } // If no file chosen, use demo data
 			.compactMap { url in url }
-			.do(onNext: { print("loading database: \($0.lastPathComponent)") }) // FIXME: why always demo data comes here!?
-			.flatMap { _ in SQLSnippet.rx.all } // TODO load from the url
+			.flatMap(SQLSnippet.rx.all(url: ))
 			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in
 				guard let str = text, !str.isEmpty else { return items }
 				return items.filter { $0.contains(keyword: str) }
 			})
+			.catchErrorJustReturn([])
 			.bind(to: _items)
 			.disposed(by: disposeBag)
 		
@@ -116,7 +116,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.do(onNext: _presentView.accept)
 			.flatMap { picker in picker.rx.didPickDocumentsAt }
 			.compactMap { $0.first }
-			.subscribe(onNext: { url in defaults.set(url, forKey: key) })
+			.subscribe(onNext: { url in Defaults.documentUrl = url })
 			.disposed(by: disposeBag)
 		
 		_viewWillLayoutSubviews

@@ -20,5 +20,7 @@ target 'Snippets' do
 	pod 'TagListView'
 	# Resource Utilities
 	pod 'R.swift'
+	# Coding
+	pod 'SwiftyUserDefaults'
 	
 end

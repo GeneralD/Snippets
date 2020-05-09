@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import SwiftyUserDefaults
 
 protocol SnippetDetailViewModelInput {
 	var model: AnyObserver<SQLSnippet?> { get }
@@ -58,10 +59,15 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 			.bind(to: _code)
 			.disposed(by: disposeBag)
 		
-		_model
-			.compactMap { $0 }
-			.flatMap { a in a.rx.tags }
-			.bind(to: _tags)
-			.disposed(by: disposeBag)
+		if let fileUrl = Defaults.documentUrl {
+			_model
+				.compactMap { $0 }
+				.flatMap { snippet in snippet.rx.tags(url: fileUrl) }
+				.bind(to: _tags)
+				.disposed(by: disposeBag)
+		} else {
+			print("There must be fileUrl if you can come this view!")
+		}
 	}
 }
+
