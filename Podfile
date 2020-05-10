@@ -5,6 +5,7 @@ target 'Snippets' do
 	
 	# RxSwift
 	pod 'RxCocoa'
+	pod 'RxOptional'
 	pod 'RxAnimated'
 	pod 'RxGRDB'
 	pod 'RxCells'

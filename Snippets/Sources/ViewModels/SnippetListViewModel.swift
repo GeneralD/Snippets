@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxOptional
 import RxGRDB
 import SwiftyUserDefaults
 
@@ -72,7 +73,8 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let _items = BehaviorRelay<[SQLSnippet]>(value: [])
 		self.items = _items.asObservable()
 		
-		self.isRefreshing = _items.map { _ in false }.asObservable()
+		let _isRefreshing = BehaviorSubject<Bool>(value: false)
+		self.isRefreshing = _isRefreshing.asObserver()
 		
 		let _isSearchBarHidden = BehaviorRelay<Bool>(value: true)
 		self.isSearchBarHidden = _isSearchBarHidden.asObservable()
@@ -99,17 +101,30 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		let documentUrl = UserDefaults.standard.rx.url(forKey: "documentUrl")
 		
-		_refresherPulled
+		let loadUrl = _refresherPulled
 			.combineLatest(documentUrl) { _, url in url }
-//			.compactMap { url in R.file.snippetsDash.url() } // If no file chosen, use demo data
-			.compactMap { url in url }
+			.share()
+		
+		loadUrl
+			.filterNil()
 			.flatMap(SQLSnippet.rx.all(url: ))
 			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in
 				guard let str = text, !str.isEmpty else { return items }
 				return items.filter { $0.contains(keyword: str) }
 			})
-			.catchErrorJustReturn([])
 			.bind(to: _items)
+			.disposed(by: disposeBag)
+		
+		// If failed to pick an URL, hide loading indicator
+		loadUrl
+			.filter { $0 == nil }
+			.map { _ in false }
+			.bind(to: _isRefreshing)
+			.disposed(by: disposeBag)
+		
+		// If items are loaded, hide loading indicator
+		_items.map { _ in false }
+			.bind(to: _isRefreshing)
 			.disposed(by: disposeBag)
 		
 		_pickDocumentTap

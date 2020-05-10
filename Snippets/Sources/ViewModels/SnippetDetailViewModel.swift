@@ -70,4 +70,3 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		}
 	}
 }
-
