@@ -100,7 +100,8 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let documentUrl = UserDefaults.standard.rx.url(forKey: "documentUrl")
 		
 		_refresherPulled
-			.combineLatest(documentUrl) { _, url in url ?? R.file.snippetsDash.url() } // If no file chosen, use demo data
+			.combineLatest(documentUrl) { _, url in url }
+//			.compactMap { url in R.file.snippetsDash.url() } // If no file chosen, use demo data
 			.compactMap { url in url }
 			.flatMap(SQLSnippet.rx.all(url: ))
 			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in

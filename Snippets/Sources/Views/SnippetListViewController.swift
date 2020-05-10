@@ -98,7 +98,7 @@ class SnippetListViewController: UIViewController {
 			.disposed(by: disposeBag)
 		
 		output.presentView
-			.subscribe(onNext: { [weak self] v in self?.present(v, animated: true) })
+			.bind(to: self.rx.present)
 			.disposed(by: disposeBag)
 	}
 }
