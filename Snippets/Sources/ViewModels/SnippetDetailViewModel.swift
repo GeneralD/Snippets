@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxOptional
 import SwiftyUserDefaults
 
 protocol SnippetDetailViewModelInput {
@@ -61,7 +62,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		
 		if let fileUrl = Defaults.documentUrl {
 			_model
-				.compactMap { $0 }
+				.filterNil()
 				.flatMap { snippet in snippet.rx.tags(url: fileUrl) }
 				.bind(to: _tags)
 				.disposed(by: disposeBag)

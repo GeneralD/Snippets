@@ -16,6 +16,14 @@ class SnippetCollectionViewCell: UICollectionViewCell {
 	@IBOutlet private weak var titleLabel: UILabel!
 	@IBOutlet private weak var codeView: CodeView!
 	@IBOutlet private weak var syntaxLabel: UILabel!
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		
+		// Enable itemSelected detection even on ScrollView in the cell
+		codeView.contentTextView.isUserInteractionEnabled = false
+		contentView.addGestureRecognizer(codeView.contentTextView.panGestureRecognizer)
+	}
 }
 
 extension SnippetCollectionViewCell: NibLoadable, Reusable {}
