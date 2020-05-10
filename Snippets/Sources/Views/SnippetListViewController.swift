@@ -92,6 +92,12 @@ class SnippetListViewController: UIViewController {
 			.bind(to: searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive)
 			.disposed(by: disposeBag)
 		
+		output.isSearchBarHidden
+			.asDriver(onErrorJustReturn: true)
+			.compactMap { [weak searchBar] hide in hide ? searchBar?.resignFirstResponder : searchBar?.becomeFirstResponder }
+			.drive(onNext: { _ = $0() })
+			.disposed(by: disposeBag)
+		
 		// This should be UICollectionViewFlowLayout, otherwise fix it on storyboard
 		let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		
