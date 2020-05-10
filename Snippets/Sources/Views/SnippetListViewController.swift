@@ -13,6 +13,7 @@ import RxCells
 import RxAnimated
 import RxViewController
 import RxDocumentPicker
+import EmptyDataSet_Swift
 
 class SnippetListViewController: UIViewController {
 	
@@ -49,6 +50,7 @@ class SnippetListViewController: UIViewController {
 		collectionView.dataSource = nil
 		collectionView.refreshControl = refreshControl
 		collectionView.register(cellType: SnippetCollectionViewCell.self)
+		collectionView.emptyDataSetView(output.emptyDataSetView)
 		
 		// Bind inputs
 		collectionView.rx.itemSelected

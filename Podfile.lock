@@ -1,5 +1,6 @@
 PODS:
   - DynamicColor (4.2.0)
+  - EmptyDataSet-Swift (5.0.0)
   - GRDB.swift (4.14.0):
     - GRDB.swift/standard (= 4.14.0)
   - GRDB.swift/standard (4.14.0)
@@ -51,6 +52,7 @@ PODS:
 
 DEPENDENCIES:
   - DynamicColor
+  - EmptyDataSet-Swift
   - Hex
   - R.swift
   - RxAnimated
@@ -68,6 +70,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - DynamicColor
+    - EmptyDataSet-Swift
     - GRDB.swift
     - Hex
     - R.swift
@@ -92,6 +95,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   DynamicColor: c475f66bda1cabf602f2c54ac1171c0c07148a5a
+  EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
   GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
@@ -111,6 +115,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 33fcb42bd1feb53a37d873feb62c82967db5f7f6
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: d3fd04a5275af5d72ee62e23743a50eed963fd4d
+PODFILE CHECKSUM: ce4db9236afc630d0ba9cf991903814ad2f068cd
 
 COCOAPODS: 1.9.1

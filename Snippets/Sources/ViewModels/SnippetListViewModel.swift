@@ -12,6 +12,7 @@ import RxRelay
 import RxOptional
 import RxGRDB
 import SwiftyUserDefaults
+import EmptyDataSet_Swift
 
 protocol SnippetListViewModelInput {
 	var itemSelected: AnyObserver<IndexPath> { get }
@@ -28,6 +29,7 @@ protocol SnippetListViewModelOutput {
 	var isSearchBarHidden: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
 	var presentView: Observable<UIViewController> { get }
+	var emptyDataSetView: (EmptyDataSetView) -> Void { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
@@ -46,6 +48,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	let isSearchBarHidden: Observable<Bool>
 	let itemSize: Observable<CGSize>
 	let presentView: Observable<UIViewController>
+	let emptyDataSetView: (EmptyDataSetView) -> Void
 	
 	private let disposeBag = DisposeBag()
 	
@@ -86,6 +89,23 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		self.presentView = _presentView.asObservable()
 		
 		// Bind them
+		let documentUrl = UserDefaults.standard.rx.url(forKey: "documentUrl")
+		let loadUrl = _refresherPulled
+			.combineLatest(documentUrl) { _, url in url }
+			.share()
+		
+		let allItems = loadUrl
+			.filterNil()
+			.flatMap(SQLSnippet.rx.all(url: ))
+			.share()
+		
+		// To remember last value (to check if item is empty in emptyDataSetView)
+		let anyItemLoaded = BehaviorRelay<Bool>(value: false)
+		allItems
+			.map { $0.isNotEmpty }
+			.bind(to: anyItemLoaded)
+			.disposed(by: disposeBag)
+		
 		_itemSelected
 			.filter { _items.value.count > $0.row }
 			.map { _items.value[$0.row] }
@@ -96,18 +116,12 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		_contentOffset
 			.filter { $0.y != 0 }
 			.map { $0.y > 0 }
+			.combineLatest(allItems) { $0 || $1.isEmpty }
 			.bind(to: _isSearchBarHidden)
 			.disposed(by: disposeBag)
 		
-		let documentUrl = UserDefaults.standard.rx.url(forKey: "documentUrl")
-		
-		let loadUrl = _refresherPulled
-			.combineLatest(documentUrl) { _, url in url }
-			.share()
-		
-		loadUrl
-			.filterNil()
-			.flatMap(SQLSnippet.rx.all(url: ))
+		// Filter items
+		allItems
 			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in
 				guard let str = text, !str.isEmpty else { return items }
 				return items.filter { $0.contains(keyword: str) }
@@ -139,5 +153,18 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
 			.bind(to: _itemSize)
 			.disposed(by: disposeBag)
+		
+		
+		emptyDataSetView = { view in
+			if anyItemLoaded.value {
+				view.titleLabelString(.init(string: "No result to display!"))
+					.detailLabelString(.init(string: "Change search keyword."))
+			} else {
+				view.titleLabelString(.init(string: "Snippet file is not selected."))
+					.detailLabelString(.init(string: "You need to pick a file first."))
+					.buttonTitle(.init(string: "Tap here!", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGreen]), for: .normal)
+					.didTapDataButton { _pickDocumentTap.accept(()) }
+			}
+		}
 	}
 }
