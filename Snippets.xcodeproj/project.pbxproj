@@ -13,7 +13,6 @@
 		B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */; };
 		B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E32463060600898BAD /* AnyObserverConvertible.swift */; };
 		B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */; };
-		B334D7EC2463A9D500898BAD /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7EB2463A9D500898BAD /* StringExtension.swift */; };
 		B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7EE2463AACA00898BAD /* DashLexer.swift */; };
 		B334D7F12463D29000898BAD /* language_colors.json in Resources */ = {isa = PBXBuildFile; fileRef = B334D7F02463D29000898BAD /* language_colors.json */; };
 		B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7F22463E9CB00898BAD /* ColorHash.swift */; };
@@ -33,7 +32,6 @@
 		B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82124654CD200898BAD /* EdgeInsetLabel.swift */; };
 		B334D8242465510300898BAD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8232465510300898BAD /* UIViewExtension.swift */; };
 		B334D8272465558E00898BAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8262465558E00898BAD /* R.generated.swift */; };
-		B334D8292465601800898BAD /* FileResourceTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8282465601800898BAD /* FileResourceTypeExtension.swift */; };
 		B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */; };
 		B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */; };
 		B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B42466E505009AEDB9 /* ObservableConvertible.swift */; };
@@ -56,7 +54,6 @@
 		B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTagsIndex.swift; sourceTree = "<group>"; };
 		B334D7E32463060600898BAD /* AnyObserverConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObserverConvertible.swift; sourceTree = "<group>"; };
 		B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastelSourceColorTheme.swift; sourceTree = "<group>"; };
-		B334D7EB2463A9D500898BAD /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		B334D7EE2463AACA00898BAD /* DashLexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashLexer.swift; sourceTree = "<group>"; };
 		B334D7F02463D29000898BAD /* language_colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = language_colors.json; sourceTree = "<group>"; };
 		B334D7F22463E9CB00898BAD /* ColorHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHash.swift; sourceTree = "<group>"; };
@@ -76,7 +73,6 @@
 		B334D82124654CD200898BAD /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		B334D8232465510300898BAD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		B334D8262465558E00898BAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		B334D8282465601800898BAD /* FileResourceTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileResourceTypeExtension.swift; sourceTree = "<group>"; };
 		B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsReactiveExtension.swift; sourceTree = "<group>"; };
 		B39235B42466E505009AEDB9 /* ObservableConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableConvertible.swift; sourceTree = "<group>"; };
@@ -137,10 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				B334D80D24652E0100898BAD /* Rx */,
-				B334D7EB2463A9D500898BAD /* StringExtension.swift */,
 				B334D7F42463F30200898BAD /* ColorExtension.swift */,
 				B334D8232465510300898BAD /* UIViewExtension.swift */,
-				B334D8282465601800898BAD /* FileResourceTypeExtension.swift */,
 				B39235B62466EBC8009AEDB9 /* DefaultsKeyExtension.swift */,
 			);
 			path = Extensions;
@@ -421,7 +415,6 @@
 				B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */,
 				B334D8242465510300898BAD /* UIViewExtension.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
-				B334D8292465601800898BAD /* FileResourceTypeExtension.swift in Sources */,
 				B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */,
 				B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
@@ -439,7 +432,6 @@
 				B334D7F92464136100898BAD /* CodeView.swift in Sources */,
 				B334D80F24652E4700898BAD /* SQLSnippetReactiveExtension.swift in Sources */,
 				B334D8072465193100898BAD /* SyntaxTextViewReactiveExtension.swift in Sources */,
-				B334D7EC2463A9D500898BAD /* StringExtension.swift in Sources */,
 				B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */,
 				B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */,
 				B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */,
