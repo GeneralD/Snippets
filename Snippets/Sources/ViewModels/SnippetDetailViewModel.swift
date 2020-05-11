@@ -14,6 +14,7 @@ import SwiftyUserDefaults
 
 protocol SnippetDetailViewModelInput {
 	var model: AnyObserver<SQLSnippet?> { get }
+	var copyButtonTap: AnyObserver<()> { get }
 }
 
 protocol SnippetDetailViewModelOutput {
@@ -25,7 +26,8 @@ protocol SnippetDetailViewModelOutput {
 final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {
 	
 	// MARK: Inputs
-	var model: AnyObserver<SQLSnippet?>
+	let model: AnyObserver<SQLSnippet?>
+	let copyButtonTap: AnyObserver<()>
 	
 	// MARK: Outputs
 	let title: Observable<String?>
@@ -38,6 +40,9 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		// Inputs
 		let _model = PublishRelay<SQLSnippet?>()
 		model = _model.asObserver()
+		
+		let _copyButtonTap = PublishRelay<()>()
+		self.copyButtonTap = _copyButtonTap.asObserver()
 		
 		// Outputs
 		let _title = BehaviorRelay<String?>(value: nil)
@@ -69,5 +74,9 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		} else {
 			print("There must be fileUrl if you can come this view!")
 		}
+		
+		_copyButtonTap
+			.subscribe(onNext: { UIPasteboard.general.string = _code.value })
+			.disposed(by: disposeBag)
 	}
 }

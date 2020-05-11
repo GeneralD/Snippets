@@ -19,6 +19,7 @@ class SnippetDetailViewController: UIViewController {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var tagsView: TagListView!
 	@IBOutlet weak var codeView: CodeView!
+	@IBOutlet weak var copyButton: UIButton!
 	
 	private let input: Input
 	private let output: Output
@@ -45,7 +46,11 @@ class SnippetDetailViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-	
+		
+		copyButton.rx.tap
+			.bind(to: input.copyButtonTap)
+			.disposed(by: disposeBag)
+		
 		output.title
 			.bind(to: titleLabel.rx.text)
 			.disposed(by: disposeBag)
