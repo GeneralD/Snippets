@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3019964246C227B0040C4F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3019963246C227B0040C4F5 /* Localizable.strings */; };
 		B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BADFF2461B3FE00BF0AA6 /* SQLSnippet.swift */; };
 		B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */; };
 		B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE032461B6F000BF0AA6 /* SQLTag.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		1B76EB0059402CE80BB95FBC /* Pods-Snippets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snippets.debug.xcconfig"; path = "Target Support Files/Pods-Snippets/Pods-Snippets.debug.xcconfig"; sourceTree = "<group>"; };
 		5526B0F7E148F4720D0AF81A /* Pods-Snippets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snippets.release.xcconfig"; path = "Target Support Files/Pods-Snippets/Pods-Snippets.release.xcconfig"; sourceTree = "<group>"; };
+		B3019963246C227B0040C4F5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		B30BADFF2461B3FE00BF0AA6 /* SQLSnippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSnippet.swift; sourceTree = "<group>"; };
 		B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSmartTag.swift; sourceTree = "<group>"; };
 		B30BAE032461B6F000BF0AA6 /* SQLTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTag.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				B334D7F02463D29000898BAD /* language_colors.json */,
 				B3E77A3C245AE65F001F08A4 /* Assets.xcassets */,
+				B3019963246C227B0040C4F5 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				B334D81F246537A900898BAD /* LaunchScreen.storyboard in Resources */,
 				B334D81D2465378A00898BAD /* List.storyboard in Resources */,
 				B334D81E246537A900898BAD /* Detail.storyboard in Resources */,
+				B3019964246C227B0040C4F5 /* Localizable.strings in Resources */,
 				B334D820246537E000898BAD /* SnippetCollectionViewCell.xib in Resources */,
 				B3E77A3D245AE65F001F08A4 /* Assets.xcassets in Resources */,
 				B334D7F12463D29000898BAD /* language_colors.json in Resources */,

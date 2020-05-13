@@ -157,12 +157,12 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		emptyDataSetView = { view in
 			if anyItemLoaded.value {
-				view.titleLabelString(.init(string: "No result to display!"))
-					.detailLabelString(.init(string: "Change search keyword."))
+				view.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
+					.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
 			} else {
-				view.titleLabelString(.init(string: "Snippet file is not selected."))
-					.detailLabelString(.init(string: "You need to pick a file first."))
-					.buttonTitle(.init(string: "Tap here!", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGreen]), for: .normal)
+				view.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
+					.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
+					.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGreen]), for: .normal)
 					.didTapDataButton { _pickDocumentTap.accept(()) }
 			}
 		}

@@ -65,15 +65,12 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 			.bind(to: _code)
 			.disposed(by: disposeBag)
 		
-		if let fileUrl = Defaults.documentUrl {
-			_model
-				.filterNil()
-				.flatMap { snippet in snippet.rx.tags(url: fileUrl) }
-				.bind(to: _tags)
-				.disposed(by: disposeBag)
-		} else {
-			print("There must be fileUrl if you can come this view!")
-		}
+		_model
+			.compactMap { $0?.rx.tags(url: ) }
+			.compactMap(Defaults.documentUrl.map)
+			.flatten()
+			.bind(to: _tags)
+			.disposed(by: disposeBag)
 		
 		_copyButtonTap
 			.subscribe(onNext: { UIPasteboard.general.string = _code.value })

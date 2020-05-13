@@ -1,0 +1,13 @@
+/* 
+ Localizable.strings
+ Snippets
+ 
+ Created by Yumenosuke Koukata on 2020/05/13.
+ Copyright © 2020 ZYXW. All rights reserved.
+ */
+
+"snippetFileNotOpenedTitleLabel" = "Snippet file is not selected.";
+"snippetFileNotOpenedDetailLabel" = "You need to pick a file first.";
+"snippetFileNotOpenedButtonLabel" = "Tap here!";
+"snippetNoResultTitleLabel" = "No result to display!";
+"snippetNoResultDetailLabel" = "Change search keyword.";

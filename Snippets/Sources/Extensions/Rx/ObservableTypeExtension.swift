@@ -18,3 +18,10 @@ public extension ObservableType {
 		.combineLatest(self, source1, resultSelector: resultSelector)
 	}
 }
+
+public extension ObservableType where Element: ObservableConvertibleType {
+
+	func flatten() -> Observable<Element.Element> {
+		flatMap { a in a }
+	}
+}
