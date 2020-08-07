@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-extension Reactive where Base: UICollectionViewFlowLayout {
+public extension Reactive where Base: UICollectionViewFlowLayout {
     var itemSize: Binder<CGSize> {
 		.init(self.base) { layout, size in
 			layout.itemSize = size

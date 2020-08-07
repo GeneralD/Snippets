@@ -18,7 +18,7 @@ extension BehaviorRelay: AnyObserverConvertible {}
 extension PublishRelay: AnyObserverConvertible {}
 
 extension AnyObserverConvertible {
-	func asObserver() -> AnyObserver<Element> {
+	public func asObserver() -> AnyObserver<Element> {
 		.init { event in
 			guard case .next(let element) = event else { return }
 			self.accept(element)

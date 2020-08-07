@@ -70,7 +70,8 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 			.disposed(by: disposeBag)
 		
 		_copyButtonTap
-			.subscribe(onNext: { UIPasteboard.general.string = _code.value })
+			.map { _code.value }
+			.bind(to: UIPasteboard.general.rx.string)
 			.disposed(by: disposeBag)
 	}
 }

@@ -13,6 +13,7 @@
 		B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE032461B6F000BF0AA6 /* SQLTag.swift */; };
 		B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */; };
 		B316727624DD8D120037BD04 /* UIViewReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B316727524DD8D120037BD04 /* UIViewReactiveExtension.swift */; };
+		B316727824DD9ABB0037BD04 /* UIPasteboardReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B316727724DD9ABA0037BD04 /* UIPasteboardReactiveExtension.swift */; };
 		B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E32463060600898BAD /* AnyObserverConvertible.swift */; };
 		B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */; };
 		B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7EE2463AACA00898BAD /* DashLexer.swift */; };
@@ -56,6 +57,7 @@
 		B30BAE032461B6F000BF0AA6 /* SQLTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTag.swift; sourceTree = "<group>"; };
 		B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTagsIndex.swift; sourceTree = "<group>"; };
 		B316727524DD8D120037BD04 /* UIViewReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewReactiveExtension.swift; sourceTree = "<group>"; };
+		B316727724DD9ABA0037BD04 /* UIPasteboardReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPasteboardReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D7E32463060600898BAD /* AnyObserverConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObserverConvertible.swift; sourceTree = "<group>"; };
 		B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastelSourceColorTheme.swift; sourceTree = "<group>"; };
 		B334D7EE2463AACA00898BAD /* DashLexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashLexer.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				B316727524DD8D120037BD04 /* UIViewReactiveExtension.swift */,
 				B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */,
 				B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */,
+				B316727724DD9ABA0037BD04 /* UIPasteboardReactiveExtension.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				B334D8242465510300898BAD /* UIViewExtension.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
 				B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */,
+				B316727824DD9ABB0037BD04 /* UIPasteboardReactiveExtension.swift in Sources */,
 				B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
 				B334D80924651CF700898BAD /* TagListViewReactiveExtension.swift in Sources */,
