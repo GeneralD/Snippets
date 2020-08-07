@@ -80,7 +80,6 @@ class SnippetListViewController: UIViewController {
 		
 		// Bind outputs
 		output.items
-			.map { $0.enumerated() }
 			.bind(to: collectionView.rx.cells(SnippetCollectionViewCell.self))
 			.disposed(by: disposeBag)
 		

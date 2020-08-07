@@ -29,11 +29,11 @@ class SnippetCollectionViewCell: UICollectionViewCell {
 extension SnippetCollectionViewCell: NibLoadable, Reusable {}
 
 extension SnippetCollectionViewCell: Configurable {
-	func configure(with model: (offset: Int, element: SQLSnippet)) {
-		titleLabel.text = model.element.title
-		codeView.text = model.element.body ?? ""
+	func configure(with model: SQLSnippet) {
+		titleLabel.text = model.title
+		codeView.text = model.body ?? ""
 		
-		let language = model.element.syntax ?? ""
+		let language = model.syntax ?? ""
 		syntaxLabel.text = language
 		syntaxLabel.isHidden = language.isEmpty
 		
