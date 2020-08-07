@@ -10,38 +10,28 @@ import UIKit
 import RxSwift
 import RxCocoa
 import TagListView
+import Instantiate
+import InstantiateStandard
 
-class SnippetDetailViewController: UIViewController {
+class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 	
 	typealias Input = SnippetDetailViewModelInput
 	typealias Output = SnippetDetailViewModelOutput
+	typealias Dependency = SQLSnippet
 	
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var tagsView: TagListView!
 	@IBOutlet weak var codeView: CodeView!
 	@IBOutlet weak var copyButton: UIButton!
 	
-	private let input: Input
-	private let output: Output
+	private var input: Input!
+	private var output: Output!
 	private let disposeBag = DisposeBag()
 	
-	static func instantiate(model: SQLSnippet) -> SnippetDetailViewController {
-		let instance = R.storyboard.detail.instantiateInitialViewController()!
-		instance.input.model.onNext(model)
-		return instance
-	}
-	
-	init(viewModel: Input & Output = SnippetDetailViewModel()) {
+	func inject(_ dependency: SQLSnippet) {
+		let viewModel = SnippetDetailViewModel(model: dependency)
 		self.input = viewModel
 		self.output = viewModel
-		super.init(nibName: nil, bundle: nil)
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		let viewModel = SnippetDetailViewModel()
-		self.input = viewModel
-		self.output = viewModel
-		super.init(coder: aDecoder)
 	}
 	
 	override func viewDidLoad() {
@@ -64,3 +54,4 @@ class SnippetDetailViewController: UIViewController {
 			.disposed(by: disposeBag)
 	}
 }
+

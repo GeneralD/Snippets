@@ -109,7 +109,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		_itemSelected
 			.filter { _items.value.count > $0.row }
 			.map { _items.value[$0.row] }
-			.map { snippet in SnippetDetailViewController.instantiate(model: snippet) }
+			.map(SnippetDetailViewController.init(with: ))
 			.bind(to: _presentView)
 			.disposed(by: disposeBag)
 		

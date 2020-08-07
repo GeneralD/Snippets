@@ -13,7 +13,6 @@ import RxOptional
 import SwiftyUserDefaults
 
 protocol SnippetDetailViewModelInput {
-	var model: AnyObserver<SQLSnippet?> { get }
 	var copyButtonTap: AnyObserver<()> { get }
 }
 
@@ -26,7 +25,6 @@ protocol SnippetDetailViewModelOutput {
 final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {
 	
 	// MARK: Inputs
-	let model: AnyObserver<SQLSnippet?>
 	let copyButtonTap: AnyObserver<()>
 	
 	// MARK: Outputs
@@ -36,11 +34,8 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 	
 	private let disposeBag = DisposeBag()
 	
-	init() {
+	init(model: SQLSnippet) {
 		// Inputs
-		let _model = PublishRelay<SQLSnippet?>()
-		model = _model.asObserver()
-		
 		let _copyButtonTap = PublishRelay<()>()
 		self.copyButtonTap = _copyButtonTap.asObserver()
 		
@@ -54,19 +49,21 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		let _tags = BehaviorRelay<[String]>(value: [])
 		tags = _tags.asObservable()
 		
+		let _model = PublishSubject.just(model)
+		
 		// Bind them
 		_model
-			.map { $0?.title }
+			.map { $0.title }
 			.bind(to: _title)
 			.disposed(by: disposeBag)
 		
 		_model
-			.map { $0?.body }
+			.map { $0.body }
 			.bind(to: _code)
 			.disposed(by: disposeBag)
 		
 		_model
-			.compactMap { $0?.rx.tags(url: ) }
+			.compactMap { $0.rx.tags(url: ) }
 			.compactMap(Defaults.documentUrl.map)
 			.flatten()
 			.bind(to: _tags)

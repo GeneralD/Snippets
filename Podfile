@@ -24,5 +24,6 @@ target 'Snippets' do
 	pod 'R.swift'
 	# Coding
 	pod 'SwiftyUserDefaults'
+	pod 'InstantiateStandard'
 	
 end

@@ -26,8 +26,8 @@
 		B334D8072465193100898BAD /* SyntaxTextViewReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */; };
 		B334D80924651CF700898BAD /* TagListViewReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D80824651CF700898BAD /* TagListViewReactiveExtension.swift */; };
 		B334D80F24652E4700898BAD /* SQLSnippetReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D80E24652E4700898BAD /* SQLSnippetReactiveExtension.swift */; };
-		B334D81D2465378A00898BAD /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D81A2465378A00898BAD /* List.storyboard */; };
-		B334D81E246537A900898BAD /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D8182465378900898BAD /* Detail.storyboard */; };
+		B334D81D2465378A00898BAD /* SnippetListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */; };
+		B334D81E246537A900898BAD /* SnippetDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */; };
 		B334D81F246537A900898BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D8192465378A00898BAD /* LaunchScreen.storyboard */; };
 		B334D820246537E000898BAD /* SnippetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */; };
 		B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82124654CD200898BAD /* EdgeInsetLabel.swift */; };
@@ -69,9 +69,9 @@
 		B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTextViewReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D80824651CF700898BAD /* TagListViewReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D80E24652E4700898BAD /* SQLSnippetReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSnippetReactiveExtension.swift; sourceTree = "<group>"; };
-		B334D8182465378900898BAD /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SnippetDetailViewController.storyboard; sourceTree = "<group>"; };
 		B334D8192465378A00898BAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B334D81A2465378A00898BAD /* List.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SnippetListViewController.storyboard; sourceTree = "<group>"; };
 		B334D82124654CD200898BAD /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		B334D8232465510300898BAD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		B334D8262465558E00898BAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -225,9 +225,9 @@
 			isa = PBXGroup;
 			children = (
 				B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */,
-				B334D81A2465378A00898BAD /* List.storyboard */,
+				B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */,
 				B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */,
-				B334D8182465378900898BAD /* Detail.storyboard */,
+				B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -333,8 +333,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B334D81F246537A900898BAD /* LaunchScreen.storyboard in Resources */,
-				B334D81D2465378A00898BAD /* List.storyboard in Resources */,
-				B334D81E246537A900898BAD /* Detail.storyboard in Resources */,
+				B334D81D2465378A00898BAD /* SnippetListViewController.storyboard in Resources */,
+				B334D81E246537A900898BAD /* SnippetDetailViewController.storyboard in Resources */,
 				B3019964246C227B0040C4F5 /* Localizable.strings in Resources */,
 				B334D820246537E000898BAD /* SnippetCollectionViewCell.xib in Resources */,
 				B3E77A3D245AE65F001F08A4 /* Assets.xcassets in Resources */,
@@ -566,7 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Snippets/Snippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64QJ9GDQUA;
+				DEVELOPMENT_TEAM = DD4ZUKAH26;
 				INFOPLIST_FILE = Snippets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -586,7 +586,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Snippets/Snippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64QJ9GDQUA;
+				DEVELOPMENT_TEAM = DD4ZUKAH26;
 				INFOPLIST_FILE = Snippets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
