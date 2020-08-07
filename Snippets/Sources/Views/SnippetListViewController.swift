@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxBinding
 import RxCells
 import RxAnimated
 import RxViewController
@@ -52,60 +53,25 @@ class SnippetListViewController: UIViewController {
 		collectionView.register(cellType: SnippetCollectionViewCell.self)
 		collectionView.emptyDataSetView(output.emptyDataSetView)
 		
-		// Bind inputs
-		collectionView.rx.itemSelected
-			.bind(to: input.itemSelected)
-			.disposed(by: disposeBag)
-		
-		collectionView.rx.contentOffset
-			.bind(to: input.contentOffset)
-			.disposed(by: disposeBag)
-		
-		refreshControl.rx.controlEvent(.valueChanged)
-			.bind(to: input.refresherPulled)
-			.disposed(by: disposeBag)
-		
-		searchBar.rx.text
-			.bind(to: input.searchBarText)
-			.disposed(by: disposeBag)
-		
-		pickDocumentButton.rx.tap
-			.bind(to: input.pickDocumentTap)
-			.disposed(by: disposeBag)
-		
-		self.rx.viewWillLayoutSubviews
-			.compactMap { [weak self] _ in self?.view.window?.safeAreaInsets }
-			.bind(to: input.viewWillLayoutSubviews)
-			.disposed(by: disposeBag)
-		
-		// Bind outputs
-		output.items
-			.bind(to: collectionView.rx.cells(SnippetCollectionViewCell.self))
-			.disposed(by: disposeBag)
-		
-		output.isRefreshing
-			.bind(to: refreshControl.rx.isRefreshing)
-			.disposed(by: disposeBag)
-		
-		output.isSearchBarHidden
-			.bind(to: searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive)
-			.disposed(by: disposeBag)
-		
-		output.isSearchBarHidden
-			.asDriver(onErrorJustReturn: true)
-			.compactMap { [weak searchBar] hide in hide ? searchBar?.resignFirstResponder : searchBar?.becomeFirstResponder }
-			.drive(onNext: { _ = $0() })
-			.disposed(by: disposeBag)
-		
 		// This should be UICollectionViewFlowLayout, otherwise fix it on storyboard
 		let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		
-		output.itemSize
-			.bind(to: layout.rx.itemSize)
-			.disposed(by: disposeBag)
+		// Bind inputs
+		disposeBag ~
+			collectionView.rx.itemSelected ~> input.itemSelected ~
+			collectionView.rx.contentOffset ~> input.contentOffset ~
+			refreshControl.rx.controlEvent(.valueChanged) ~> input.refresherPulled ~
+			searchBar.rx.text ~> input.searchBarText ~
+			pickDocumentButton.rx.tap ~> input.pickDocumentTap ~
+			self.rx.viewWillLayoutSubviews ~> input.viewWillLayoutSubviews
 		
-		output.presentView
-			.bind(to: self.rx.present)
-			.disposed(by: disposeBag)
+		// Bind outputs
+		disposeBag ~
+			output.items ~> collectionView.rx.cells(SnippetCollectionViewCell.self) ~
+			output.isRefreshing ~> refreshControl.rx.isRefreshing ~
+			output.isSearchBarHidden ~> searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive ~
+			output.isSearchBarHidden.map(!) ~> searchBar.rx.isFirstResponder ~
+			output.itemSize ~> layout.rx.itemSize ~
+			output.presentView ~> self.rx.present
 	}
 }

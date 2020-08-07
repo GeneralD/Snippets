@@ -20,7 +20,7 @@ protocol SnippetListViewModelInput {
 	var refresherPulled: AnyObserver<()> { get }
 	var searchBarText: AnyObserver<String?> { get }
 	var pickDocumentTap: AnyObserver<()> { get }
-	var viewWillLayoutSubviews: AnyObserver<UIEdgeInsets> { get }
+	var viewWillLayoutSubviews: AnyObserver<()> { get }
 }
 
 protocol SnippetListViewModelOutput {
@@ -40,7 +40,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	let refresherPulled: AnyObserver<()>
 	let searchBarText: AnyObserver<String?>
 	let pickDocumentTap: AnyObserver<()>
-	let viewWillLayoutSubviews: AnyObserver<UIEdgeInsets>
+	let viewWillLayoutSubviews: AnyObserver<()>
 	
 	// MARK: Outputs
 	let items: Observable<[SQLSnippet]>
@@ -69,8 +69,8 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let _pickDocumentTap = PublishRelay<()>()
 		self.pickDocumentTap = _pickDocumentTap.asObserver()
 		
-		let _viewWillLayoutSubviews = PublishRelay<UIEdgeInsets>()
-		viewWillLayoutSubviews = _viewWillLayoutSubviews.asObserver()
+		let _viewWillLayoutSubviews = PublishRelay<()>()
+		self.viewWillLayoutSubviews = _viewWillLayoutSubviews.asObserver()
 		
 		// Outputs
 		let _items = BehaviorRelay<[SQLSnippet]>(value: [])
@@ -150,6 +150,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.disposed(by: disposeBag)
 		
 		_viewWillLayoutSubviews
+			.compactMap { _ in UIApplication.shared.windows.first?.safeAreaInsets }
 			.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
 			.bind(to: _itemSize)
 			.disposed(by: disposeBag)

@@ -12,6 +12,7 @@
 		B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */; };
 		B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE032461B6F000BF0AA6 /* SQLTag.swift */; };
 		B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */; };
+		B316727624DD8D120037BD04 /* UIViewReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B316727524DD8D120037BD04 /* UIViewReactiveExtension.swift */; };
 		B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E32463060600898BAD /* AnyObserverConvertible.swift */; };
 		B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */; };
 		B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7EE2463AACA00898BAD /* DashLexer.swift */; };
@@ -54,6 +55,7 @@
 		B30BAE012461B69C00BF0AA6 /* SQLSmartTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSmartTag.swift; sourceTree = "<group>"; };
 		B30BAE032461B6F000BF0AA6 /* SQLTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTag.swift; sourceTree = "<group>"; };
 		B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTagsIndex.swift; sourceTree = "<group>"; };
+		B316727524DD8D120037BD04 /* UIViewReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D7E32463060600898BAD /* AnyObserverConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObserverConvertible.swift; sourceTree = "<group>"; };
 		B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastelSourceColorTheme.swift; sourceTree = "<group>"; };
 		B334D7EE2463AACA00898BAD /* DashLexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashLexer.swift; sourceTree = "<group>"; };
@@ -204,9 +206,10 @@
 				B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */,
 				B334D80824651CF700898BAD /* TagListViewReactiveExtension.swift */,
 				B334D80E24652E4700898BAD /* SQLSnippetReactiveExtension.swift */,
-				B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */,
 				B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */,
+				B316727524DD8D120037BD04 /* UIViewReactiveExtension.swift */,
 				B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */,
+				B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */,
+				B316727624DD8D120037BD04 /* UIViewReactiveExtension.swift in Sources */,
 				B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */,
 				B334D8272465558E00898BAD /* R.generated.swift in Sources */,
 				B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */,

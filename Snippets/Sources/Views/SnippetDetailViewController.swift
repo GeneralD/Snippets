@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxBinding
 import TagListView
 import Instantiate
 import InstantiateStandard
@@ -37,21 +38,14 @@ class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		copyButton.rx.tap
-			.bind(to: input.copyButtonTap)
-			.disposed(by: disposeBag)
+		// Bind inputs
+		disposeBag ~
+			copyButton.rx.tap ~> input.copyButtonTap
 		
-		output.title
-			.bind(to: titleLabel.rx.text)
-			.disposed(by: disposeBag)
-		
-		output.code
-			.bind(to: codeView.rx.text)
-			.disposed(by: disposeBag)
-		
-		output.tags
-			.bind(to: tagsView.rx.tags)
-			.disposed(by: disposeBag)
+		// Bind outputs
+		disposeBag ~
+			output.title ~> titleLabel.rx.text ~
+			output.code ~> codeView.rx.text ~
+			output.tags ~> tagsView.rx.tags
 	}
 }
-

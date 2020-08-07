@@ -3,8 +3,10 @@ platform :ios, '13.4'
 target 'Snippets' do
 	use_frameworks!
 	
-	# RxSwift
+	# Reactive
+	pod 'RxSwift'
 	pod 'RxCocoa'
+	pod 'RxBinding'
 	pod 'RxOptional'
 	pod 'RxAnimated'
 	pod 'RxGRDB'
