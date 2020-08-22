@@ -48,6 +48,14 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
+  - RxSwiftExt (5.2.0):
+    - RxSwiftExt/Core (= 5.2.0)
+    - RxSwiftExt/RxCocoa (= 5.2.0)
+  - RxSwiftExt/Core (5.2.0):
+    - RxSwift (~> 5.0)
+  - RxSwiftExt/RxCocoa (5.2.0):
+    - RxCocoa (~> 5.0)
+    - RxSwiftExt/Core
   - RxViewController (1.0.0):
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
@@ -70,6 +78,7 @@ DEPENDENCIES:
   - RxGRDB
   - RxOptional
   - RxSwift
+  - RxSwiftExt
   - RxViewController
   - Sourceful
   - SwiftyJSON
@@ -96,6 +105,7 @@ SPEC REPOS:
     - RxOptional
     - RxRelay
     - RxSwift
+    - RxSwiftExt
     - RxViewController
     - Sourceful
     - SwiftyJSON
@@ -121,12 +131,13 @@ SPEC CHECKSUMS:
   RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
   RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
   Sourceful: f514447f2ee886f238face3ce8e8b5648c0dc365
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SwiftyUserDefaults: 33fcb42bd1feb53a37d873feb62c82967db5f7f6
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: a906cdc73dd4f50e69d25bef1f2ecb9b4fc03392
+PODFILE CHECKSUM: 6d5ddc2c41d5a195b5c54501768b9d512a4c9b5e
 
 COCOAPODS: 1.9.1

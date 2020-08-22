@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxSwiftExt
 import RxOptional
 import RxGRDB
 import SwiftyUserDefaults
@@ -102,20 +103,22 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		// To remember last value (to check if item is empty in emptyDataSetView)
 		let anyItemLoaded = BehaviorRelay<Bool>(value: false)
 		allItems
-			.map { $0.isNotEmpty }
+			.mapAt(\.isNotEmpty)
 			.bind(to: anyItemLoaded)
 			.disposed(by: disposeBag)
 		
 		_itemSelected
-			.filter { _items.value.count > $0.row }
-			.map { _items.value[$0.row] }
+			.mapAt(\.row)
+			.filter { _items.value.count > $0 }
+			.map { _items.value[$0] }
 			.map(SnippetDetailViewController.init(with: ))
 			.bind(to: _presentView)
 			.disposed(by: disposeBag)
 		
 		_contentOffset
-			.filter { $0.y != 0 }
-			.map { $0.y > 0 }
+			.mapAt(\.y)
+			.ignore(0)
+			.map { $0 > 0 }
 			.combineLatest(allItems) { $0 || $1.isEmpty }
 			.bind(to: _isSearchBarHidden)
 			.disposed(by: disposeBag)
@@ -132,25 +135,26 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		// If failed to pick an URL, hide loading indicator
 		loadUrl
 			.filter { $0 == nil }
-			.map { _ in false }
+			.mapTo(false)
 			.bind(to: _isRefreshing)
 			.disposed(by: disposeBag)
 		
 		// If items are loaded, hide loading indicator
-		_items.map { _ in false }
+		_items
+			.mapTo(false)
 			.bind(to: _isRefreshing)
 			.disposed(by: disposeBag)
 		
 		_pickDocumentTap
-			.map { UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open) }
+			.mapTo(UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open))
 			.do(onNext: _presentView.accept)
-			.flatMap { picker in picker.rx.didPickDocumentsAt }
-			.compactMap { $0.first }
+			.flatMapAt(\.rx.didPickDocumentsAt)
+			.compactMapAt(\.first)
 			.subscribe(onNext: { url in Defaults.documentUrl = url })
 			.disposed(by: disposeBag)
 		
 		_viewWillLayoutSubviews
-			.compactMap { _ in UIApplication.shared.windows.first?.safeAreaInsets }
+			.compactMap { UIApplication.shared.windows.first?.safeAreaInsets }
 			.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
 			.bind(to: _itemSize)
 			.disposed(by: disposeBag)

@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxSwiftExt
 import RxOptional
 import SwiftyUserDefaults
 
@@ -53,24 +54,24 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		
 		// Bind them
 		_model
-			.map { $0.title }
+			.mapAt(\.title)
 			.bind(to: _title)
 			.disposed(by: disposeBag)
 		
 		_model
-			.map { $0.body }
+			.mapAt(\.body)
 			.bind(to: _code)
 			.disposed(by: disposeBag)
 		
 		_model
-			.compactMap { $0.rx.tags(url: ) }
+			.map { $0.rx.tags(url: ) }
 			.compactMap(Defaults.documentUrl.map)
 			.flatten()
 			.bind(to: _tags)
 			.disposed(by: disposeBag)
 		
 		_copyButtonTap
-			.map { _code.value }
+			.mapTo(_code.value)
 			.bind(to: UIPasteboard.general.rx.string)
 			.disposed(by: disposeBag)
 	}

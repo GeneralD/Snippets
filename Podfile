@@ -13,6 +13,7 @@ target 'Snippets' do
 	pod 'RxCells'
 	pod 'RxViewController'
 	pod 'RxDocumentPicker'
+	pod 'RxSwiftExt'
 	# Encode/Decode
 	pod 'SwiftyJSON'
 	# UIColor
