@@ -12,7 +12,7 @@ target 'Snippets' do
 	pod 'RxGRDB'
 	pod 'RxCells'
 	pod 'RxViewController'
-	pod 'RxDocumentPicker', :podspec => 'RxDocumentPicker.podspec' # This depends on RxSwift 4, but it's ok with 5 too!
+	pod 'RxDocumentPicker'
 	# Encode/Decode
 	pod 'SwiftyJSON'
 	# UIColor

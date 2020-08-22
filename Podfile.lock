@@ -1,5 +1,5 @@
 PODS:
-  - DynamicColor (4.2.0)
+  - DynamicColor (5.0.1)
   - EmptyDataSet-Swift (5.0.0)
   - GRDB.swift (4.14.0):
     - GRDB.swift/standard (= 4.14.0)
@@ -33,9 +33,9 @@ PODS:
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
-  - RxDocumentPicker (0.1.5):
-    - RxCocoa (~> 5.0)
-    - RxSwift (~> 5.0)
+  - RxDocumentPicker (0.2.0):
+    - RxCocoa
+    - RxSwift
   - RxGRDB (0.18.0):
     - RxGRDB/default (= 0.18.0)
     - RxSwift (~> 5.0)
@@ -66,7 +66,7 @@ DEPENDENCIES:
   - RxBinding
   - RxCells
   - RxCocoa
-  - RxDocumentPicker (from `RxDocumentPicker.podspec`)
+  - RxDocumentPicker
   - RxGRDB
   - RxOptional
   - RxSwift
@@ -91,6 +91,7 @@ SPEC REPOS:
     - RxBinding
     - RxCells
     - RxCocoa
+    - RxDocumentPicker
     - RxGRDB
     - RxOptional
     - RxRelay
@@ -101,12 +102,8 @@ SPEC REPOS:
     - SwiftyUserDefaults
     - TagListView
 
-EXTERNAL SOURCES:
-  RxDocumentPicker:
-    :podspec: RxDocumentPicker.podspec
-
 SPEC CHECKSUMS:
-  DynamicColor: c475f66bda1cabf602f2c54ac1171c0c07148a5a
+  DynamicColor: d049834ef86d8ecf150b0ca1ebe54ee733a0ec22
   EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
   GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
@@ -119,7 +116,7 @@ SPEC CHECKSUMS:
   RxBinding: da433c012633802a72c2a5bec8775b86f4cddeb8
   RxCells: bdf6673a05f8ee58b3dd7b28c3e236da7b5e0e98
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
-  RxDocumentPicker: 0093642481aadde538db1faeb86f0eb4e84d57b7
+  RxDocumentPicker: f3dc33b7b9b3e016e73c503800f15f6df151c66f
   RxGRDB: 41dfd8f987aad7a7bdd7c420319d3eb23ee383f3
   RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -130,6 +127,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 33fcb42bd1feb53a37d873feb62c82967db5f7f6
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: 3645e04cfc3259da488f5ecbfaf480fef7852285
+PODFILE CHECKSUM: a906cdc73dd4f50e69d25bef1f2ecb9b4fc03392
 
 COCOAPODS: 1.9.1
