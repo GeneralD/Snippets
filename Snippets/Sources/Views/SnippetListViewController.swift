@@ -25,7 +25,6 @@ class SnippetListViewController: UIViewController {
 	@IBOutlet private weak var searchBar: UISearchBar!
 	@IBOutlet weak var pickDocumentButton: UIButton!
 	@IBOutlet weak var searchBarHideConstraint: NSLayoutConstraint!
-	private let refreshControl = UIRefreshControl()
 	
 	private let input: Input
 	private let output: Output
@@ -47,6 +46,7 @@ class SnippetListViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		let refreshControl = UIRefreshControl()
 		collectionView.delegate = nil
 		collectionView.dataSource = nil
 		collectionView.refreshControl = refreshControl
