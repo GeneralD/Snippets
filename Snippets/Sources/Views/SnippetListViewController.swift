@@ -15,8 +15,10 @@ import RxAnimated
 import RxViewController
 import RxDocumentPicker
 import EmptyDataSet_Swift
+import Instantiate
+import InstantiateStandard
 
-class SnippetListViewController: UIViewController {
+class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 	
 	typealias Input = SnippetListViewModelInput
 	typealias Output = SnippetListViewModelOutput
@@ -26,21 +28,14 @@ class SnippetListViewController: UIViewController {
 	@IBOutlet weak var pickDocumentButton: UIButton!
 	@IBOutlet weak var searchBarHideConstraint: NSLayoutConstraint!
 	
-	private let input: Input
-	private let output: Output
+	private var input: Input!
+	private var output: Output!
 	private let disposeBag = DisposeBag()
 	
-	init(viewModel: Input & Output = SnippetListViewModel()) {
-		self.input = viewModel
-		self.output = viewModel
-		super.init(nibName: nil, bundle: nil)
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
+	func inject(_ dependency: ()) {
 		let viewModel = SnippetListViewModel()
 		self.input = viewModel
 		self.output = viewModel
-		super.init(coder: aDecoder)
 	}
 	
 	override func viewDidLoad() {
