@@ -11,7 +11,6 @@ import RxSwift
 import RxRelay
 import RxSwiftExt
 import RxOptional
-import SwiftyUserDefaults
 
 protocol SnippetDetailViewModelInput {
 	var copyButtonTap: AnyObserver<()> { get }
@@ -65,7 +64,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		
 		_model
 			.map { $0.rx.tags(url: ) }
-			.compactMap(Defaults.documentUrl.map)
+			.compactMap(UserDefaults.standard.url(forKey: "documentUrl").map)
 			.flatten()
 			.bind(to: _tags)
 			.disposed(by: disposeBag)

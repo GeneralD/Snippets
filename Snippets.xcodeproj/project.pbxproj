@@ -38,7 +38,6 @@
 		B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */; };
 		B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */; };
 		B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B42466E505009AEDB9 /* ObservableConvertible.swift */; };
-		B39235B72466EBC8009AEDB9 /* DefaultsKeyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B62466EBC8009AEDB9 /* DefaultsKeyExtension.swift */; };
 		B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
 		B3E77A36245AE65B001F08A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A35245AE65B001F08A4 /* SceneDelegate.swift */; };
@@ -82,7 +81,6 @@
 		B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsReactiveExtension.swift; sourceTree = "<group>"; };
 		B39235B42466E505009AEDB9 /* ObservableConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableConvertible.swift; sourceTree = "<group>"; };
-		B39235B62466EBC8009AEDB9 /* DefaultsKeyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeyExtension.swift; sourceTree = "<group>"; };
 		B39235B82467CBEB009AEDB9 /* Snippets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snippets.entitlements; sourceTree = "<group>"; };
 		B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerReactiveExtension.swift; sourceTree = "<group>"; };
 		B3E77A30245AE65B001F08A4 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +139,6 @@
 				B334D80D24652E0100898BAD /* Rx */,
 				B334D7F42463F30200898BAD /* ColorExtension.swift */,
 				B334D8232465510300898BAD /* UIViewExtension.swift */,
-				B39235B62466EBC8009AEDB9 /* DefaultsKeyExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -447,7 +444,6 @@
 				B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
 				B334D80924651CF700898BAD /* TagListViewReactiveExtension.swift in Sources */,
-				B39235B72466EBC8009AEDB9 /* DefaultsKeyExtension.swift in Sources */,
 				B334D7F72464071500898BAD /* ObservableTypeExtension.swift in Sources */,
 				B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */,
 				B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */,

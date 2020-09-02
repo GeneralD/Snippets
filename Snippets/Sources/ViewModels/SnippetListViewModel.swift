@@ -12,7 +12,6 @@ import RxRelay
 import RxSwiftExt
 import RxOptional
 import RxGRDB
-import SwiftyUserDefaults
 import EmptyDataSet_Swift
 
 protocol SnippetListViewModelInput {
@@ -150,7 +149,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.do(onNext: _presentView.accept)
 			.flatMapAt(\.rx.didPickDocumentsAt)
 			.compactMapAt(\.first)
-			.subscribe(onNext: { url in Defaults.documentUrl = url })
+			.bind(to: documentUrl)
 			.disposed(by: disposeBag)
 		
 		_viewWillLayoutSubviews
