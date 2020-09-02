@@ -20,13 +20,13 @@ import InstantiateStandard
 
 class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 	
-	typealias Input = SnippetListViewModelInput
-	typealias Output = SnippetListViewModelOutput
+	private typealias Input = SnippetListViewModelInput
+	private typealias Output = SnippetListViewModelOutput
 	
 	@IBOutlet private weak var collectionView: UICollectionView!
 	@IBOutlet private weak var searchBar: UISearchBar!
-	@IBOutlet weak var pickDocumentButton: UIButton!
-	@IBOutlet weak var searchBarHideConstraint: NSLayoutConstraint!
+	@IBOutlet private weak var pickDocumentButton: UIButton!
+	@IBOutlet private weak var searchBarHideConstraint: NSLayoutConstraint!
 	
 	private var input: Input!
 	private var output: Output!

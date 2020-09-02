@@ -16,14 +16,13 @@ import InstantiateStandard
 
 class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 	
-	typealias Input = SnippetDetailViewModelInput
-	typealias Output = SnippetDetailViewModelOutput
-	typealias Dependency = SQLSnippet
+	private typealias Input = SnippetDetailViewModelInput
+	private typealias Output = SnippetDetailViewModelOutput
 	
-	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var tagsView: TagListView!
-	@IBOutlet weak var codeView: CodeView!
-	@IBOutlet weak var copyButton: UIButton!
+	@IBOutlet private weak var titleLabel: UILabel!
+	@IBOutlet private weak var tagsView: TagListView!
+	@IBOutlet private weak var codeView: CodeView!
+	@IBOutlet private weak var copyButton: UIButton!
 	
 	private var input: Input!
 	private var output: Output!
