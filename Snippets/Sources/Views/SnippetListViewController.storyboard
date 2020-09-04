@@ -35,7 +35,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ELU-w6-BhK" secondAttribute="height" multiplier="1:1" id="lpk-w3-5DC"/>
                                         </constraints>
-                                        <state key="normal" image="folder" catalog="system"/>
+                                        <state key="normal" image="folder.fill" catalog="system"/>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -80,6 +80,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="folder" catalog="system" width="128" height="95"/>
+        <image name="folder.fill" catalog="system" width="128" height="95"/>
     </resources>
 </document>

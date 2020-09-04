@@ -49,7 +49,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		let _tags = BehaviorRelay<[String]>(value: [])
 		tags = _tags.asObservable()
 		
-		let _snippet = PublishSubject.just(model.snippet)
+		let _snippet = Observable.just(model.snippet)
 		
 		// Bind them
 		_snippet

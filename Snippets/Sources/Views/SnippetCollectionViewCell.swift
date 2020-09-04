@@ -24,6 +24,8 @@ class SnippetCollectionViewCell: UICollectionViewCell {
 	@IBOutlet private weak var syntaxLabel: UILabel!
 	@IBOutlet private weak var copyButton: UIButton!
 	
+	private var input: Input!
+	private var output: Output!
 	private var disposeBag: DisposeBag!
 	
 	override func awakeFromNib() {
@@ -41,8 +43,8 @@ extension SnippetCollectionViewCell: Configurable {
 	
 	func configure(with model: SnippetCellModel) {
 		let viewModel = SnippetCollectionViewCellModel(model: model)
-		let input: Input = viewModel
-		let output: Output = viewModel
+		input = viewModel
+		output = viewModel
 		
 		// Unbind all
 		disposeBag = .init()
