@@ -24,7 +24,7 @@ protocol SnippetListViewModelInput {
 }
 
 protocol SnippetListViewModelOutput {
-	var items: Observable<[SQLSnippet]> { get }
+	var items: Observable<[SnippetCellModel]> { get }
 	var isRefreshing: Observable<Bool> { get }
 	var isSearchBarHidden: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
@@ -43,7 +43,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	let viewWillLayoutSubviews: AnyObserver<()>
 	
 	// MARK: Outputs
-	let items: Observable<[SQLSnippet]>
+	let items: Observable<[SnippetCellModel]>
 	let isRefreshing: Observable<Bool>
 	let isSearchBarHidden: Observable<Bool>
 	let itemSize: Observable<CGSize>
@@ -73,7 +73,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		self.viewWillLayoutSubviews = _viewWillLayoutSubviews.asObserver()
 		
 		// Outputs
-		let _items = BehaviorRelay<[SQLSnippet]>(value: [])
+		let _items = BehaviorRelay<[SnippetCellModel]>(value: [])
 		self.items = _items.asObservable()
 		
 		let _isRefreshing = BehaviorSubject<Bool>(value: false)
@@ -108,8 +108,8 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		_itemSelected
 			.mapAt(\.row)
 			.filter { $0 < _items.value.count }
-			.withLatestFrom(_items) { index, array in array[index] }
-			.withLatestFrom(model.documentUrl.compacted(), resultSelector: SnippetDetailModel.init(snippet: sqliteUrl: ))
+			.withLatestFrom(_items) { index, array in array[index].snippet }
+			.withLatestFrom(model.documentUrl.compacted(), resultSelector: SnippetDetailModel.init(snippet: documentUrl: ))
 			.map(SnippetDetailViewController.init(with: ))
 			.bind(to: _presentView)
 			.disposed(by: disposeBag)
@@ -124,10 +124,11 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		// Filter items
 		allItems
-			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text in
+			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text -> [SQLSnippet] in
 				guard let str = text, !str.isEmpty else { return items }
 				return items.filter { $0.contains(keyword: str) }
 			})
+			.map { $0.map(SnippetCellModel.init(snippet: )) }
 			.bind(to: _items)
 			.disposed(by: disposeBag)
 		

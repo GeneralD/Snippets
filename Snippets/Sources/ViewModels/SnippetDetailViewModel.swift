@@ -63,13 +63,13 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 			.disposed(by: disposeBag)
 		
 		_snippet
-			.map { $0.rx.tags(url: model.sqliteUrl) }
+			.map { $0.rx.tags(url: model.documentUrl) }
 			.flatten()
 			.bind(to: _tags)
 			.disposed(by: disposeBag)
 		
 		_copyButtonTap
-			.mapTo(_code.value)
+			.withLatestFrom(_code)
 			.bind(to: UIPasteboard.general.rx.string)
 			.disposed(by: disposeBag)
 	}

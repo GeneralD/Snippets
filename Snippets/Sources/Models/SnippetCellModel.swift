@@ -1,5 +1,5 @@
 //
-//  SnippetDetailModel.swift
+//  SnippetCellModel.swift
 //  Snippets
 //
 //  Created by Yumenosuke Koukata on 2020/09/04.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct SnippetDetailModel {
+struct SnippetCellModel {
 	let snippet: SQLSnippet
-	let documentUrl: URL
 }

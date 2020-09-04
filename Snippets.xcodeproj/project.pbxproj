@@ -39,6 +39,8 @@
 		B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */; };
 		B354202B2502717700DBD3AB /* SnippetListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202A2502717700DBD3AB /* SnippetListModel.swift */; };
 		B354202D2502740D00DBD3AB /* SnippetDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */; };
+		B354202F2502820600DBD3AB /* SnippetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202E2502820600DBD3AB /* SnippetCellModel.swift */; };
+		B35420312502848300DBD3AB /* SnippetCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35420302502848300DBD3AB /* SnippetCollectionViewCellModel.swift */; };
 		B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B42466E505009AEDB9 /* ObservableConvertible.swift */; };
 		B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
@@ -83,6 +85,8 @@
 		B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsReactiveExtension.swift; sourceTree = "<group>"; };
 		B354202A2502717700DBD3AB /* SnippetListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListModel.swift; sourceTree = "<group>"; };
 		B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailModel.swift; sourceTree = "<group>"; };
+		B354202E2502820600DBD3AB /* SnippetCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCellModel.swift; sourceTree = "<group>"; };
+		B35420302502848300DBD3AB /* SnippetCollectionViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCollectionViewCellModel.swift; sourceTree = "<group>"; };
 		B39235B42466E505009AEDB9 /* ObservableConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableConvertible.swift; sourceTree = "<group>"; };
 		B39235B82467CBEB009AEDB9 /* Snippets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snippets.entitlements; sourceTree = "<group>"; };
 		B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerReactiveExtension.swift; sourceTree = "<group>"; };
@@ -171,8 +175,6 @@
 		B334D7E82463086400898BAD /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */,
-				B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */,
 				B334D7F82464136100898BAD /* CodeView.swift */,
 				B334D82124654CD200898BAD /* EdgeInsetLabel.swift */,
 			);
@@ -195,6 +197,7 @@
 				B30BAE072461B91C00BF0AA6 /* SQLite */,
 				B354202A2502717700DBD3AB /* SnippetListModel.swift */,
 				B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */,
+				B354202E2502820600DBD3AB /* SnippetCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +253,8 @@
 				B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */,
 				B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */,
 				B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */,
+				B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */,
+				B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			children = (
 				B3E77A47245AF054001F08A4 /* SnippetListViewModel.swift */,
 				B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */,
+				B35420302502848300DBD3AB /* SnippetCollectionViewCellModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -434,9 +440,11 @@
 			files = (
 				B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */,
 				B316727624DD8D120037BD04 /* UIResponderReactiveExtension.swift in Sources */,
+				B35420312502848300DBD3AB /* SnippetCollectionViewCellModel.swift in Sources */,
 				B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */,
 				B334D8272465558E00898BAD /* R.generated.swift in Sources */,
 				B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */,
+				B354202F2502820600DBD3AB /* SnippetCellModel.swift in Sources */,
 				B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */,
 				B3E77A48245AF054001F08A4 /* SnippetListViewModel.swift in Sources */,
 				B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */,

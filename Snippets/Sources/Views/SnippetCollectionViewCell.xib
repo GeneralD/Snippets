@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -37,8 +37,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaV-xL-mds">
-                                <rect key="frame" x="63.5" y="8" width="201.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="250" text="Snippet Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaV-xL-mds">
+                                <rect key="frame" x="63.5" y="8" width="175.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,16 +53,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PnD-2T-6zO">
+                                <rect key="frame" x="247" y="7.5" width="18" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" image="doc.on.clipboard.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="QsY-B8-W94" firstAttribute="top" secondItem="TaV-xL-mds" secondAttribute="bottom" constant="8" id="4L1-Fb-dgt"/>
+                            <constraint firstItem="PnD-2T-6zO" firstAttribute="leading" secondItem="TaV-xL-mds" secondAttribute="trailing" constant="8" id="DLJ-SH-EVT"/>
                             <constraint firstItem="GuS-cW-d8i" firstAttribute="centerY" secondItem="TaV-xL-mds" secondAttribute="centerY" id="FFq-hR-s34"/>
                             <constraint firstItem="QsY-B8-W94" firstAttribute="leading" secondItem="MkO-g8-MZz" secondAttribute="leading" constant="8" id="HCT-70-Zlb"/>
                             <constraint firstItem="GuS-cW-d8i" firstAttribute="leading" secondItem="MkO-g8-MZz" secondAttribute="leading" constant="8" id="L08-ag-nqq"/>
                             <constraint firstAttribute="bottom" secondItem="QsY-B8-W94" secondAttribute="bottom" constant="8" id="Ogm-M4-2hT"/>
+                            <constraint firstAttribute="trailing" secondItem="PnD-2T-6zO" secondAttribute="trailing" constant="8" id="PdB-lS-BUb"/>
+                            <constraint firstItem="PnD-2T-6zO" firstAttribute="centerY" secondItem="GuS-cW-d8i" secondAttribute="centerY" id="VTA-ot-144"/>
                             <constraint firstAttribute="trailing" secondItem="QsY-B8-W94" secondAttribute="trailing" constant="8" id="YDh-4O-bxZ"/>
-                            <constraint firstAttribute="trailing" secondItem="TaV-xL-mds" secondAttribute="trailing" constant="8" id="gWO-2I-o23"/>
                             <constraint firstItem="TaV-xL-mds" firstAttribute="top" secondItem="MkO-g8-MZz" secondAttribute="top" constant="8" id="tgp-Vc-vxb"/>
                             <constraint firstItem="TaV-xL-mds" firstAttribute="leading" secondItem="GuS-cW-d8i" secondAttribute="trailing" constant="4" id="wfN-eU-Pog"/>
                         </constraints>
@@ -85,10 +95,14 @@
             <connections>
                 <outlet property="cardView" destination="MkO-g8-MZz" id="Vd6-Py-La9"/>
                 <outlet property="codeView" destination="QsY-B8-W94" id="eCY-R5-CNm"/>
+                <outlet property="copyButton" destination="PnD-2T-6zO" id="6e8-p7-KW9"/>
                 <outlet property="syntaxLabel" destination="GuS-cW-d8i" id="5kB-1c-eeJ"/>
                 <outlet property="titleLabel" destination="TaV-xL-mds" id="d2g-aD-3DP"/>
             </connections>
             <point key="canvasLocation" x="123.91304347826087" y="193.86160714285714"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="doc.on.clipboard.fill" catalog="system" width="117" height="128"/>
+    </resources>
 </document>
