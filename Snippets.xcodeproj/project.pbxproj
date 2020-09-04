@@ -167,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				B3E77A33245AE65B001F08A4 /* AppDelegate.swift */,
-				B334D8192465378A00898BAD /* LaunchScreen.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -239,6 +238,7 @@
 		B36B11F72462A84200FA189D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B38B72152502A2600014B0F8 /* UI */,
 				B334D7F02463D29000898BAD /* language_colors.json */,
 				B3E77A3C245AE65F001F08A4 /* Assets.xcassets */,
 				B3019963246C227B0040C4F5 /* Localizable.strings */,
@@ -250,11 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */,
-				B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */,
 				B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */,
-				B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */,
 				B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */,
-				B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,6 +264,17 @@
 				B35420302502848300DBD3AB /* SnippetCollectionViewCellModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B38B72152502A2600014B0F8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B334D8192465378A00898BAD /* LaunchScreen.storyboard */,
+				B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */,
+				B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */,
+				B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		B3E77A27245AE65B001F08A4 = {
