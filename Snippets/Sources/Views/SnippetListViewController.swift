@@ -34,8 +34,8 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 	
 	func inject(_ dependency: SnippetListModel) {
 		let viewModel = SnippetListViewModel(model: dependency)
-		self.input = viewModel
-		self.output = viewModel
+		input = viewModel
+		output = viewModel
 	}
 	
 	override func viewDidLoad() {

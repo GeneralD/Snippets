@@ -30,8 +30,8 @@ class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 	
 	func inject(_ dependency: SnippetDetailModel) {
 		let viewModel = SnippetDetailViewModel(model: dependency)
-		self.input = viewModel
-		self.output = viewModel
+		input = viewModel
+		output = viewModel
 	}
 	
 	override func viewDidLoad() {
