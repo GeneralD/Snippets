@@ -52,7 +52,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	
 	private let disposeBag = DisposeBag()
 	
-	init() {
+	init(model: SnippetListModel) {
 		// Inputs
 		let _itemSelected = PublishRelay<IndexPath>()
 		self.itemSelected = _itemSelected.asObserver()
@@ -89,9 +89,8 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		self.presentView = _presentView.asObservable()
 		
 		// Bind them
-		let documentUrl = UserDefaults.standard.rx.url(forKey: "documentUrl")
 		let loadUrl = _refresherPulled
-			.combineLatest(documentUrl) { _, url in url }
+			.combineLatest(model.documentUrl) { _, url in url }
 			.share()
 		
 		let allItems = loadUrl
@@ -108,8 +107,9 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		_itemSelected
 			.mapAt(\.row)
-			.filter { _items.value.count > $0 }
-			.map { _items.value[$0] }
+			.filter { $0 < _items.value.count }
+			.withLatestFrom(_items) { index, array in array[index] }
+			.withLatestFrom(model.documentUrl.compacted(), resultSelector: SnippetDetailModel.init(snippet: sqliteUrl: ))
 			.map(SnippetDetailViewController.init(with: ))
 			.bind(to: _presentView)
 			.disposed(by: disposeBag)
@@ -149,7 +149,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.do(onNext: _presentView.accept)
 			.flatMapAt(\.rx.didPickDocumentsAt)
 			.compactMapAt(\.first)
-			.bind(to: documentUrl)
+			.bind(to: model.documentUrl)
 			.disposed(by: disposeBag)
 		
 		_viewWillLayoutSubviews

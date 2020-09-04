@@ -32,8 +32,8 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 	private var output: Output!
 	private let disposeBag = DisposeBag()
 	
-	func inject(_ dependency: ()) {
-		let viewModel = SnippetListViewModel()
+	func inject(_ dependency: SnippetListModel) {
+		let viewModel = SnippetListViewModel(model: dependency)
 		self.input = viewModel
 		self.output = viewModel
 	}

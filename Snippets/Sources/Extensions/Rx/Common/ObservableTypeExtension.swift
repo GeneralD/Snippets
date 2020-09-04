@@ -33,3 +33,18 @@ public extension ObservableType where Element: ObservableConvertibleType {
 		flatMap { $0 }
 	}
 }
+
+public extension ObservableType where Element: OptionalType {
+	
+	func compacted() -> Observable<Element.WrappedType> {
+		compactMap { $0 as? Self.Element.WrappedType }
+	}
+}
+
+public protocol OptionalType {
+	associatedtype WrappedType
+}
+
+extension Optional: OptionalType {
+	public typealias WrappedType = Wrapped
+}

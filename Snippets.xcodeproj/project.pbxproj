@@ -37,6 +37,8 @@
 		B334D8272465558E00898BAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8262465558E00898BAD /* R.generated.swift */; };
 		B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */; };
 		B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */; };
+		B354202B2502717700DBD3AB /* SnippetListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202A2502717700DBD3AB /* SnippetListModel.swift */; };
+		B354202D2502740D00DBD3AB /* SnippetDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */; };
 		B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B42466E505009AEDB9 /* ObservableConvertible.swift */; };
 		B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
@@ -79,6 +81,8 @@
 		B334D8262465558E00898BAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsReactiveExtension.swift; sourceTree = "<group>"; };
+		B354202A2502717700DBD3AB /* SnippetListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListModel.swift; sourceTree = "<group>"; };
+		B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailModel.swift; sourceTree = "<group>"; };
 		B39235B42466E505009AEDB9 /* ObservableConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableConvertible.swift; sourceTree = "<group>"; };
 		B39235B82467CBEB009AEDB9 /* Snippets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snippets.entitlements; sourceTree = "<group>"; };
 		B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerReactiveExtension.swift; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				B30BAE072461B91C00BF0AA6 /* SQLite */,
+				B354202A2502717700DBD3AB /* SnippetListModel.swift */,
+				B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -434,11 +440,13 @@
 				B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */,
 				B3E77A48245AF054001F08A4 /* SnippetListViewModel.swift in Sources */,
 				B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */,
+				B354202D2502740D00DBD3AB /* SnippetDetailModel.swift in Sources */,
 				B334D8242465510300898BAD /* UIViewExtension.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
 				B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */,
 				B316727824DD9ABB0037BD04 /* UIPasteboardReactiveExtension.swift in Sources */,
 				B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */,
+				B354202B2502717700DBD3AB /* SnippetListModel.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
 				B334D80924651CF700898BAD /* TagListViewReactiveExtension.swift in Sources */,
 				B334D7F72464071500898BAD /* ObservableTypeExtension.swift in Sources */,

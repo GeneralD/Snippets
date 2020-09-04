@@ -34,7 +34,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 	
 	private let disposeBag = DisposeBag()
 	
-	init(model: SQLSnippet) {
+	init(model: SnippetDetailModel) {
 		// Inputs
 		let _copyButtonTap = PublishRelay<()>()
 		self.copyButtonTap = _copyButtonTap.asObserver()
@@ -49,22 +49,21 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		let _tags = BehaviorRelay<[String]>(value: [])
 		tags = _tags.asObservable()
 		
-		let _model = PublishSubject.just(model)
+		let _snippet = PublishSubject.just(model.snippet)
 		
 		// Bind them
-		_model
+		_snippet
 			.mapAt(\.title)
 			.bind(to: _title)
 			.disposed(by: disposeBag)
 		
-		_model
+		_snippet
 			.mapAt(\.body)
 			.bind(to: _code)
 			.disposed(by: disposeBag)
 		
-		_model
-			.map { $0.rx.tags(url: ) }
-			.compactMap(UserDefaults.standard.url(forKey: "documentUrl").map)
+		_snippet
+			.map { $0.rx.tags(url: model.sqliteUrl) }
 			.flatten()
 			.bind(to: _tags)
 			.disposed(by: disposeBag)

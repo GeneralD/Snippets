@@ -28,7 +28,7 @@ class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 	private var output: Output!
 	private let disposeBag = DisposeBag()
 	
-	func inject(_ dependency: SQLSnippet) {
+	func inject(_ dependency: SnippetDetailModel) {
 		let viewModel = SnippetDetailViewModel(model: dependency)
 		self.input = viewModel
 		self.output = viewModel
