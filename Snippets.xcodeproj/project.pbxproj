@@ -24,14 +24,14 @@
 		B334D7F92464136100898BAD /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7F82464136100898BAD /* CodeView.swift */; };
 		B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */; };
 		B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */; };
-		B334D8012464282900898BAD /* SnippetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */; };
+		B334D8012464282900898BAD /* SnippetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FF2464282900898BAD /* SnippetCellView.swift */; };
 		B334D8072465193100898BAD /* SyntaxTextViewReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */; };
 		B334D80924651CF700898BAD /* TagListViewReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D80824651CF700898BAD /* TagListViewReactiveExtension.swift */; };
 		B334D80F24652E4700898BAD /* SQLSnippetReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D80E24652E4700898BAD /* SQLSnippetReactiveExtension.swift */; };
 		B334D81D2465378A00898BAD /* SnippetListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */; };
 		B334D81E246537A900898BAD /* SnippetDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */; };
 		B334D81F246537A900898BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D8192465378A00898BAD /* LaunchScreen.storyboard */; };
-		B334D820246537E000898BAD /* SnippetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */; };
+		B334D820246537E000898BAD /* SnippetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B334D8002464282900898BAD /* SnippetCellView.xib */; };
 		B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82124654CD200898BAD /* EdgeInsetLabel.swift */; };
 		B334D8242465510300898BAD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8232465510300898BAD /* UIViewExtension.swift */; };
 		B334D8272465558E00898BAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8262465558E00898BAD /* R.generated.swift */; };
@@ -40,7 +40,7 @@
 		B354202B2502717700DBD3AB /* SnippetListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202A2502717700DBD3AB /* SnippetListModel.swift */; };
 		B354202D2502740D00DBD3AB /* SnippetDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */; };
 		B354202F2502820600DBD3AB /* SnippetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202E2502820600DBD3AB /* SnippetCellModel.swift */; };
-		B35420312502848300DBD3AB /* SnippetCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35420302502848300DBD3AB /* SnippetCollectionViewCellModel.swift */; };
+		B35420312502848300DBD3AB /* SnippetCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35420302502848300DBD3AB /* SnippetCellViewModel.swift */; };
 		B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B42466E505009AEDB9 /* ObservableConvertible.swift */; };
 		B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
@@ -70,8 +70,8 @@
 		B334D7F82464136100898BAD /* CodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
 		B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailViewController.swift; sourceTree = "<group>"; };
 		B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailViewModel.swift; sourceTree = "<group>"; };
-		B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCollectionViewCell.swift; sourceTree = "<group>"; };
-		B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnippetCollectionViewCell.xib; sourceTree = "<group>"; };
+		B334D7FF2464282900898BAD /* SnippetCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCellView.swift; sourceTree = "<group>"; };
+		B334D8002464282900898BAD /* SnippetCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnippetCellView.xib; sourceTree = "<group>"; };
 		B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTextViewReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D80824651CF700898BAD /* TagListViewReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D80E24652E4700898BAD /* SQLSnippetReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSnippetReactiveExtension.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		B354202A2502717700DBD3AB /* SnippetListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListModel.swift; sourceTree = "<group>"; };
 		B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailModel.swift; sourceTree = "<group>"; };
 		B354202E2502820600DBD3AB /* SnippetCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCellModel.swift; sourceTree = "<group>"; };
-		B35420302502848300DBD3AB /* SnippetCollectionViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCollectionViewCellModel.swift; sourceTree = "<group>"; };
+		B35420302502848300DBD3AB /* SnippetCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCellViewModel.swift; sourceTree = "<group>"; };
 		B39235B42466E505009AEDB9 /* ObservableConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableConvertible.swift; sourceTree = "<group>"; };
 		B39235B82467CBEB009AEDB9 /* Snippets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snippets.entitlements; sourceTree = "<group>"; };
 		B39235B92467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerReactiveExtension.swift; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 			children = (
 				B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */,
 				B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */,
-				B334D7FF2464282900898BAD /* SnippetCollectionViewCell.swift */,
+				B334D7FF2464282900898BAD /* SnippetCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -261,7 +261,7 @@
 			children = (
 				B3E77A47245AF054001F08A4 /* SnippetListViewModel.swift */,
 				B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */,
-				B35420302502848300DBD3AB /* SnippetCollectionViewCellModel.swift */,
+				B35420302502848300DBD3AB /* SnippetCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 				B334D8192465378A00898BAD /* LaunchScreen.storyboard */,
 				B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */,
 				B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */,
-				B334D8002464282900898BAD /* SnippetCollectionViewCell.xib */,
+				B334D8002464282900898BAD /* SnippetCellView.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -372,7 +372,7 @@
 				B334D81D2465378A00898BAD /* SnippetListViewController.storyboard in Resources */,
 				B334D81E246537A900898BAD /* SnippetDetailViewController.storyboard in Resources */,
 				B3019964246C227B0040C4F5 /* Localizable.strings in Resources */,
-				B334D820246537E000898BAD /* SnippetCollectionViewCell.xib in Resources */,
+				B334D820246537E000898BAD /* SnippetCellView.xib in Resources */,
 				B3E77A3D245AE65F001F08A4 /* Assets.xcassets in Resources */,
 				B334D7F12463D29000898BAD /* language_colors.json in Resources */,
 			);
@@ -448,7 +448,7 @@
 			files = (
 				B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */,
 				B316727624DD8D120037BD04 /* UIResponderReactiveExtension.swift in Sources */,
-				B35420312502848300DBD3AB /* SnippetCollectionViewCellModel.swift in Sources */,
+				B35420312502848300DBD3AB /* SnippetCellViewModel.swift in Sources */,
 				B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */,
 				B334D8272465558E00898BAD /* R.generated.swift in Sources */,
 				B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */,
@@ -470,7 +470,7 @@
 				B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */,
 				B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */,
 				B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */,
-				B334D8012464282900898BAD /* SnippetCollectionViewCell.swift in Sources */,
+				B334D8012464282900898BAD /* SnippetCellView.swift in Sources */,
 				B334D7F52463F30200898BAD /* ColorExtension.swift in Sources */,
 				B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */,
 				B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */,

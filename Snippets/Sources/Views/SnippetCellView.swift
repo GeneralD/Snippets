@@ -1,5 +1,5 @@
 //
-//  SnippetCollectionViewCell.swift
+//  SnippetCellView.swift
 //  Snippets
 //
 //  Created by Yumenosuke Koukata on 2020/05/07.
@@ -13,10 +13,10 @@ import RxCocoa
 import RxBinding
 import Reusable
 
-class SnippetCollectionViewCell: UICollectionViewCell {
+class SnippetCellView: UICollectionViewCell {
 	
-	private typealias Input = SnippetCollectionViewCellModelInput
-	private typealias Output = SnippetCollectionViewCellModelOutput
+	private typealias Input = SnippetCellViewModelInput
+	private typealias Output = SnippetCellViewModelOutput
 	
 	@IBOutlet private weak var cardView: UIView!
 	@IBOutlet private weak var titleLabel: UILabel!
@@ -37,12 +37,12 @@ class SnippetCollectionViewCell: UICollectionViewCell {
 	}
 }
 
-extension SnippetCollectionViewCell: NibLoadable, Reusable {}
+extension SnippetCellView: NibLoadable, Reusable {}
 
-extension SnippetCollectionViewCell: Configurable {
+extension SnippetCellView: Configurable {
 	
 	func configure(with model: SnippetCellModel) {
-		let viewModel = SnippetCollectionViewCellModel(model: model)
+		let viewModel = SnippetCellViewModel(model: model)
 		input = viewModel
 		output = viewModel
 		

@@ -45,7 +45,7 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 		collectionView.delegate = nil
 		collectionView.dataSource = nil
 		collectionView.refreshControl = refreshControl
-		collectionView.register(cellType: SnippetCollectionViewCell.self)
+		collectionView.register(cellType: SnippetCellView.self)
 		collectionView.emptyDataSetView(output.emptyDataSetView)
 		
 		// This should be UICollectionViewFlowLayout, otherwise fix it on storyboard
@@ -62,7 +62,7 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 		
 		// Bind outputs
 		disposeBag ~
-			output.items ~> collectionView.rx.cells(SnippetCollectionViewCell.self) ~
+			output.items ~> collectionView.rx.cells(SnippetCellView.self) ~
 			output.isRefreshing ~> refreshControl.rx.isRefreshing ~
 			output.isSearchBarHidden ~> searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive ~
 			output.isSearchBarHidden.map(!) ~> searchBar.rx.isFirstResponder ~
