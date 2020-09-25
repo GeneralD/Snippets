@@ -32,6 +32,7 @@ class EdgeInsetLabel: UILabel {
 }
 
 extension EdgeInsetLabel {
+	
 	@IBInspectable
 	var leftTextInset: CGFloat {
 		set { textInsets.left = newValue }

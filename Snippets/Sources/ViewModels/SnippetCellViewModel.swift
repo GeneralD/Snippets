@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import RxSwift
 import RxRelay
-import RxSwiftExt
 import RxOptional
 
 protocol SnippetCellViewModelInput {
@@ -67,36 +66,36 @@ final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewMode
 		
 		_copyButtonTap
 			.withLatestFrom(snippet)
-			.mapAt(\.body)
+			.map(\.body)
 			.bind(to: UIPasteboard.general.rx.string)
 			.disposed(by: disposeBag)
 		
 		snippet
-			.mapAt(\.title)
+			.map(\.title)
 			.bind(to: _titleText)
 			.disposed(by: disposeBag)
 		
 		snippet
-			.mapAt(\.body)
+			.map(\.body)
 			.bind(to: _codeText)
 			.disposed(by: disposeBag)
 		
 		snippet
-			.mapAt(\.syntax)
+			.map(\.syntax)
 			.bind(to: _languageText)
 			.disposed(by: disposeBag)
 		
 		snippet
-			.mapAt(\.syntax?.isEmpty)
+			.map(\.syntax?.isEmpty)
 			.replaceNilWith(true)
 			.bind(to: _languageHidden)
 			.disposed(by: disposeBag)
 		
 		let color = snippet
-			.mapAt(\.syntax)
+			.map(\.syntax)
 			.replaceNilWith("") // empty can make a color?
 			.compactMap(UIColor.themeColor(for: ))
-			.mapAt(\.comfortable)
+			.map(\.comfortable)
 			.share()
 		
 		color

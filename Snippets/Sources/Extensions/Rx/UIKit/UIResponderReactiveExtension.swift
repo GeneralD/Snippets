@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 
 public extension Reactive where Base: UIResponder {
+	
 	var isFirstResponder: Binder<Bool> {
 		.init(self.base) { responder, beFirstResponder in
 			if beFirstResponder {

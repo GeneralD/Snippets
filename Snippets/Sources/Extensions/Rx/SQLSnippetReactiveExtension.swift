@@ -22,8 +22,8 @@ extension Reactive where Base: SQLSnippet {
 	func tags(path: String) -> Observable<[String]> {
 		(try? DatabaseQueue(path: path)).asObservable()
 			.flatMap { dbQueue in dbQueue.rx.read { db in
-				let tids = try SQLTagsIndex.filter(Column("sid") == self.base.sid).fetchAll(db).compactMap { o in o.tid }
-				return try SQLTag.filter(tids.contains(Column("tid"))).fetchAll(db).compactMap { o in o.tag }
+				let tids = try SQLTagsIndex.filter(Column("sid") == self.base.sid).fetchAll(db).compactMap(\.tid)
+				return try SQLTag.filter(tids.contains(Column("tid"))).fetchAll(db).compactMap(\.tag)
 				}}
 			.asObservable()
 	}

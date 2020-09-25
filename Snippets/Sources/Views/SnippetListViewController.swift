@@ -42,8 +42,6 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 		super.viewDidLoad()
 		
 		let refreshControl = UIRefreshControl()
-		collectionView.delegate = nil
-		collectionView.dataSource = nil
 		collectionView.refreshControl = refreshControl
 		collectionView.register(cellType: SnippetCellView.self)
 		collectionView.emptyDataSetView(output.emptyDataSetView)

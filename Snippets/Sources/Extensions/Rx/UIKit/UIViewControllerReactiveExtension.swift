@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 
 public extension Reactive where Base: UIViewController {
+	
 	var present: Binder<UIViewController> {
 		.init(self.base) { vc, view in
 			vc.present(view, animated: true)

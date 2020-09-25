@@ -9,6 +9,8 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Runes
+import Curry
 
 public extension Reactive where Base: UserDefaults {
 	
@@ -21,10 +23,7 @@ public extension Reactive where Base: UserDefaults {
 			
 			return Observable.just(initial)
 				.concat(changes)
-				.distinctUntilChanged { previous, next in
-					guard let previous = previous, let next = next else { return false }
-					return previous == next
-			}
+				.distinctUntilChanged { (curry(==) <^> $0 <*> $1) ?? false }
 		}
 		
 		let binder = Binder(self.base) { (defaults, value: E?) in
@@ -43,10 +42,7 @@ public extension Reactive where Base: UserDefaults {
 			
 			return Observable.just(initial)
 				.concat(changes)
-				.distinctUntilChanged { previous, next in
-					guard let previous = previous, let next = next else { return false }
-					return previous == next
-			}
+				.distinctUntilChanged { (curry(==) <^> $0 <*> $1) ?? false }
 		}
 		
 		let binder = Binder(self.base) { (defaults, value: URL?) in

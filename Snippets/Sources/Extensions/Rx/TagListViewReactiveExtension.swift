@@ -11,6 +11,7 @@ import RxCocoa
 import TagListView
 
 public extension Reactive where Base: TagListView {
+	
     var tags: Binder<[String]> {
 		.init(self.base) { view, tags in
 			view.removeAllTags()

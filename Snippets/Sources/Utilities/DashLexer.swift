@@ -21,8 +21,8 @@ class DashLexer: SourceCodeRegexLexer {
 		let delimiter = "__"
 		let dashGenerators = [
 			regexGenerator("\(delimiter)[^\(delimiter)|\\n]*\(delimiter)", tokenType: .editorPlaceholder),
-//			keywordGenerator(["@clipboard", "@cursor", "@time", "@date"], tokenType: .editorPlaceholder)
-			].compactMap { $0 }
+			//			keywordGenerator(["@clipboard", "@cursor", "@time", "@date"], tokenType: .editorPlaceholder)
+		].compactMap { $0 }
 		let baseGenerators = baseLexer.generators(source: source)
 		return baseGenerators + dashGenerators
 	}
@@ -39,13 +39,13 @@ fileprivate extension RegexLexer {
 
 fileprivate extension SourceCodeRegexLexer {
 	func regexGenerator(_ pattern: String, options: NSRegularExpression.Options = [], tokenType: SourceCodeTokenType) -> TokenGenerator? {
-		regexGenerator(pattern, options: options, transformer: { (range) -> Token in
+		regexGenerator(pattern, options: options, transformer: { range -> Token in
 			SimpleSourceCodeToken(type: tokenType, range: range)
 		})
 	}
 	
 	func keywordGenerator(_ words: [String], tokenType: SourceCodeTokenType) -> TokenGenerator {
-		.keywords(KeywordTokenGenerator(keywords: words, tokenTransformer: { (range) -> Token in
+		.keywords(KeywordTokenGenerator(keywords: words, tokenTransformer: { range -> Token in
 			SimpleSourceCodeToken(type: tokenType, range: range)
 		}))
 	}

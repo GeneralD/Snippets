@@ -9,7 +9,6 @@
 import Foundation
 import RxSwift
 import RxRelay
-import RxSwiftExt
 import RxOptional
 
 protocol SnippetDetailViewModelInput {
@@ -53,18 +52,18 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		
 		// Bind them
 		_snippet
-			.mapAt(\.title)
+			.map(\.title)
 			.bind(to: _title)
 			.disposed(by: disposeBag)
 		
 		_snippet
-			.mapAt(\.body)
+			.map(\.body)
 			.bind(to: _code)
 			.disposed(by: disposeBag)
 		
 		_snippet
 			.map { $0.rx.tags(url: model.documentUrl) }
-			.flatten()
+			.flatMap { $0 }
 			.bind(to: _tags)
 			.disposed(by: disposeBag)
 		

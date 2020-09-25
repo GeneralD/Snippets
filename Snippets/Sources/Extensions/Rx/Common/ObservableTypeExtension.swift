@@ -17,34 +17,4 @@ public extension ObservableType {
 	func combineLatest<Another: ObservableType, ResultElement>(_ source1: Another, resultSelector: @escaping (Element, Another.Element) throws -> ResultElement) -> Observable<ResultElement> {
 		.combineLatest(self, source1, resultSelector: resultSelector)
 	}
-	
-	func flatMapAt<Result>(_ keyPath: KeyPath<Element, Observable<Result>>) -> Observable<Result> {
-		flatMap { $0[keyPath: keyPath] }
-	}
-	
-	func compactMapAt<Result>(_ keyPath: KeyPath<Element, Result?>) -> Observable<Result> {
-		compactMap { $0[keyPath: keyPath] }
-	}
-}
-
-public extension ObservableType where Element: ObservableConvertibleType {
-	
-	func flatten() -> Observable<Element.Element> {
-		flatMap { $0 }
-	}
-}
-
-public extension ObservableType where Element: OptionalType {
-	
-	func compacted() -> Observable<Element.WrappedType> {
-		compactMap { $0 as? Self.Element.WrappedType }
-	}
-}
-
-public protocol OptionalType {
-	associatedtype WrappedType
-}
-
-extension Optional: OptionalType {
-	public typealias WrappedType = Wrapped
 }

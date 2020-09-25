@@ -13,6 +13,7 @@ import RxSwiftExt
 import RxOptional
 import RxGRDB
 import EmptyDataSet_Swift
+import Runes
 
 protocol SnippetListViewModelInput {
 	var itemSelected: AnyObserver<IndexPath> { get }
@@ -90,7 +91,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		// Bind them
 		let loadUrl = _refresherPulled
-			.combineLatest(model.documentUrl) { _, url in url }
+			.combineLatest(model.documentUrl, resultSelector: *>)
 			.share()
 		
 		let allItems = loadUrl
@@ -101,21 +102,21 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		// To remember last value (to check if item is empty in emptyDataSetView)
 		let anyItemLoaded = BehaviorRelay<Bool>(value: false)
 		allItems
-			.mapAt(\.isNotEmpty)
+			.map(\.isNotEmpty)
 			.bind(to: anyItemLoaded)
 			.disposed(by: disposeBag)
 		
 		_itemSelected
-			.mapAt(\.row)
+			.map(\.row)
 			.filter { $0 < _items.value.count }
 			.withLatestFrom(_items) { index, array in array[index].snippet }
-			.withLatestFrom(model.documentUrl.compacted(), resultSelector: SnippetDetailModel.init(snippet: documentUrl: ))
+			.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl: ))
 			.map(SnippetDetailViewController.init(with: ))
 			.bind(to: _presentView)
 			.disposed(by: disposeBag)
 		
 		_contentOffset
-			.mapAt(\.y)
+			.map(\.y)
 			.ignore(0)
 			.map { $0 > 0 }
 			.combineLatest(allItems) { $0 || $1.isEmpty }
@@ -128,7 +129,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				guard let str = text, !str.isEmpty else { return items }
 				return items.filter { $0.contains(keyword: str) }
 			})
-			.map { $0.map(SnippetCellModel.init(snippet: )) }
+			.mapMany(SnippetCellModel.init(snippet: ))
 			.bind(to: _items)
 			.disposed(by: disposeBag)
 		
@@ -148,8 +149,8 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		_pickDocumentTap
 			.mapTo(UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open))
 			.do(onNext: _presentView.accept)
-			.flatMapAt(\.rx.didPickDocumentsAt)
-			.compactMapAt(\.first)
+			.flatMap(\.rx.didPickDocumentsAt)
+			.compactMap(\.first)
 			.bind(to: model.documentUrl)
 			.disposed(by: disposeBag)
 		
@@ -167,7 +168,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			} else {
 				view.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
 					.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
-					.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGreen]), for: .normal)
+					.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
 					.didTapDataButton { _pickDocumentTap.accept(()) }
 			}
 		}
