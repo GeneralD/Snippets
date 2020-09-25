@@ -19,11 +19,7 @@ class EdgeInsetLabel: UILabel {
 	override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
 		let insetRect = bounds.inset(by: textInsets)
 		let textRect = super.textRect(forBounds: insetRect, limitedToNumberOfLines: numberOfLines)
-		let invertedInsets = UIEdgeInsets(top: -textInsets.top,
-										  left: -textInsets.left,
-										  bottom: -textInsets.bottom,
-										  right: -textInsets.right)
-		return textRect.inset(by: invertedInsets)
+		return textRect.inset(by: -textInsets)
 	}
 	
 	override func drawText(in rect: CGRect) {
@@ -55,5 +51,12 @@ extension EdgeInsetLabel {
 	var bottomTextInset: CGFloat {
 		set { textInsets.bottom = newValue }
 		get { return textInsets.bottom }
+	}
+}
+
+fileprivate extension UIEdgeInsets {
+	
+	static prefix func -(insets: UIEdgeInsets) -> UIEdgeInsets {
+		.init(top: -insets.top, left: -insets.left, bottom: -insets.bottom, right: -insets.right)
 	}
 }
