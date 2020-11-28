@@ -38,8 +38,9 @@
 		B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */; };
 		B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */; };
 		B34B0F602571F6E200FE0BDF /* FuseReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0F5F2571F6E200FE0BDF /* FuseReactiveExtension.swift */; };
-		B34B0FD7257218C700FE0BDF /* HasSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0FD6257218C700FE0BDF /* HasSubscript.swift */; };
 		B34B0FDA25721F9700FE0BDF /* SingleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0FD925721F9700FE0BDF /* SingleExtension.swift */; };
+		B34B0FFB2572923700FE0BDF /* FunctionalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0FFA2572923700FE0BDF /* FunctionalFunctions.swift */; };
+		B34B0FFE2572968300FE0BDF /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0FFD2572968300FE0BDF /* StringExtension.swift */; };
 		B354202B2502717700DBD3AB /* SnippetListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202A2502717700DBD3AB /* SnippetListModel.swift */; };
 		B354202D2502740D00DBD3AB /* SnippetDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */; };
 		B354202F2502820600DBD3AB /* SnippetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202E2502820600DBD3AB /* SnippetCellModel.swift */; };
@@ -87,8 +88,9 @@
 		B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsReactiveExtension.swift; sourceTree = "<group>"; };
 		B34B0F5F2571F6E200FE0BDF /* FuseReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuseReactiveExtension.swift; sourceTree = "<group>"; };
-		B34B0FD6257218C700FE0BDF /* HasSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasSubscript.swift; sourceTree = "<group>"; };
 		B34B0FD925721F9700FE0BDF /* SingleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleExtension.swift; sourceTree = "<group>"; };
+		B34B0FFA2572923700FE0BDF /* FunctionalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalFunctions.swift; sourceTree = "<group>"; };
+		B34B0FFD2572968300FE0BDF /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		B354202A2502717700DBD3AB /* SnippetListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListModel.swift; sourceTree = "<group>"; };
 		B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailModel.swift; sourceTree = "<group>"; };
 		B354202E2502820600DBD3AB /* SnippetCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCellModel.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				B334D80D24652E0100898BAD /* Rx */,
+				B34B0FFD2572968300FE0BDF /* StringExtension.swift */,
 				B334D7F42463F30200898BAD /* ColorExtension.swift */,
 				B334D8232465510300898BAD /* UIViewExtension.swift */,
 			);
@@ -192,7 +195,7 @@
 				B334D7F22463E9CB00898BAD /* ColorHash.swift */,
 				B334D7EE2463AACA00898BAD /* DashLexer.swift */,
 				B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */,
-				B34B0FD6257218C700FE0BDF /* HasSubscript.swift */,
+				B34B0FFA2572923700FE0BDF /* FunctionalFunctions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */,
 				B316727624DD8D120037BD04 /* UIResponderReactiveExtension.swift in Sources */,
 				B35420312502848300DBD3AB /* SnippetCellViewModel.swift in Sources */,
+				B34B0FFE2572968300FE0BDF /* StringExtension.swift in Sources */,
 				B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */,
 				B334D8272465558E00898BAD /* R.generated.swift in Sources */,
 				B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */,
@@ -467,6 +471,7 @@
 				B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */,
 				B354202D2502740D00DBD3AB /* SnippetDetailModel.swift in Sources */,
 				B334D8242465510300898BAD /* UIViewExtension.swift in Sources */,
+				B34B0FFB2572923700FE0BDF /* FunctionalFunctions.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
 				B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */,
 				B316727824DD9ABB0037BD04 /* UIPasteboardReactiveExtension.swift in Sources */,
@@ -483,7 +488,6 @@
 				B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */,
 				B334D8012464282900898BAD /* SnippetCellView.swift in Sources */,
 				B334D7F52463F30200898BAD /* ColorExtension.swift in Sources */,
-				B34B0FD7257218C700FE0BDF /* HasSubscript.swift in Sources */,
 				B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */,
 				B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */,
 				B334D7F92464136100898BAD /* CodeView.swift in Sources */,

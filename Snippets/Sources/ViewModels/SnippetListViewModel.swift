@@ -13,7 +13,6 @@ import RxSwiftExt
 import RxOptional
 import RxGRDB
 import EmptyDataSet_Swift
-import Runes
 import Fuse
 
 protocol SnippetListViewModelInput {
@@ -31,7 +30,7 @@ protocol SnippetListViewModelOutput {
 	var isSearchBarHidden: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
 	var presentView: Observable<UIViewController> { get }
-	var emptyDataSetView: (EmptyDataSetView) -> Void { get }
+	var emptyDataSetView: Observable<(EmptyDataSetView) -> ()> { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
@@ -50,7 +49,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	let isSearchBarHidden: Observable<Bool>
 	let itemSize: Observable<CGSize>
 	let presentView: Observable<UIViewController>
-	let emptyDataSetView: (EmptyDataSetView) -> Void
+	let emptyDataSetView: Observable<(EmptyDataSetView) -> ()>
 	
 	private let disposeBag = DisposeBag()
 	
@@ -90,9 +89,13 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let _presentView = PublishRelay<UIViewController>()
 		self.presentView = _presentView.asObservable()
 		
+		let _emptyDataSetView = BehaviorRelay<(EmptyDataSetView) -> Void> { _ in }
+		self.emptyDataSetView = _emptyDataSetView.asObservable()
+		
 		// Bind them
 		let loadUrl = _refresherPulled
-			.combineLatest(model.documentUrl, resultSelector: *>)
+			.combineLatest(model.documentUrl)
+			.map(\.1)
 			.share()
 		
 		let allItems = loadUrl
@@ -100,17 +103,11 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.flatMap(SQLSnippet.rx.all(url: ))
 			.share()
 		
-		// To remember last value (to check if item is empty in emptyDataSetView)
-		let anyItemLoaded = BehaviorRelay<Bool>(value: false)
-		allItems
-			.map(\.isNotEmpty)
-			.bind(to: anyItemLoaded)
-			.disposed(by: disposeBag)
-		
 		_itemSelected
 			.map(\.row)
 			.filter { $0 < _items.value.count }
-			.withLatestFrom(_items) { index, array in array[index].snippet }
+			.withLatestFrom(_items) { $1[$0] }
+			.map(\.snippet)
 			.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl: ))
 			.map(SnippetDetailViewController.init(with: ))
 			.bind(to: _presentView)
@@ -120,31 +117,32 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.map(\.y)
 			.ignore(0)
 			.map { $0 > 0 }
-			.combineLatest(allItems) { $0 || $1.isEmpty }
+			.combineLatest(allItems.map(\.isEmpty), resultSelector: !(||))
 			.bind(to: _isSearchBarHidden)
 			.disposed(by: disposeBag)
 		
 		_searchBarText
-			.replaceNilWith("")
-			.filter("")
-			.combineLatest(allItems, resultSelector: { $1 })
+			.replaceNilWith(.empty)
+			.filter(.empty)
+			.combineLatest(allItems)
+			.map(\.1)
 			.mapMany(SnippetCellModel.init(snippet: ))
 			.bind(to: _items)
 			.disposed(by: disposeBag)
 		
 		_searchBarText
-			.replaceNilWith("")
-			.ignore("")
+			.replaceNilWith(.empty)
+			.ignore(.empty)
 			.debounce(.milliseconds(300), scheduler: MainScheduler.instance)
-			.combineLatest(allItems, resultSelector: { (keyword: $0, items: $1) })
-			.flatMapFirst({ Fuse(threshold: 0.3, tokenize: true).rx.search(text: $0.keyword, in: $0.items, scoreSort: .desc) })
+			.combineLatest(allItems)
+			.flatMapLatest { Fuse(threshold: 0.3, tokenize: true).rx.search(text: $0.0, in: $0.1, scoreSort: .desc) }
 			.mapMany(SnippetCellModel.init(snippet: ))
 			.bind(to: _items)
 			.disposed(by: disposeBag)
 		
 		// If failed to pick an URL, hide loading indicator
 		loadUrl
-			.filter { $0 == nil }
+			.filter(.none)
 			.mapTo(false)
 			.bind(to: _isRefreshing)
 			.disposed(by: disposeBag)
@@ -169,17 +167,19 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.bind(to: _itemSize)
 			.disposed(by: disposeBag)
 		
-		
-		emptyDataSetView = { view in
-			if anyItemLoaded.value {
-				view.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
-					.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
-			} else {
-				view.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
-					.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
-					.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
-					.didTapDataButton { _pickDocumentTap.accept(()) }
-			}
-		}
+		allItems
+			.map(\.isNotEmpty)
+			.map { anyItemLoaded in { view in _ = anyItemLoaded
+				? view
+				.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
+				.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
+				: view
+				.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
+				.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
+				.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
+				.didTapDataButton { _pickDocumentTap.accept(()) }
+			}}
+			.bind(to: _emptyDataSetView)
+			.disposed(by: disposeBag)
 	}
 }

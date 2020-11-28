@@ -28,7 +28,7 @@ public extension Reactive where Base: Fuse {
 		search(text: text, in: aList, chunkSize: chunkSize)
 			.map { $0.sorted(at: \.score, by: scoreSort.func) }
 			.mapMany(\.index)
-			.mapMany(aList.elementAt)
+			.mapMany { aList[$0] }
 	}
 }
 

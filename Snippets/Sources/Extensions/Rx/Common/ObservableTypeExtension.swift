@@ -10,6 +10,10 @@ import RxSwift
 
 public extension ObservableType {
 	
+	static func ~> <O>(observable: Self, callee: @escaping(O) -> ()) -> Disposable where Element == O {
+		observable.subscribe(onNext: callee)
+	}
+	
 	func merge(_ sources: Self...) -> Observable<Element> {
 		Observable.create { observer in
 			let observables = sources + [self]
@@ -22,6 +26,10 @@ public extension ObservableType {
 	
 	func combineLatest<Another: ObservableType, ResultElement>(_ source1: Another, resultSelector: @escaping (Element, Another.Element) throws -> ResultElement) -> Observable<ResultElement> {
 		.combineLatest(self, source1, resultSelector: resultSelector)
+	}
+	
+	func combineLatest<Another: ObservableType>(_ source1: Another) -> Observable<(Element, Another.Element)> {
+		.combineLatest(self, source1) { ($0, $1) }
 	}
 }
 
@@ -119,17 +127,16 @@ public extension ObservableType where Element == Bool {
 
 public extension ObservableType {
 	
-	func printConsole(onNext: ((Element) throws -> String)? = nil, afterNext: ((Element) throws -> String)? = nil, onError: ((Swift.Error) throws -> String)? = nil, afterError: ((Swift.Error) throws -> String)? = nil, onCompleted: (() throws -> String)? = nil, afterCompleted: (() throws -> String)? = nil, onSubscribe: (() -> String)? = nil, onSubscribed: (() -> String)? = nil, onDispose: (() -> String)? = nil)
-		-> Observable<Element> {
-			`do`(onNext: { elem in try onNext.map { f in try print(f(elem)) }},
-				 afterNext: { elem in try afterNext.map { f in try print(f(elem)) }},
-				 onError: { error in try onError.map { f in try print(f(error)) }},
-				 afterError: { error in try afterError.map { f in try print(f(error)) }},
-				 onCompleted: { try onCompleted.map { f in try print(f()) }},
-				 afterCompleted: { try afterCompleted.map { f in try print(f()) }},
-				 onSubscribe: { onSubscribe.map { f in print(f()) }},
-				 onSubscribed: { onSubscribed.map { f in print(f()) }},
-				 onDispose: { onDispose.map { f in print(f()) }})
+	func printConsole(onNext: ((Element) throws -> String)? = nil, afterNext: ((Element) throws -> String)? = nil, onError: ((Error) throws -> String)? = nil, afterError: ((Error) throws -> String)? = nil, onCompleted: (() throws -> String)? = nil, afterCompleted: (() throws -> String)? = nil, onSubscribe: (() -> String)? = nil, onSubscribed: (() -> String)? = nil, onDispose: (() -> String)? = nil)
+	-> Observable<Element> {
+		`do`(onNext: { elem in try onNext.map { f in try print(f(elem)) }},
+			 afterNext: { elem in try afterNext.map { f in try print(f(elem)) }},
+			 onError: { error in try onError.map { f in try print(f(error)) }},
+			 afterError: { error in try afterError.map { f in try print(f(error)) }},
+			 onCompleted: { try onCompleted.map { f in try print(f()) }},
+			 afterCompleted: { try afterCompleted.map { f in try print(f()) }},
+			 onSubscribe: { onSubscribe.map { f in print(f()) }},
+			 onSubscribed: { onSubscribed.map { f in print(f()) }},
+			 onDispose: { onDispose.map { f in print(f()) }})
 	}
 }
-
