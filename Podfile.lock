@@ -1,7 +1,9 @@
 PODS:
+  - CollectionKit-Swift (1.0.0)
   - Curry (5.0.0)
   - DynamicColor (5.0.1)
   - EmptyDataSet-Swift (5.0.0)
+  - Fuse (1.4.0)
   - GRDB.swift (4.14.0):
     - GRDB.swift/standard (= 4.14.0)
   - GRDB.swift/standard (4.14.0)
@@ -66,9 +68,11 @@ PODS:
   - TagListView (1.4.0)
 
 DEPENDENCIES:
+  - "CollectionKit-Swift (from `git@github.com:GeneralD/CollectionKit.git`)"
   - Curry
   - DynamicColor
   - EmptyDataSet-Swift
+  - Fuse
   - Hex
   - InstantiateStandard
   - R.swift
@@ -92,6 +96,7 @@ SPEC REPOS:
     - Curry
     - DynamicColor
     - EmptyDataSet-Swift
+    - Fuse
     - GRDB.swift
     - Hex
     - Instantiate
@@ -115,10 +120,21 @@ SPEC REPOS:
     - SwiftyJSON
     - TagListView
 
+EXTERNAL SOURCES:
+  CollectionKit-Swift:
+    :git: "git@github.com:GeneralD/CollectionKit.git"
+
+CHECKOUT OPTIONS:
+  CollectionKit-Swift:
+    :commit: 25dc100929298dd6d1999eaddc8b61ec06a2a024
+    :git: "git@github.com:GeneralD/CollectionKit.git"
+
 SPEC CHECKSUMS:
+  CollectionKit-Swift: 86e39fa74fc869c729b4a4a3ccddd53ec6123d22
   Curry: 9807b3a3e5056d73c38c7eeb3cf846cd88cd3d2a
   DynamicColor: d049834ef86d8ecf150b0ca1ebe54ee733a0ec22
   EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
+  Fuse: 48eaf66d0c407c7f8b0ddb168888dc4637e87f14
   GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
   Instantiate: 62516e7dde448721c1f5815a9ee7e0669d034d52
@@ -142,6 +158,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: b3d13e5565a26ce6cf62183a54254cca6009c31e
+PODFILE CHECKSUM: d7d9ea85f855147a48846bfc05d6ad838888a57f
 
 COCOAPODS: 1.9.1

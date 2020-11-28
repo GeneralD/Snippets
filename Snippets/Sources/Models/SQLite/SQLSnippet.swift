@@ -8,6 +8,7 @@
 
 import Foundation
 import GRDB
+import Fuse
 
 class SQLSnippet: FetchableRecord {
 	
@@ -40,8 +41,11 @@ extension SQLSnippet: PersistableRecord {
 	}
 }
 
-extension SQLSnippet {
-	func contains(keyword: String, options: String.CompareOptions = [.caseInsensitive, .widthInsensitive]) -> Bool {
-		keyword.isEmpty || title?.range(of: keyword, options: options) != nil || body?.range(of: keyword, options: options) != nil || syntax?.range(of: keyword, options: options) != nil
+extension SQLSnippet: Fuseable {
+	var properties: [FuseProperty] {
+		// Fuse is a bit strange, smaller weight takes better score
+		[title.map { FuseProperty(name: $0, weight: 0.1) },
+		 body.map { FuseProperty(name: $0, weight: 0.8) },
+		 syntax.map { FuseProperty(name: $0, weight: 0.1) }].compactMap { $0 }
 	}
 }

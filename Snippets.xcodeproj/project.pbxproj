@@ -37,6 +37,9 @@
 		B334D8272465558E00898BAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8262465558E00898BAD /* R.generated.swift */; };
 		B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */; };
 		B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */; };
+		B34B0F602571F6E200FE0BDF /* FuseReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0F5F2571F6E200FE0BDF /* FuseReactiveExtension.swift */; };
+		B34B0FD7257218C700FE0BDF /* HasSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0FD6257218C700FE0BDF /* HasSubscript.swift */; };
+		B34B0FDA25721F9700FE0BDF /* SingleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0FD925721F9700FE0BDF /* SingleExtension.swift */; };
 		B354202B2502717700DBD3AB /* SnippetListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202A2502717700DBD3AB /* SnippetListModel.swift */; };
 		B354202D2502740D00DBD3AB /* SnippetDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */; };
 		B354202F2502820600DBD3AB /* SnippetCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354202E2502820600DBD3AB /* SnippetCellModel.swift */; };
@@ -83,6 +86,9 @@
 		B334D8262465558E00898BAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		B334D82A24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutReactiveExtension.swift; sourceTree = "<group>"; };
 		B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsReactiveExtension.swift; sourceTree = "<group>"; };
+		B34B0F5F2571F6E200FE0BDF /* FuseReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuseReactiveExtension.swift; sourceTree = "<group>"; };
+		B34B0FD6257218C700FE0BDF /* HasSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasSubscript.swift; sourceTree = "<group>"; };
+		B34B0FD925721F9700FE0BDF /* SingleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleExtension.swift; sourceTree = "<group>"; };
 		B354202A2502717700DBD3AB /* SnippetListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListModel.swift; sourceTree = "<group>"; };
 		B354202C2502740D00DBD3AB /* SnippetDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailModel.swift; sourceTree = "<group>"; };
 		B354202E2502820600DBD3AB /* SnippetCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCellModel.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 				B334D7F22463E9CB00898BAD /* ColorHash.swift */,
 				B334D7EE2463AACA00898BAD /* DashLexer.swift */,
 				B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */,
+				B34B0FD6257218C700FE0BDF /* HasSubscript.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -210,6 +217,7 @@
 				B334D80824651CF700898BAD /* TagListViewReactiveExtension.swift */,
 				B334D80E24652E4700898BAD /* SQLSnippetReactiveExtension.swift */,
 				B334D82E2465B17600898BAD /* UserDefaultsReactiveExtension.swift */,
+				B34B0F5F2571F6E200FE0BDF /* FuseReactiveExtension.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -231,6 +239,7 @@
 				B334D7E32463060600898BAD /* AnyObserverConvertible.swift */,
 				B39235B42466E505009AEDB9 /* ObservableConvertible.swift */,
 				B334D7F62464071500898BAD /* ObservableTypeExtension.swift */,
+				B34B0FD925721F9700FE0BDF /* SingleExtension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -469,9 +478,12 @@
 				B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */,
 				B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */,
 				B334D82B24656B5D00898BAD /* UICollectionViewFlowLayoutReactiveExtension.swift in Sources */,
+				B34B0FDA25721F9700FE0BDF /* SingleExtension.swift in Sources */,
+				B34B0F602571F6E200FE0BDF /* FuseReactiveExtension.swift in Sources */,
 				B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */,
 				B334D8012464282900898BAD /* SnippetCellView.swift in Sources */,
 				B334D7F52463F30200898BAD /* ColorExtension.swift in Sources */,
+				B34B0FD7257218C700FE0BDF /* HasSubscript.swift in Sources */,
 				B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */,
 				B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */,
 				B334D7F92464136100898BAD /* CodeView.swift in Sources */,

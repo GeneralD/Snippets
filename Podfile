@@ -14,22 +14,32 @@ target 'Snippets' do
 	pod 'RxViewController'
 	pod 'RxDocumentPicker'
 	pod 'RxSwiftExt'
+	
 	# Encode/Decode
 	pod 'SwiftyJSON'
+	
 	# UIColor
 	pod 'Hex'
 	pod 'DynamicColor'
+	
 	# UI Parts
 	pod 'Sourceful'
 	pod 'TagListView'
 	pod 'EmptyDataSet-Swift'
+	
 	# Resource Utilities
 	pod 'R.swift'
+	
 	# Coding
 	pod 'InstantiateStandard'
+	
+	# Search
+	pod 'Fuse'
+	
 	# Functional
 	pod 'Runes'
 	pod 'Curry'
+	pod 'CollectionKit-Swift', :git => 'git@github.com:GeneralD/CollectionKit.git'
 	
 end
 

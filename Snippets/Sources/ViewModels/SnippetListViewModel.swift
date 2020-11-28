@@ -14,6 +14,7 @@ import RxOptional
 import RxGRDB
 import EmptyDataSet_Swift
 import Runes
+import Fuse
 
 protocol SnippetListViewModelInput {
 	var itemSelected: AnyObserver<IndexPath> { get }
@@ -123,12 +124,20 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.bind(to: _isSearchBarHidden)
 			.disposed(by: disposeBag)
 		
-		// Filter items
-		allItems
-			.combineLatest(_searchBarText.debounce(.milliseconds(300), scheduler: MainScheduler.instance), resultSelector: { items, text -> [SQLSnippet] in
-				guard let str = text, !str.isEmpty else { return items }
-				return items.filter { $0.contains(keyword: str) }
-			})
+		_searchBarText
+			.replaceNilWith("")
+			.filter("")
+			.combineLatest(allItems, resultSelector: { $1 })
+			.mapMany(SnippetCellModel.init(snippet: ))
+			.bind(to: _items)
+			.disposed(by: disposeBag)
+		
+		_searchBarText
+			.replaceNilWith("")
+			.ignore("")
+			.debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+			.combineLatest(allItems, resultSelector: { (keyword: $0, items: $1) })
+			.flatMapFirst({ Fuse(threshold: 0.3, tokenize: true).rx.search(text: $0.keyword, in: $0.items, scoreSort: .desc) })
 			.mapMany(SnippetCellModel.init(snippet: ))
 			.bind(to: _items)
 			.disposed(by: disposeBag)
