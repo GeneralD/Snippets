@@ -93,7 +93,7 @@ final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewMode
 		
 		let color = snippet
 			.map(\.syntax)
-			.replaceNilWith("") // empty can make a color?
+			.replaceNilWith(.empty) // empty can make a color?
 			.compactMap(UIColor.themeColor(for: ))
 			.map(\.comfortable)
 			.share()

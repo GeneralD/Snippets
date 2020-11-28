@@ -62,8 +62,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 			.disposed(by: disposeBag)
 		
 		_snippet
-			.map { $0.rx.tags(url: model.documentUrl) }
-			.flatMap { $0 }
+			.flatMap { $0.rx.tags(url: model.documentUrl) }
 			.bind(to: _tags)
 			.disposed(by: disposeBag)
 		
