@@ -44,6 +44,7 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 		let refreshControl = UIRefreshControl()
 		collectionView.refreshControl = refreshControl
 		collectionView.register(cellType: SnippetCellView.self)
+		collectionView.emptyDataSetView(output.emptyDataSetView)
 		
 		// This should be UICollectionViewFlowLayout, otherwise fix it on storyboard
 		let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -64,7 +65,6 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 			output.isSearchBarHidden ~> searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive ~
 			output.isSearchBarHidden.map(!) ~> searchBar.rx.isFirstResponder ~
 			output.itemSize ~> layout.rx.itemSize ~
-			output.presentView ~> self.rx.present ~
-			output.emptyDataSetView ~> collectionView.emptyDataSetView
+			output.presentView ~> self.rx.present
 	}
 }

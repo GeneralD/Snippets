@@ -30,7 +30,7 @@ protocol SnippetListViewModelOutput {
 	var isSearchBarHidden: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
 	var presentView: Observable<UIViewController> { get }
-	var emptyDataSetView: Observable<(EmptyDataSetView) -> ()> { get }
+	var emptyDataSetView: (EmptyDataSetView) -> Void { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
@@ -49,7 +49,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	let isSearchBarHidden: Observable<Bool>
 	let itemSize: Observable<CGSize>
 	let presentView: Observable<UIViewController>
-	let emptyDataSetView: Observable<(EmptyDataSetView) -> ()>
+	let emptyDataSetView: (EmptyDataSetView) -> Void
 	
 	private let disposeBag = DisposeBag()
 	
@@ -83,14 +83,11 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let _isSearchBarHidden = BehaviorRelay<Bool>(value: true)
 		self.isSearchBarHidden = _isSearchBarHidden.asObservable()
 		
-		let _itemSize = BehaviorRelay<CGSize>(value: .zero)
+		let _itemSize = BehaviorRelay<CGSize>(value: .init(width: 1, height: 1)) // use 1 instead of 0 to suppress warning
 		self.itemSize = _itemSize.asObservable()
 		
 		let _presentView = PublishRelay<UIViewController>()
 		self.presentView = _presentView.asObservable()
-		
-		let _emptyDataSetView = BehaviorRelay<(EmptyDataSetView) -> Void> { _ in }
-		self.emptyDataSetView = _emptyDataSetView.asObservable()
 		
 		// Bind them
 		let loadUrl = _refresherPulled
@@ -153,10 +150,17 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.bind(to: _isRefreshing)
 			.disposed(by: disposeBag)
 		
-		_pickDocumentTap
+		let picker = _pickDocumentTap
 			.mapTo(UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open))
-			.do(onNext: _presentView.accept)
-			.flatMap(\.rx.didPickDocumentsAt)
+			.share()
+			
+		picker
+			.ofType(UIViewController.self)
+			.bind(to: _presentView)
+			.disposed(by: disposeBag)
+			
+		picker
+			.concatMap(\.rx.didPickDocumentsAt)
 			.compactMap(\.first)
 			.bind(to: model.documentUrl)
 			.disposed(by: disposeBag)
@@ -167,20 +171,21 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.bind(to: _itemSize)
 			.disposed(by: disposeBag)
 		
+		let noItem = BehaviorRelay(value: true)
 		allItems
 			.map(\.isEmpty)
-			.merge(.just(true))
-			.map { noItem in { view in _ = noItem
-				? view
-				.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
-				.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
-				.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
-				.didTapDataButton { _pickDocumentTap.accept(()) }
-				: view
-				.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
-				.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
-			}}
-			.bind(to: _emptyDataSetView)
+			.bind(to: noItem)
 			.disposed(by: disposeBag)
+		
+		emptyDataSetView = { view in _ = noItem.value
+			? view
+			.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
+			.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
+			.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
+			.didTapDataButton { _pickDocumentTap.accept(()) }
+			: view
+			.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
+			.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
+		}
 	}
 }
