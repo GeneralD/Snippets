@@ -168,16 +168,17 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.disposed(by: disposeBag)
 		
 		allItems
-			.map(\.isNotEmpty)
-			.map { anyItemLoaded in { view in _ = anyItemLoaded
+			.map(\.isEmpty)
+			.merge(.just(true))
+			.map { noItem in { view in _ = noItem
 				? view
-				.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
-				.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
-				: view
 				.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
 				.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
 				.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
 				.didTapDataButton { _pickDocumentTap.accept(()) }
+				: view
+				.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
+				.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
 			}}
 			.bind(to: _emptyDataSetView)
 			.disposed(by: disposeBag)
