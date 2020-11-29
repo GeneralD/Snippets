@@ -64,33 +64,6 @@ final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewMode
 		
 		let snippet = Observable.just(model.snippet)
 		
-		_copyButtonTap
-			.withLatestFrom(snippet)
-			.map(\.body)
-			.bind(to: UIPasteboard.general.rx.string)
-			.disposed(by: disposeBag)
-		
-		snippet
-			.map(\.title)
-			.bind(to: _titleText)
-			.disposed(by: disposeBag)
-		
-		snippet
-			.map(\.body)
-			.bind(to: _codeText)
-			.disposed(by: disposeBag)
-		
-		snippet
-			.map(\.syntax)
-			.bind(to: _languageText)
-			.disposed(by: disposeBag)
-		
-		snippet
-			.map(\.syntax?.isEmpty)
-			.replaceNilWith(true)
-			.bind(to: _languageHidden)
-			.disposed(by: disposeBag)
-		
 		let color = snippet
 			.map(\.syntax)
 			.replaceNilWith(.empty) // empty can make a color?
@@ -98,13 +71,35 @@ final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewMode
 			.map(\.comfortable)
 			.share()
 		
-		color
-			.bind(to: _languageBackgroundColor)
-			.disposed(by: disposeBag)
-		
-		color
-			.map { $0.adjustedAlpha(amount: -0.7) }
-			.bind(to: _contentViewBackgroundColor)
-			.disposed(by: disposeBag)
+		disposeBag.insert {
+			_copyButtonTap
+				.withLatestFrom(snippet)
+				.map(\.body)
+				.bind(to: UIPasteboard.general.rx.string)
+			
+			snippet
+				.map(\.title)
+				.bind(to: _titleText)
+			
+			snippet
+				.map(\.body)
+				.bind(to: _codeText)
+			
+			snippet
+				.map(\.syntax)
+				.bind(to: _languageText)
+			
+			snippet
+				.map(\.syntax?.isEmpty)
+				.replaceNilWith(true)
+				.bind(to: _languageHidden)
+			
+			color
+				.bind(to: _languageBackgroundColor)
+			
+			color
+				.map { $0.adjustedAlpha(amount: -0.7) }
+				.bind(to: _contentViewBackgroundColor)
+		}
 	}
 }

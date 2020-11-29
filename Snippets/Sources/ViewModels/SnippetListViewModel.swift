@@ -89,6 +89,18 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let _presentView = PublishRelay<UIViewController>()
 		self.presentView = _presentView.asObservable()
 		
+		let noItem = BehaviorRelay(value: true)
+		emptyDataSetView = { view in _ = noItem.value
+			? view
+			.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
+			.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
+			.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
+			.didTapDataButton { _pickDocumentTap.accept(()) }
+			: view
+			.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
+			.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
+		}
+		
 		// Bind them
 		let loadUrl = _refresherPulled
 			.combineLatest(model.documentUrl)
@@ -100,92 +112,72 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.flatMap(SQLSnippet.rx.all(url: ))
 			.share()
 		
-		_itemSelected
-			.map(\.row)
-			.filter { $0 < _items.value.count }
-			.withLatestFrom(_items) { $1[$0] }
-			.map(\.snippet)
-			.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl: ))
-			.map(SnippetDetailViewController.init(with: ))
-			.bind(to: _presentView)
-			.disposed(by: disposeBag)
-		
-		_contentOffset
-			.map(\.y)
-			.ignore(0)
-			.map { $0 > 0 }
-			.combineLatest(allItems.map(\.isEmpty), resultSelector: !(||))
-			.bind(to: _isSearchBarHidden)
-			.disposed(by: disposeBag)
-		
-		_searchBarText
-			.replaceNilWith(.empty)
-			.filter(.empty)
-			.combineLatest(allItems)
-			.map(\.1)
-			.mapMany(SnippetCellModel.init(snippet: ))
-			.bind(to: _items)
-			.disposed(by: disposeBag)
-		
-		_searchBarText
-			.replaceNilWith(.empty)
-			.ignore(.empty)
-			.debounce(.milliseconds(300), scheduler: MainScheduler.instance)
-			.combineLatest(allItems)
-			.flatMapLatest { Fuse(threshold: 0.3, tokenize: true).rx.search(text: $0.0, in: $0.1, scoreSort: .desc) }
-			.mapMany(SnippetCellModel.init(snippet: ))
-			.bind(to: _items)
-			.disposed(by: disposeBag)
-		
-		// If failed to pick an URL, hide loading indicator
-		loadUrl
-			.filter(.none)
-			.mapTo(false)
-			.bind(to: _isRefreshing)
-			.disposed(by: disposeBag)
-		
-		// If items are loaded, hide loading indicator
-		_items
-			.mapTo(false)
-			.bind(to: _isRefreshing)
-			.disposed(by: disposeBag)
-		
 		let picker = _pickDocumentTap
 			.mapTo(UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open))
 			.share()
+		
+		disposeBag.insert {
+			_itemSelected
+				.map(\.row)
+				.filter { $0 < _items.value.count }
+				.withLatestFrom(_items) { $1[$0] }
+				.map(\.snippet)
+				.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl: ))
+				.map(SnippetDetailViewController.init(with: ))
+				.bind(to: _presentView)
 			
-		picker
-			.ofType(UIViewController.self)
-			.bind(to: _presentView)
-			.disposed(by: disposeBag)
+			_contentOffset
+				.map(\.y)
+				.ignore(0)
+				.map { $0 > 0 }
+				.combineLatest(allItems.map(\.isEmpty), resultSelector: !(||))
+				.bind(to: _isSearchBarHidden)
 			
-		picker
-			.concatMap(\.rx.didPickDocumentsAt)
-			.compactMap(\.first)
-			.bind(to: model.documentUrl)
-			.disposed(by: disposeBag)
-		
-		_viewWillLayoutSubviews
-			.compactMap { UIApplication.shared.windows.first?.safeAreaInsets }
-			.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
-			.bind(to: _itemSize)
-			.disposed(by: disposeBag)
-		
-		let noItem = BehaviorRelay(value: true)
-		allItems
-			.map(\.isEmpty)
-			.bind(to: noItem)
-			.disposed(by: disposeBag)
-		
-		emptyDataSetView = { view in _ = noItem.value
-			? view
-			.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
-			.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
-			.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
-			.didTapDataButton { _pickDocumentTap.accept(()) }
-			: view
-			.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
-			.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
+			_searchBarText
+				.replaceNilWith(.empty)
+				.filter(.empty)
+				.combineLatest(allItems)
+				.map(\.1)
+				.mapMany(SnippetCellModel.init(snippet: ))
+				.bind(to: _items)
+			
+			_searchBarText
+				.replaceNilWith(.empty)
+				.ignore(.empty)
+				.debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+				.combineLatest(allItems)
+				.flatMapLatest { Fuse(threshold: 0.3, tokenize: true).rx.search(text: $0.0, in: $0.1, scoreSort: .desc) }
+				.mapMany(SnippetCellModel.init(snippet: ))
+				.bind(to: _items)
+			
+			// If failed to pick an URL, hide loading indicator
+			loadUrl
+				.filter(.none)
+				.mapTo(false)
+				.bind(to: _isRefreshing)
+			
+			// If items are loaded, hide loading indicator
+			_items
+				.mapTo(false)
+				.bind(to: _isRefreshing)
+			
+			picker
+				.ofType(UIViewController.self)
+				.bind(to: _presentView)
+			
+			picker
+				.concatMap(\.rx.didPickDocumentsAt)
+				.compactMap(\.first)
+				.bind(to: model.documentUrl)
+			
+			_viewWillLayoutSubviews
+				.compactMap { UIApplication.shared.windows.first?.safeAreaInsets }
+				.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
+				.bind(to: _itemSize)
+			
+			allItems
+				.map(\.isEmpty)
+				.bind(to: noItem)
 		}
 	}
 }

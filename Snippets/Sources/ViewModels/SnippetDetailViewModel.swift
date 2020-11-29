@@ -50,25 +50,22 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 		
 		let _snippet = Observable.just(model.snippet)
 		
-		// Bind them
-		_snippet
-			.map(\.title)
-			.bind(to: _title)
-			.disposed(by: disposeBag)
-		
-		_snippet
-			.map(\.body)
-			.bind(to: _code)
-			.disposed(by: disposeBag)
-		
-		_snippet
-			.flatMap { $0.rx.tags(url: model.documentUrl) }
-			.bind(to: _tags)
-			.disposed(by: disposeBag)
-		
-		_copyButtonTap
-			.withLatestFrom(_code)
-			.bind(to: UIPasteboard.general.rx.string)
-			.disposed(by: disposeBag)
+		disposeBag.insert {
+			_snippet
+				.map(\.title)
+				.bind(to: _title)
+			
+			_snippet
+				.map(\.body)
+				.bind(to: _code)
+			
+			_snippet
+				.flatMap { $0.rx.tags(url: model.documentUrl) }
+				.bind(to: _tags)
+			
+			_copyButtonTap
+				.withLatestFrom(_code)
+				.bind(to: UIPasteboard.general.rx.string)
+		}
 	}
 }
