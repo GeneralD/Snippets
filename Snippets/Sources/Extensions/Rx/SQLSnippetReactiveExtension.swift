@@ -24,7 +24,7 @@ extension Reactive where Base: SQLSnippet {
 			.flatMap { dbQueue in dbQueue.rx.read { db in
 				let tids = try SQLTagsIndex.filter(Column("sid") == self.base.sid).fetchAll(db).compactMap(\.tid)
 				return try SQLTag.filter(tids.contains(Column("tid"))).fetchAll(db).compactMap(\.tag)
-				}}
+			}}
 			.asObservable()
 	}
 	
@@ -33,10 +33,10 @@ extension Reactive where Base: SQLSnippet {
 	}
 	
 	static func all(path: String) -> Observable<[SQLSnippet]> {
-		(try? DatabaseQueue(path: path)).asObservable()
+		(try? DatabaseQueue(path: path))
+			.asObservable()
 			.flatMap { dbQueue in dbQueue.rx.read { db in
 				try SQLSnippet.order(Column("syntax")).fetchAll(db)
-				}}
-			.asObservable()
+			}}
 	}
 }

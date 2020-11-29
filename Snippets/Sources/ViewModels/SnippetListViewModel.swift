@@ -68,24 +68,28 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
 		}
 		
+		let refresh = BehaviorRelay(value: ()) // trigger once after loaded
+		
 		// Bind them
-		let loadUrl = $refresherPulled.asObservable()
-			.merge(emptyDataSetViewTapped.asObservable())
-			.merge(.just(())) // trigger once after loaded
+		let loadUrl = refresh
 			.combineLatest(model.documentUrl)
 			.map(\.1)
 			.share()
 		
 		let allItems = loadUrl
 			.filterNil()
-			.flatMap(SQLSnippet.rx.all(url: ))
+			.concatMap(SQLSnippet.rx.all(url: ), errorJustReturn: [])
 			.share()
 		
 		let picker = $pickDocumentTap
+			.merge(emptyDataSetViewTapped.asObservable())
 			.mapTo(UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open))
 			.share()
 		
 		disposeBag.insert {
+			$refresherPulled
+				.bind(to: refresh)
+			
 			$itemSelected
 				.map(\.row)
 				.withLatestFrom($items) { $1[$0] }
@@ -102,7 +106,6 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.bind(to: $isSearchBarHidden)
 			
 			$searchBarText
-				.merge(.just(nil)) // trigger once after loaded
 				.replaceNilWith(.empty)
 				.filter(.empty)
 				.combineLatest(allItems)
