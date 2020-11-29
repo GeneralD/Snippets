@@ -62,7 +62,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
 			.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
 			.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
-			.didTapDataButton { emptyDataSetViewTapped.accept(()) }
+			.didTapDataButton { emptyDataSetViewTapped() }
 			: view
 			.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
 			.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))

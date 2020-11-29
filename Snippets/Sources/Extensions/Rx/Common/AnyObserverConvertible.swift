@@ -9,7 +9,7 @@
 import RxSwift
 import RxRelay
 
-protocol AnyObserverConvertible {
+public protocol AnyObserverConvertible {
 	associatedtype Element
 	func accept(_: Element)
 }
@@ -17,11 +17,23 @@ extension BehaviorRelay: AnyObserverConvertible {}
 
 extension PublishRelay: AnyObserverConvertible {}
 
-extension AnyObserverConvertible {
-	public func asObserver() -> AnyObserver<Element> {
+public extension AnyObserverConvertible {
+	
+	func asObserver() -> AnyObserver<Element> {
 		.init { event in
 			guard case .next(let element) = event else { return }
-			self.accept(element)
+			accept(element)
 		}
+	}
+	
+	func callAsFunction(_ element: Element) {
+		accept(element)
+	}
+}
+
+public extension AnyObserverConvertible where Element == () {
+	
+	func callAsFunction() {
+		accept(())
 	}
 }
