@@ -15,6 +15,9 @@
 		B316727624DD8D120037BD04 /* UIResponderReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B316727524DD8D120037BD04 /* UIResponderReactiveExtension.swift */; };
 		B316727824DD9ABB0037BD04 /* UIPasteboardReactiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B316727724DD9ABA0037BD04 /* UIPasteboardReactiveExtension.swift */; };
 		B329E764257398C700F9BC72 /* DisposeBagExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329E763257398C700F9BC72 /* DisposeBagExtension.swift */; };
+		B329E7682573A09100F9BC72 /* RxProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329E7672573A09100F9BC72 /* RxProperty.swift */; };
+		B329E76F2573A0A000F9BC72 /* RxTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329E76C2573A0A000F9BC72 /* RxTrigger.swift */; };
+		B329E7752573A9F200F9BC72 /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329E7742573A9F200F9BC72 /* CGSizeExtension.swift */; };
 		B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E32463060600898BAD /* AnyObserverConvertible.swift */; };
 		B334D7EA24639EB600898BAD /* PastelSourceColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */; };
 		B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7EE2463AACA00898BAD /* DashLexer.swift */; };
@@ -66,6 +69,9 @@
 		B316727524DD8D120037BD04 /* UIResponderReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponderReactiveExtension.swift; sourceTree = "<group>"; };
 		B316727724DD9ABA0037BD04 /* UIPasteboardReactiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPasteboardReactiveExtension.swift; sourceTree = "<group>"; };
 		B329E763257398C700F9BC72 /* DisposeBagExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposeBagExtension.swift; sourceTree = "<group>"; };
+		B329E7672573A09100F9BC72 /* RxProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxProperty.swift; sourceTree = "<group>"; };
+		B329E76C2573A0A000F9BC72 /* RxTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTrigger.swift; sourceTree = "<group>"; };
+		B329E7742573A9F200F9BC72 /* CGSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSizeExtension.swift; sourceTree = "<group>"; };
 		B334D7E32463060600898BAD /* AnyObserverConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObserverConvertible.swift; sourceTree = "<group>"; };
 		B334D7E924639EB600898BAD /* PastelSourceColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastelSourceColorTheme.swift; sourceTree = "<group>"; };
 		B334D7EE2463AACA00898BAD /* DashLexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashLexer.swift; sourceTree = "<group>"; };
@@ -149,11 +155,21 @@
 			path = SQLite;
 			sourceTree = "<group>";
 		};
+		B329E7662573A08000F9BC72 /* PropertyWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				B329E76C2573A0A000F9BC72 /* RxTrigger.swift */,
+				B329E7672573A09100F9BC72 /* RxProperty.swift */,
+			);
+			path = PropertyWrapper;
+			sourceTree = "<group>";
+		};
 		B334D7E5246307E000898BAD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				B334D80D24652E0100898BAD /* Rx */,
 				B34B0FFD2572968300FE0BDF /* StringExtension.swift */,
+				B329E7742573A9F200F9BC72 /* CGSizeExtension.swift */,
 				B334D7F42463F30200898BAD /* ColorExtension.swift */,
 				B334D8232465510300898BAD /* UIViewExtension.swift */,
 			);
@@ -216,6 +232,7 @@
 		B334D80D24652E0100898BAD /* Rx */ = {
 			isa = PBXGroup;
 			children = (
+				B329E7662573A08000F9BC72 /* PropertyWrapper */,
 				B35B4AB324F1AB0300C3DDCC /* Common */,
 				B35B4AB224F1AA9E00C3DDCC /* UIKit */,
 				B334D8062465193100898BAD /* SyntaxTextViewReactiveExtension.swift */,
@@ -477,6 +494,7 @@
 				B334D8242465510300898BAD /* UIViewExtension.swift in Sources */,
 				B34B0FFB2572923700FE0BDF /* FunctionalFunctions.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
+				B329E7752573A9F200F9BC72 /* CGSizeExtension.swift in Sources */,
 				B39235BA2467D81E009AEDB9 /* UIViewControllerReactiveExtension.swift in Sources */,
 				B316727824DD9ABB0037BD04 /* UIPasteboardReactiveExtension.swift in Sources */,
 				B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */,
@@ -492,12 +510,14 @@
 				B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */,
 				B334D8012464282900898BAD /* SnippetCellView.swift in Sources */,
 				B334D7F52463F30200898BAD /* ColorExtension.swift in Sources */,
+				B329E7682573A09100F9BC72 /* RxProperty.swift in Sources */,
 				B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */,
 				B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */,
 				B334D7F92464136100898BAD /* CodeView.swift in Sources */,
 				B334D80F24652E4700898BAD /* SQLSnippetReactiveExtension.swift in Sources */,
 				B334D8072465193100898BAD /* SyntaxTextViewReactiveExtension.swift in Sources */,
 				B334D82F2465B17600898BAD /* UserDefaultsReactiveExtension.swift in Sources */,
+				B329E76F2573A0A000F9BC72 /* RxTrigger.swift in Sources */,
 				B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

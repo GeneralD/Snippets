@@ -29,80 +29,49 @@ protocol SnippetListViewModelOutput {
 	var isRefreshing: Observable<Bool> { get }
 	var isSearchBarHidden: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
-	var presentView: Observable<UIViewController> { get }
+	var presentView: Observable<UIViewController?> { get }
 	var emptyDataSetView: (EmptyDataSetView) -> Void { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
 	
 	// MARK: Inputs
-	let itemSelected: AnyObserver<IndexPath>
-	let contentOffset: AnyObserver<CGPoint>
-	let refresherPulled: AnyObserver<()>
-	let searchBarText: AnyObserver<String?>
-	let pickDocumentTap: AnyObserver<()>
-	let viewWillLayoutSubviews: AnyObserver<()>
+	@RxTrigger var itemSelected: AnyObserver<IndexPath>
+	@RxTrigger var contentOffset: AnyObserver<CGPoint>
+	@RxTrigger var refresherPulled: AnyObserver<()>
+	@RxTrigger var searchBarText: AnyObserver<String?>
+	@RxTrigger var pickDocumentTap: AnyObserver<()>
+	@RxTrigger var viewWillLayoutSubviews: AnyObserver<()>
 	
 	// MARK: Outputs
-	let items: Observable<[SnippetCellModel]>
-	let isRefreshing: Observable<Bool>
-	let isSearchBarHidden: Observable<Bool>
-	let itemSize: Observable<CGSize>
-	let presentView: Observable<UIViewController>
+	@RxProperty(value: []) var items: Observable<[SnippetCellModel]>
+	@RxProperty(value: false) var isRefreshing: Observable<Bool>
+	@RxProperty(value: true) var isSearchBarHidden: Observable<Bool>
+	@RxProperty(value: .one) var itemSize: Observable<CGSize>
+	@RxProperty(value: nil) var presentView: Observable<UIViewController?>
 	let emptyDataSetView: (EmptyDataSetView) -> Void
 	
 	private let disposeBag = DisposeBag()
 	
 	init(model: SnippetListModel) {
-		// Inputs
-		let _itemSelected = PublishRelay<IndexPath>()
-		self.itemSelected = _itemSelected.asObserver()
-		
-		let _contentOffset = PublishRelay<CGPoint>()
-		self.contentOffset = _contentOffset.asObserver()
-		
-		let _refresherPulled = BehaviorRelay<()>(value: ())
-		self.refresherPulled = _refresherPulled.asObserver()
-		
-		let _searchBarText = BehaviorRelay<(String?)>(value: nil)
-		self.searchBarText = _searchBarText.asObserver()
-		
-		let _pickDocumentTap = PublishRelay<()>()
-		self.pickDocumentTap = _pickDocumentTap.asObserver()
-		
-		let _viewWillLayoutSubviews = PublishRelay<()>()
-		self.viewWillLayoutSubviews = _viewWillLayoutSubviews.asObserver()
-		
-		// Outputs
-		let _items = BehaviorRelay<[SnippetCellModel]>(value: [])
-		self.items = _items.asObservable()
-		
-		let _isRefreshing = BehaviorSubject<Bool>(value: false)
-		self.isRefreshing = _isRefreshing.asObserver()
-		
-		let _isSearchBarHidden = BehaviorRelay<Bool>(value: true)
-		self.isSearchBarHidden = _isSearchBarHidden.asObservable()
-		
-		let _itemSize = BehaviorRelay<CGSize>(value: .init(width: 1, height: 1)) // use 1 instead of 0 to suppress warning
-		self.itemSize = _itemSize.asObservable()
-		
-		let _presentView = PublishRelay<UIViewController>()
-		self.presentView = _presentView.asObservable()
-		
 		let noItem = BehaviorRelay(value: true)
+		let emptyDataSetViewTapped = PublishRelay<()>()
+		
 		emptyDataSetView = { view in _ = noItem.value
 			? view
 			.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
 			.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
 			.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
-			.didTapDataButton { _pickDocumentTap.accept(()) }
+			.didTapDataButton { emptyDataSetViewTapped.accept(()) }
 			: view
 			.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
 			.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
 		}
 		
 		// Bind them
-		let loadUrl = _refresherPulled
+		let loadUrl = $refresherPulled.asObservable()
+			.merge(emptyDataSetViewTapped.asObservable())
+			.merge(.just(())) // trigger once after loaded
 			.combineLatest(model.documentUrl)
 			.map(\.1)
 			.share()
@@ -112,68 +81,68 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.flatMap(SQLSnippet.rx.all(url: ))
 			.share()
 		
-		let picker = _pickDocumentTap
+		let picker = $pickDocumentTap
 			.mapTo(UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open))
 			.share()
 		
 		disposeBag.insert {
-			_itemSelected
+			$itemSelected
 				.map(\.row)
-				.filter { $0 < _items.value.count }
-				.withLatestFrom(_items) { $1[$0] }
+				.withLatestFrom($items) { $1[$0] }
 				.map(\.snippet)
 				.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl: ))
 				.map(SnippetDetailViewController.init(with: ))
-				.bind(to: _presentView)
+				.bind(to: $presentView)
 			
-			_contentOffset
+			$contentOffset
 				.map(\.y)
 				.ignore(0)
 				.map { $0 > 0 }
 				.combineLatest(allItems.map(\.isEmpty), resultSelector: !(||))
-				.bind(to: _isSearchBarHidden)
+				.bind(to: $isSearchBarHidden)
 			
-			_searchBarText
+			$searchBarText
+				.merge(.just(nil)) // trigger once after loaded
 				.replaceNilWith(.empty)
 				.filter(.empty)
 				.combineLatest(allItems)
 				.map(\.1)
 				.mapMany(SnippetCellModel.init(snippet: ))
-				.bind(to: _items)
+				.bind(to: $items)
 			
-			_searchBarText
+			$searchBarText
 				.replaceNilWith(.empty)
 				.ignore(.empty)
 				.debounce(.milliseconds(300), scheduler: MainScheduler.instance)
 				.combineLatest(allItems)
 				.flatMapLatest { Fuse(threshold: 0.3, tokenize: true).rx.search(text: $0.0, in: $0.1, scoreSort: .desc) }
 				.mapMany(SnippetCellModel.init(snippet: ))
-				.bind(to: _items)
+				.bind(to: $items)
 			
 			// If failed to pick an URL, hide loading indicator
 			loadUrl
 				.filter(.none)
 				.mapTo(false)
-				.bind(to: _isRefreshing)
+				.bind(to: $isRefreshing)
 			
 			// If items are loaded, hide loading indicator
-			_items
+			$items
 				.mapTo(false)
-				.bind(to: _isRefreshing)
+				.bind(to: $isRefreshing)
 			
 			picker
 				.ofType(UIViewController.self)
-				.bind(to: _presentView)
+				.bind(to: $presentView)
 			
 			picker
 				.concatMap(\.rx.didPickDocumentsAt)
 				.compactMap(\.first)
 				.bind(to: model.documentUrl)
 			
-			_viewWillLayoutSubviews
+			$viewWillLayoutSubviews
 				.compactMap { UIApplication.shared.windows.first?.safeAreaInsets }
 				.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
-				.bind(to: _itemSize)
+				.bind(to: $itemSize)
 			
 			allItems
 				.map(\.isEmpty)

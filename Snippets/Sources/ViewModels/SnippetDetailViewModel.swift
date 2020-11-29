@@ -24,47 +24,33 @@ protocol SnippetDetailViewModelOutput {
 final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {
 	
 	// MARK: Inputs
-	let copyButtonTap: AnyObserver<()>
+	@RxTrigger var copyButtonTap: AnyObserver<()>
 	
 	// MARK: Outputs
-	let title: Observable<String?>
-	let code: Observable<String?>
-	let tags: Observable<[String]>
+	@RxProperty(value: nil) var title: Observable<String?>
+	@RxProperty(value: nil) var code: Observable<String?>
+	@RxProperty(value: []) var tags: Observable<[String]>
 	
 	private let disposeBag = DisposeBag()
 	
-	init(model: SnippetDetailModel) {
-		// Inputs
-		let _copyButtonTap = PublishRelay<()>()
-		self.copyButtonTap = _copyButtonTap.asObserver()
-		
-		// Outputs
-		let _title = BehaviorRelay<String?>(value: nil)
-		title = _title.asObservable()
-		
-		let _code = BehaviorRelay<String?>(value: nil)
-		code = _code.asObservable()
-		
-		let _tags = BehaviorRelay<[String]>(value: [])
-		tags = _tags.asObservable()
-		
+	init(model: SnippetDetailModel) {		
 		let _snippet = Observable.just(model.snippet)
 		
 		disposeBag.insert {
 			_snippet
 				.map(\.title)
-				.bind(to: _title)
+				.bind(to: $title)
 			
 			_snippet
 				.map(\.body)
-				.bind(to: _code)
+				.bind(to: $code)
 			
 			_snippet
 				.flatMap { $0.rx.tags(url: model.documentUrl) }
-				.bind(to: _tags)
+				.bind(to: $tags)
 			
-			_copyButtonTap
-				.withLatestFrom(_code)
+			$copyButtonTap
+				.withLatestFrom($code)
 				.bind(to: UIPasteboard.general.rx.string)
 		}
 	}

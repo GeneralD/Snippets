@@ -28,40 +28,19 @@ protocol SnippetCellViewModelOutput {
 final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewModelOutput {
 	
 	// MARK: Inputs
-	let copyButtonTap: AnyObserver<()>
+	@RxTrigger var copyButtonTap: AnyObserver<()>
 	
 	// MARK: Outputs
-	let titleText: Observable<String?>
-	let codeText: Observable<String?>
-	let languageText: Observable<String?>
-	let languageHidden: Observable<Bool>
-	let languageBackgroundColor: Observable<UIColor?>
-	let contentViewBackgroundColor: Observable<UIColor?>
+	@RxProperty(value: nil) var titleText: Observable<String?>
+	@RxProperty(value: nil) var codeText: Observable<String?>
+	@RxProperty(value: nil) var languageText: Observable<String?>
+	@RxProperty(value: false) var languageHidden: Observable<Bool>
+	@RxProperty(value: nil) var languageBackgroundColor: Observable<UIColor?>
+	@RxProperty(value: nil) var contentViewBackgroundColor: Observable<UIColor?>
 	
 	private let disposeBag = DisposeBag()
 	
 	init(model: SnippetCellModel) {
-		let _copyButtonTap = PublishRelay<()>()
-		self.copyButtonTap = _copyButtonTap.asObserver()
-		
-		let _titleText = BehaviorRelay<String?>(value: nil)
-		self.titleText = _titleText.asObservable()
-		
-		let _codeText = BehaviorRelay<String?>(value: nil)
-		self.codeText = _codeText.asObservable()
-		
-		let _languageText = BehaviorRelay<String?>(value: nil)
-		self.languageText = _languageText.asObservable()
-		
-		let _languageHidden = BehaviorRelay<Bool>(value: false)
-		self.languageHidden = _languageHidden.asObservable()
-		
-		let _languageBackgroundColor = BehaviorRelay<UIColor?>(value: nil)
-		self.languageBackgroundColor = _languageBackgroundColor.asObservable()
-		
-		let _contentViewBackgroundColor = BehaviorRelay<UIColor?>(value: nil)
-		self.contentViewBackgroundColor = _contentViewBackgroundColor.asObservable()
-		
 		let snippet = Observable.just(model.snippet)
 		
 		let color = snippet
@@ -72,34 +51,34 @@ final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewMode
 			.share()
 		
 		disposeBag.insert {
-			_copyButtonTap
+			$copyButtonTap
 				.withLatestFrom(snippet)
 				.map(\.body)
 				.bind(to: UIPasteboard.general.rx.string)
 			
 			snippet
 				.map(\.title)
-				.bind(to: _titleText)
+				.bind(to: $titleText)
 			
 			snippet
 				.map(\.body)
-				.bind(to: _codeText)
+				.bind(to: $codeText)
 			
 			snippet
 				.map(\.syntax)
-				.bind(to: _languageText)
+				.bind(to: $languageText)
 			
 			snippet
 				.map(\.syntax?.isEmpty)
 				.replaceNilWith(true)
-				.bind(to: _languageHidden)
+				.bind(to: $languageHidden)
 			
 			color
-				.bind(to: _languageBackgroundColor)
+				.bind(to: $languageBackgroundColor)
 			
 			color
 				.map { $0.adjustedAlpha(amount: -0.7) }
-				.bind(to: _contentViewBackgroundColor)
+				.bind(to: $contentViewBackgroundColor)
 		}
 	}
 }
