@@ -12,6 +12,7 @@ import RxCocoa
 import RxBinding
 import RxCells
 import RxAnimated
+import RxSwiftExt
 import RxViewController
 import RxDocumentPicker
 import EmptyDataSet_Swift
@@ -44,7 +45,6 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 		let refreshControl = UIRefreshControl()
 		collectionView.refreshControl = refreshControl
 		collectionView.register(cellType: SnippetCellView.self)
-		collectionView.emptyDataSetView(output.emptyDataSetView)
 		
 		// This should be UICollectionViewFlowLayout, otherwise fix it on storyboard
 		let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -63,8 +63,10 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 			output.items ~> collectionView.rx.cells(SnippetCellView.self) ~
 			output.isRefreshing ~> refreshControl.rx.isRefreshing ~
 			output.isSearchBarHidden ~> searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive ~
-			output.isSearchBarHidden.map(!) ~> searchBar.rx.isFirstResponder ~
+			output.isSearchBarHidden.not() ~> searchBar.rx.isFirstResponder ~
 			output.itemSize ~> layout.rx.itemSize ~
-			output.presentView ~> self.rx.present
+			output.presentView ~> self.rx.present ~
+			output.emptyDataSetView ~> collectionView.emptyDataSetView ~
+			output.emptyDataSetView.mapTo(()) ~> collectionView.reloadEmptyDataSet
 	}
 }

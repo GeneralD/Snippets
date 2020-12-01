@@ -9,8 +9,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import Runes
-import Curry
 
 public extension Reactive where Base: UserDefaults {
 	

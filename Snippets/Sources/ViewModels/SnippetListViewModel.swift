@@ -30,7 +30,7 @@ protocol SnippetListViewModelOutput {
 	var isSearchBarHidden: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
 	var presentView: Observable<UIViewController?> { get }
-	var emptyDataSetView: (EmptyDataSetView) -> Void { get }
+	var emptyDataSetView: Observable<(EmptyDataSetView) -> ()> { get }
 }
 
 final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
@@ -49,24 +49,12 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	@RxProperty(value: true) var isSearchBarHidden: Observable<Bool>
 	@RxProperty(value: .one) var itemSize: Observable<CGSize>
 	@RxProperty(value: nil) var presentView: Observable<UIViewController?>
-	let emptyDataSetView: (EmptyDataSetView) -> Void
+	@RxProperty(value: { _ in }) var emptyDataSetView: Observable<(EmptyDataSetView) -> ()>
 	
 	private let disposeBag = DisposeBag()
 	
 	init(model: SnippetListModel) {
-		let noItem = BehaviorRelay(value: true)
 		let emptyDataSetViewTapped = PublishRelay<()>()
-		
-		emptyDataSetView = { view in _ = noItem.value
-			? view
-			.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
-			.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
-			.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
-			.didTapDataButton { emptyDataSetViewTapped() }
-			: view
-			.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
-			.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
-		}
 		
 		let refresh = BehaviorRelay(value: ()) // trigger once after loaded
 		
@@ -149,7 +137,17 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			
 			allItems
 				.map(\.isEmpty)
-				.bind(to: noItem)
+				.map { noItem in { view in _ = noItem
+					? view
+					.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
+					.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
+					.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
+					.didTapDataButton { emptyDataSetViewTapped() }
+					: view
+					.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
+					.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
+				}}
+				.bind(to: $emptyDataSetView)
 		}
 	}
 }
