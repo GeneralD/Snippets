@@ -14,27 +14,51 @@ import Curry
 
 public extension Reactive where Base: UserDefaults {
 	
-	func `default`<E: Equatable>(forKey key: String) -> ControlProperty<E?> {
-		let source = Observable.deferred { [weak defaults = self.base as UserDefaults] () -> Observable<E?> in
+	func `default`<E: Equatable>(type: E) -> ReactiveUserDefaultsLoopup<E> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+	
+	var url: ReactiveUserDefaultsLoopup<URL> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+}
+
+@dynamicMemberLookup
+public struct ReactiveUserDefaultsLoopup<T: Equatable> {
+	
+	private let defaults: UserDefaults
+	
+	fileprivate init(_ defaults: UserDefaults) {
+		self.defaults = defaults
+	}
+}
+
+public extension ReactiveUserDefaultsLoopup {
+	
+	subscript(dynamicMember key: String) -> ControlProperty<T?> {
+		let source = Observable.deferred { [weak defaults] () -> Observable<T?> in
 			let center = NotificationCenter.default
-			let initial = defaults?.object(forKey: key) as? E
+			let initial = defaults?.object(forKey: key) as? T
 			let changes = center.rx.notification(UserDefaults.didChangeNotification)
-				.map { _ in defaults?.object(forKey: key) as? E }
+				.map { _ in defaults?.object(forKey: key) as? T }
 			
 			return Observable.just(initial)
 				.concat(changes)
-				.distinctUntilChanged { (curry(==) <^> $0 <*> $1) ?? false }
+				.distinctUntilChanged()
 		}
 		
-		let binder = Binder(self.base) { (defaults, value: E?) in
+		let binder = Binder(defaults) { (defaults, value: T?) in
 			defaults.set(value, forKey: key)
 		}
 		
 		return ControlProperty(values: source, valueSink: binder)
 	}
+}
+
+public extension ReactiveUserDefaultsLoopup where T == URL {
 	
-	func url(forKey key: String) -> ControlProperty<URL?> {
-		let source = Observable.deferred { [weak defaults = self.base as UserDefaults] () -> Observable<URL?> in
+	subscript(dynamicMember key: String) -> ControlProperty<URL?> {
+		let source = Observable.deferred { [weak defaults] () -> Observable<URL?> in
 			let center = NotificationCenter.default
 			let initial = defaults?.url(forKey: key)
 			let changes = center.rx.notification(UserDefaults.didChangeNotification)
@@ -42,10 +66,10 @@ public extension Reactive where Base: UserDefaults {
 			
 			return Observable.just(initial)
 				.concat(changes)
-				.distinctUntilChanged { (curry(==) <^> $0 <*> $1) ?? false }
+				.distinctUntilChanged()
 		}
 		
-		let binder = Binder(self.base) { (defaults, value: URL?) in
+		let binder = Binder(defaults) { (defaults, value: URL?) in
 			defaults.set(value, forKey: key)
 		}
 		
