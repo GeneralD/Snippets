@@ -12,7 +12,31 @@ import RxCocoa
 
 public extension Reactive where Base: UserDefaults {
 	
-	func `default`<E: Equatable>(type: E) -> ReactiveUserDefaultsLoopup<E> {
+	func `default`<E: Equatable>(type: E.Type) -> ReactiveUserDefaultsLoopup<E> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+	
+	var integer: ReactiveUserDefaultsLoopup<Int> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+	
+	var float: ReactiveUserDefaultsLoopup<Float> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+	
+	var double: ReactiveUserDefaultsLoopup<Double> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+	
+	var bool: ReactiveUserDefaultsLoopup<Bool> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+	
+	var data: ReactiveUserDefaultsLoopup<Data> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+	
+	var object: ReactiveUserDefaultsLoopup<AnyObject> {
 		ReactiveUserDefaultsLoopup(base)
 	}
 	
@@ -22,7 +46,7 @@ public extension Reactive where Base: UserDefaults {
 }
 
 @dynamicMemberLookup
-public struct ReactiveUserDefaultsLoopup<T: Equatable> {
+public struct ReactiveUserDefaultsLoopup<T> {
 	
 	private let defaults: UserDefaults
 	
@@ -31,7 +55,29 @@ public struct ReactiveUserDefaultsLoopup<T: Equatable> {
 	}
 }
 
-public extension ReactiveUserDefaultsLoopup {
+public extension ReactiveUserDefaultsLoopup where T: AnyObject {
+	
+	subscript(dynamicMember key: String) -> ControlProperty<T?> {
+		let source = Observable.deferred { [weak defaults] () -> Observable<T?> in
+			let center = NotificationCenter.default
+			let initial = defaults?.object(forKey: key) as? T
+			let changes = center.rx.notification(UserDefaults.didChangeNotification)
+				.map { _ in defaults?.object(forKey: key) as? T }
+			
+			return Observable.just(initial)
+				.concat(changes)
+				.distinctUntilChanged(===)
+		}
+		
+		let binder = Binder(defaults) { (defaults, value: T?) in
+			defaults.set(value, forKey: key)
+		}
+		
+		return ControlProperty(values: source, valueSink: binder)
+	}
+}
+
+public extension ReactiveUserDefaultsLoopup where T: Equatable {
 	
 	subscript(dynamicMember key: String) -> ControlProperty<T?> {
 		let source = Observable.deferred { [weak defaults] () -> Observable<T?> in

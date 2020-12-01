@@ -14,6 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		UserDefaults.standard.rx.object.a.subscribe(onNext: {
+			print($0)
+		})
 		// First view and model
 		let model = SnippetListModel(documentUrl: UserDefaults.standard.rx.url.documentUrl)
 		let view = SnippetListViewController(with: model)
