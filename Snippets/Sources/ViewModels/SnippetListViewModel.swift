@@ -47,7 +47,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	@RxProperty(value: []) var items: Observable<[SnippetCellModel]>
 	@RxProperty(value: false) var isRefreshing: Observable<Bool>
 	@RxProperty(value: true) var isSearchBarHidden: Observable<Bool>
-	@RxProperty(value: .one) var itemSize: Observable<CGSize>
+	@RxProperty(value: .square(1)) var itemSize: Observable<CGSize>
 	@RxProperty(value: nil) var presentView: Observable<UIViewController?>
 	@RxProperty(value: { _ in }) var emptyDataSetView: Observable<(EmptyDataSetView) -> ()>
 	

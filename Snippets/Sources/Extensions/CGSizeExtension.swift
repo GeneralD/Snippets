@@ -10,7 +10,15 @@ import CoreGraphics
 
 public extension CGSize {
 	
-	static var one: Self {
-		.init(width: 1, height: 1)
+	static func square(_ i: Int) -> Self {
+		.init(width: i, height: i)
+	}
+	
+	static func square(_ f: CGFloat) -> Self {
+		.init(width: f, height: f)
+	}
+	
+	static func square(_ d: Double) -> Self {
+		.init(width: d, height: d)
 	}
 }
