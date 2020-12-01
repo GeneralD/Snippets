@@ -16,7 +16,7 @@ target 'Snippets' do
 	pod 'RxSwiftExt'
 	
 	# Encode/Decode
-	pod 'SwiftyJSON'
+	pod 'DynamicJSON'
 	
 	# UIColor
 	pod 'Hex'

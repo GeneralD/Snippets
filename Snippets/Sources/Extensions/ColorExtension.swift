@@ -9,7 +9,7 @@
 import UIKit
 import Hex
 import DynamicColor
-import SwiftyJSON
+import DynamicJSON
 
 public extension UIColor {
 	
@@ -37,7 +37,7 @@ public extension UIColor {
 		ColorHash(seed: seed).color
 	}
 	
-	private static let colorsJson = { () -> JSON? in
+	private static let colorsJson: JSON? = {
 		guard let url = R.file.language_colorsJson(),
 			let data = try? Data.init(contentsOf: url) else { return nil }
 		return try? JSON(data: data)

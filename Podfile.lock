@@ -2,11 +2,12 @@ PODS:
   - CollectionKit-Swift (1.0.0)
   - Curry (5.0.0)
   - DynamicColor (5.0.1)
+  - DynamicJSON (2.0.2)
   - EmptyDataSet-Swift (5.0.0)
   - Fuse (1.4.0)
-  - GRDB.swift (5.1.0):
-    - GRDB.swift/standard (= 5.1.0)
-  - GRDB.swift/standard (5.1.0)
+  - GRDB.swift (5.2.0):
+    - GRDB.swift/standard (= 5.2.0)
+  - GRDB.swift/standard (5.2.0)
   - Hex (6.1.0)
   - Instantiate (4.0.0)
   - InstantiateStandard (4.0.0):
@@ -64,13 +65,13 @@ PODS:
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
   - Sourceful (0.2.0)
-  - SwiftyJSON (5.0.0)
   - TagListView (1.4.1)
 
 DEPENDENCIES:
   - "CollectionKit-Swift (from `git@github.com:GeneralD/CollectionKit.git`)"
   - Curry
   - DynamicColor
+  - DynamicJSON
   - EmptyDataSet-Swift
   - Fuse
   - Hex
@@ -88,13 +89,13 @@ DEPENDENCIES:
   - RxSwiftExt
   - RxViewController
   - Sourceful
-  - SwiftyJSON
   - TagListView
 
 SPEC REPOS:
   trunk:
     - Curry
     - DynamicColor
+    - DynamicJSON
     - EmptyDataSet-Swift
     - Fuse
     - GRDB.swift
@@ -117,7 +118,6 @@ SPEC REPOS:
     - RxSwiftExt
     - RxViewController
     - Sourceful
-    - SwiftyJSON
     - TagListView
 
 EXTERNAL SOURCES:
@@ -133,9 +133,10 @@ SPEC CHECKSUMS:
   CollectionKit-Swift: 86e39fa74fc869c729b4a4a3ccddd53ec6123d22
   Curry: 9807b3a3e5056d73c38c7eeb3cf846cd88cd3d2a
   DynamicColor: d049834ef86d8ecf150b0ca1ebe54ee733a0ec22
+  DynamicJSON: fc0c5a82980ff8aa956156f04d84fcdb2822e875
   EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
   Fuse: 48eaf66d0c407c7f8b0ddb168888dc4637e87f14
-  GRDB.swift: 9bc45e93b2aa2fa6d02bee883d803d1d187efb2f
+  GRDB.swift: f44f61fd032e176e3aadb1f70e15656dc50ca018
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
   Instantiate: 62516e7dde448721c1f5815a9ee7e0669d034d52
   InstantiateStandard: 18ab1417ba787113350c71a5b2251f0b4448be67
@@ -155,9 +156,8 @@ SPEC CHECKSUMS:
   RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
   RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
   Sourceful: f514447f2ee886f238face3ce8e8b5648c0dc365
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: d7d9ea85f855147a48846bfc05d6ad838888a57f
+PODFILE CHECKSUM: 6dbb521648bfc32c8925c655fc306ab59afe29c9
 
 COCOAPODS: 1.9.1
