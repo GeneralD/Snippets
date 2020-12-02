@@ -12,7 +12,7 @@ import RxCocoa
 
 public extension Reactive where Base: UserDefaults {
 	
-	func `default`<E: Equatable>(type: E.Type) -> ReactiveUserDefaultsLoopup<E> {
+	func `default`<E: Equatable>(type _: E.Type) -> ReactiveUserDefaultsLoopup<E> {
 		ReactiveUserDefaultsLoopup(base)
 	}
 	
@@ -29,6 +29,10 @@ public extension Reactive where Base: UserDefaults {
 	}
 	
 	var bool: ReactiveUserDefaultsLoopup<Bool> {
+		ReactiveUserDefaultsLoopup(base)
+	}
+	
+	var string: ReactiveUserDefaultsLoopup<String> {
 		ReactiveUserDefaultsLoopup(base)
 	}
 	
