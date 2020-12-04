@@ -66,7 +66,6 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 			output.isSearchBarHidden.not() ~> searchBar.rx.isFirstResponder ~
 			output.itemSize ~> layout.rx.itemSize ~
 			output.presentView ~> self.rx.present ~
-			output.emptyDataSetView ~> collectionView.emptyDataSetView ~
-			output.emptyDataSetView.mapTo(()) ~> collectionView.reloadEmptyDataSet
+			output.emptyDataSetView ~> collectionView.rx.emptyDataSetView
 	}
 }

@@ -1,5 +1,5 @@
 //
-//  FuseReactiveExtension.swift
+//  Fuse+Rx.swift
 //  Snippets
 //
 //  Created by Yumenosuke Koukata on 2020/11/28.

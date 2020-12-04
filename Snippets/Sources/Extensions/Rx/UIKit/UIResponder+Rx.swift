@@ -1,5 +1,5 @@
 //
-//  UIResponderReactiveExtension.swift
+//  UIResponder+Rx.swift
 //  Snippets
 //
 //  Created by Yumenosuke Koukata on 2020/08/07.

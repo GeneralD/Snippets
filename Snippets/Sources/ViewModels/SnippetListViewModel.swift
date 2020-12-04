@@ -55,18 +55,13 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	
 	init(model: SnippetListModel) {
 		let emptyDataSetViewTapped = PublishRelay<()>()
-		
-		let refresh = BehaviorRelay(value: ()) // trigger once after loaded
+		let allItems = BehaviorRelay<[SQLSnippet]>(value: [])
 		
 		// Bind them
-		let loadUrl = refresh
+		let loadUrl = Observable.just(()) // to trigger immediately
+			.concat($refresherPulled)
 			.combineLatest(model.documentUrl)
 			.map(\.1)
-			.share()
-		
-		let allItems = loadUrl
-			.filterNil()
-			.concatMap(SQLSnippet.rx.all(url: ), errorJustReturn: [])
 			.share()
 		
 		let picker = $pickDocumentTap
@@ -75,8 +70,10 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			.share()
 		
 		disposeBag.insert {
-			$refresherPulled
-				.bind(to: refresh)
+			loadUrl
+				.filterNil()
+				.concatMap(SQLSnippet.rx.all(url: ), errorJustReturn: [])
+				.bind(to: allItems)
 			
 			$itemSelected
 				.map(\.row)
@@ -137,13 +134,12 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 			
 			allItems
 				.map(\.isEmpty)
-				.map { noItem in { view in _ = noItem
-					? view
+				.map { noItem in noItem ? { view in view
 					.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
 					.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))
 					.buttonTitle(.init(string: R.string.localizable.snippetFileNotOpenedButtonLabel(), attributes: [.foregroundColor: UIColor.systemGreen]), for: .normal)
 					.didTapDataButton { emptyDataSetViewTapped() }
-					: view
+				} : { view in view
 					.titleLabelString(.init(string: R.string.localizable.snippetNoResultTitleLabel()))
 					.detailLabelString(.init(string: R.string.localizable.snippetNoResultDetailLabel()))
 				}}

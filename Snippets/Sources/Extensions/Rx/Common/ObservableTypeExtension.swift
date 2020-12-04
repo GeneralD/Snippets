@@ -10,10 +10,6 @@ import RxSwift
 
 public extension ObservableType {
 	
-	static func ~> <O>(observable: Self, callee: @escaping(O) -> ()) -> Disposable where Self.Element == O {
-		observable.subscribe(onNext: callee)
-	}
-	
 	func merge(_ sources: Self...) -> Observable<Element> {
 		Observable.create { observer in
 			let observables = sources + [self]
