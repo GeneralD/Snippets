@@ -9,7 +9,6 @@
 import Foundation
 import RxSwift
 import RxRelay
-import RxOptional
 
 protocol SnippetDetailViewModelInput {
 	var copyButtonTap: AnyObserver<()> { get }
