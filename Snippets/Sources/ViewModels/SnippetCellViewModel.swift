@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxRelay
+import RxBinding
 import RxOptional
 
 protocol SnippetCellViewModelInput {
@@ -41,44 +42,34 @@ final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewMode
 	private let disposeBag = DisposeBag()
 	
 	init(model: SnippetCellModel) {
-		let snippet = Observable.just(model.snippet)
+		let snippet = model.snippet*
 		
-		let color = snippet
-			.map(\.syntax)
+		let color = snippet*.syntax
 			.replaceNilWith(.empty) // empty can make a color?
-			.compactMap(UIColor.themeColor(for: ))
-			.map(\.comfortable)
+			.compactMap(UIColor.themeColor(for: ))*.comfortable
 			.share()
 		
 		disposeBag.insert {
 			$copyButtonTap
-				.withLatestFrom(snippet)
-				.map(\.body)
-				.bind(to: UIPasteboard.general.rx.string)
+				.withLatestFrom(snippet)*.body
+				~> UIPasteboard.general.rx.string
 			
-			snippet
-				.map(\.title)
-				.bind(to: $titleText)
+			snippet*.title ~> $titleText
 			
-			snippet
-				.map(\.body)
-				.bind(to: $codeText)
+			snippet*.body ~> $codeText
 			
-			snippet
-				.map(\.syntax)
-				.bind(to: $languageText)
+			snippet*.syntax ~> $languageText
 			
 			snippet
 				.map(\.syntax?.isEmpty)
 				.replaceNilWith(true)
-				.bind(to: $languageHidden)
+				~> $languageHidden
 			
-			color
-				.bind(to: $languageBackgroundColor)
+			color ~> $languageBackgroundColor
 			
 			color
 				.map { $0.adjustedAlpha(amount: -0.7) }
-				.bind(to: $contentViewBackgroundColor)
+				~> $contentViewBackgroundColor
 		}
 	}
 }

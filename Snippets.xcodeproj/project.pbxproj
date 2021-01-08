@@ -52,6 +52,8 @@
 		B35420312502848300DBD3AB /* SnippetCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35420302502848300DBD3AB /* SnippetCellViewModel.swift */; };
 		B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B42466E505009AEDB9 /* ObservableConvertible.swift */; };
 		B39235BA2467D81E009AEDB9 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39235B92467D81E009AEDB9 /* UIViewController+Rx.swift */; };
+		B39FD37E25A8B40500F7F1FF /* ObservableType+Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39FD37D25A8B40500F7F1FF /* ObservableType+Chaining.swift */; };
+		B39FD38625A8C06800F7F1FF /* Observable+Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39FD38525A8C06800F7F1FF /* Observable+Just.swift */; };
 		B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A33245AE65B001F08A4 /* AppDelegate.swift */; };
 		B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */; };
 		B3E77A3D245AE65F001F08A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3E77A3C245AE65F001F08A4 /* Assets.xcassets */; };
@@ -108,6 +110,8 @@
 		B39235B42466E505009AEDB9 /* ObservableConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableConvertible.swift; sourceTree = "<group>"; };
 		B39235B82467CBEB009AEDB9 /* Snippets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snippets.entitlements; sourceTree = "<group>"; };
 		B39235B92467D81E009AEDB9 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		B39FD37D25A8B40500F7F1FF /* ObservableType+Chaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Chaining.swift"; sourceTree = "<group>"; };
+		B39FD38525A8C06800F7F1FF /* Observable+Just.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Just.swift"; sourceTree = "<group>"; };
 		B3E77A30245AE65B001F08A4 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E77A33245AE65B001F08A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3E77A37245AE65B001F08A4 /* SnippetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +270,8 @@
 				B334D7F62464071500898BAD /* ObservableTypeExtension.swift */,
 				B34B0FD925721F9700FE0BDF /* SingleExtension.swift */,
 				B329E763257398C700F9BC72 /* DisposeBagExtension.swift */,
+				B39FD37D25A8B40500F7F1FF /* ObservableType+Chaining.swift */,
+				B39FD38525A8C06800F7F1FF /* Observable+Just.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -499,11 +505,13 @@
 				B34B0FFB2572923700FE0BDF /* FunctionalFunctions.swift in Sources */,
 				B3E77A38245AE65B001F08A4 /* SnippetListViewController.swift in Sources */,
 				B329E7752573A9F200F9BC72 /* CGSizeExtension.swift in Sources */,
+				B39FD38625A8C06800F7F1FF /* Observable+Just.swift in Sources */,
 				B39235BA2467D81E009AEDB9 /* UIViewController+Rx.swift in Sources */,
 				B316727824DD9ABB0037BD04 /* UIPasteboard+Rx.swift in Sources */,
 				B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */,
 				B354202B2502717700DBD3AB /* SnippetListModel.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
+				B39FD37E25A8B40500F7F1FF /* ObservableType+Chaining.swift in Sources */,
 				B334D80924651CF700898BAD /* TagListView+Rx.swift in Sources */,
 				B334D7F72464071500898BAD /* ObservableTypeExtension.swift in Sources */,
 				B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */,

@@ -10,13 +10,9 @@ import RxSwift
 
 public extension ObservableType {
 	
-	func merge(_ sources: Self...) -> Observable<Element> {
-		Observable.create { observer in
-			let observables = sources + [self]
-			let disposables = observables.map { observable in
-				observable.bind(to: observer)
-			}
-			return Disposables.create(disposables)
+	func merge<O: ObservableType>(_ sources: O...) -> Observable<Element> where O.Element == Element {
+		Observable.create { observer -> Disposable in
+			Disposables.create(bind(to: observer), Disposables.create(sources.map { $0.bind(to: observer) }))
 		}
 	}
 	

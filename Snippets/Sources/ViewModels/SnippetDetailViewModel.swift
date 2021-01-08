@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxBinding
 
 protocol SnippetDetailViewModelInput {
 	var copyButtonTap: AnyObserver<()> { get }
@@ -33,24 +34,20 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 	private let disposeBag = DisposeBag()
 	
 	init(model: SnippetDetailModel) {		
-		let _snippet = Observable.just(model.snippet)
+		let snippet = model.snippet*
 		
 		disposeBag.insert {
-			_snippet
-				.map(\.title)
-				.bind(to: $title)
+			snippet*.title ~> $title
 			
-			_snippet
-				.map(\.body)
-				.bind(to: $code)
+			snippet*.body ~> $code
 			
-			_snippet
+			snippet
 				.flatMap { $0.rx.tags(url: model.documentUrl) }
-				.bind(to: $tags)
+				~> $tags
 			
 			$copyButtonTap
 				.withLatestFrom($code)
-				.bind(to: UIPasteboard.general.rx.string)
+				~> UIPasteboard.general.rx.string
 		}
 	}
 }

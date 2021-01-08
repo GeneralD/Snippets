@@ -59,14 +59,13 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		let allItems = BehaviorRelay<[SQLSnippet]>(value: [])
 		
 		// Bind them
-		let loadUrl = Observable.just(()) // to trigger immediately
+		let loadUrl = ()* // to trigger immediately
 			.concat($refresherPulled)
-			.combineLatest(model.documentUrl)
-			.map(\.1)
+			.combineLatest(model.documentUrl)*.1
 			.share()
 		
 		let picker = $pickDocumentTap
-			.merge(emptyDataSetViewTapped.asObservable())
+			.merge(emptyDataSetViewTapped)
 			.mapTo(UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open))
 			.share()
 		
@@ -76,26 +75,22 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.concatMap(SQLSnippet.rx.all(url: ), errorJustReturn: [])
 				.bind(to: allItems)
 			
-			$itemSelected
-				.map(\.row)
-				.withLatestFrom($items) { $1[$0] }
-				.map(\.snippet)
+			$itemSelected*.row
+				.withLatestFrom($items) { $1[$0] }*.snippet
 				.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl: ))
 				.map(SnippetDetailViewController.init(with: ))
 				.bind(to: $presentView)
 			
-			$contentOffset
-				.map(\.y)
+			$contentOffset*.y
 				.ignore(0)
 				.map { $0 > 0 }
-				.combineLatest(allItems.map(\.isEmpty), resultSelector: !(||))
+				.combineLatest(allItems*.isEmpty, resultSelector: !(||))
 				.bind(to: $isSearchBarHidden)
 			
 			$searchBarText
 				.replaceNilWith(.empty)
 				.filter(.empty)
-				.combineLatest(allItems)
-				.map(\.1)
+				.combineLatest(allItems)*.1
 				.mapMany(SnippetCellModel.init(snippet: ))
 				.bind(to: $items)
 			
@@ -133,8 +128,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
 				.bind(to: $itemSize)
 			
-			allItems
-				.map(\.isEmpty)
+			allItems*.isEmpty
 				.map { noItem in noItem ? { view in view
 					.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
 					.detailLabelString(.init(string: R.string.localizable.snippetFileNotOpenedDetailLabel()))

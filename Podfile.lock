@@ -12,7 +12,7 @@ PODS:
   - Instantiate (4.0.0)
   - InstantiateStandard (4.0.0):
     - Instantiate (~> 4.0)
-  - R.swift (5.3.0):
+  - R.swift (5.3.1):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
   - Reusable (4.1.1):
@@ -126,7 +126,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CollectionKit-Swift:
-    :commit: 25dc100929298dd6d1999eaddc8b61ec06a2a024
+    :commit: 48e7170e9bcca842f31546ca18bc8ee26fad0bfd
     :git: "git@github.com:GeneralD/CollectionKit.git"
 
 SPEC CHECKSUMS:
@@ -140,7 +140,7 @@ SPEC CHECKSUMS:
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
   Instantiate: 62516e7dde448721c1f5815a9ee7e0669d034d52
   InstantiateStandard: 18ab1417ba787113350c71a5b2251f0b4448be67
-  R.swift: 4170fb7161c67be3bc1a847040b79367d69c419f
+  R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
   Runes: c9634b39d102aa684a12deaa3611f2643a0bb0a1
@@ -160,4 +160,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 6dbb521648bfc32c8925c655fc306ab59afe29c9
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.0
