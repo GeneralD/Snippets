@@ -14,7 +14,7 @@ import EmptyDataSet_Swift
 public extension Reactive where Base: UIScrollView {
 	
 	var emptyDataSetView: Binder<(EmptyDataSetView) -> ()> {
-		.init(base) { (scroll: Base, closure: @escaping(EmptyDataSetView) -> ()) in
+		.init(base) { scroll, closure in
 			scroll.emptyDataSetView(closure)
 			scroll.reloadEmptyDataSet()
 		}
