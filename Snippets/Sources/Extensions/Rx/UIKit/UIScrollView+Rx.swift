@@ -16,6 +16,7 @@ public extension Reactive where Base: UIScrollView {
 	var emptyDataSetView: Binder<(EmptyDataSetView) -> ()> {
 		.init(base) { (scroll: Base, closure: @escaping(EmptyDataSetView) -> ()) in
 			scroll.emptyDataSetView(closure)
+			scroll.reloadEmptyDataSet()
 		}
 	}
 }
