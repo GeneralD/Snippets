@@ -1,0 +1,21 @@
+name: Snippets
+targets:
+  Snippets:
+    type: application
+    platform: iOS
+    sources: Snippets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zyxw.Snippets
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_OPTIMIZATION_LEVEL: "-Owholemodule"
+    preBuildScripts:
+      - script: |
+          "$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/$PROJECT_NAME/R.generated.swift"
+        name: Generate Resources with R.swift
+        inputFiles:
+          - $TEMP_DIR/rswift-lastrun
+        outputFiles:
+          - $SRCROOT/$PROJECT_NAME/R.generated.swift
+options:
+  postGenCommand: pod install
