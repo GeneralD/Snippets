@@ -25,7 +25,6 @@ extension Reactive where Base: SQLSnippet {
 				let tids = try SQLTagsIndex.filter(Column("sid") == self.base.sid).fetchAll(db).compactMap(\.tid)
 				return try SQLTag.filter(tids.contains(Column("tid"))).fetchAll(db).compactMap(\.tag)
 			}}
-			.asObservable()
 	}
 	
 	static func all(url: URL) -> Observable<[SQLSnippet]> {

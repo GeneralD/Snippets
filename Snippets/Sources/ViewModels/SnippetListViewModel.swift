@@ -66,7 +66,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		
 		let picker = $pickDocumentTap
 			.merge(emptyDataSetViewTapped)
-			.mapTo(UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open))
+			.mapTo(UIDocumentPickerViewController(forOpeningContentTypes: [.item]))
 			.share()
 		
 		disposeBag.insert {

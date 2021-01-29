@@ -14,8 +14,6 @@
 		B30BAE042461B6F000BF0AA6 /* SQLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE032461B6F000BF0AA6 /* SQLTag.swift */; };
 		B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */; };
 		B316727624DD8D120037BD04 /* UIResponder+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B316727524DD8D120037BD04 /* UIResponder+Rx.swift */; };
-		B316727824DD9ABB0037BD04 /* UIPasteboard+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B316727724DD9ABA0037BD04 /* UIPasteboard+Rx.swift */; };
-		B329E764257398C700F9BC72 /* DisposeBagExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329E763257398C700F9BC72 /* DisposeBagExtension.swift */; };
 		B329E7682573A09100F9BC72 /* RxProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329E7672573A09100F9BC72 /* RxProperty.swift */; };
 		B329E76F2573A0A000F9BC72 /* RxTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329E76C2573A0A000F9BC72 /* RxTrigger.swift */; };
 		B329E7752573A9F200F9BC72 /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329E7742573A9F200F9BC72 /* CGSizeExtension.swift */; };
@@ -30,7 +28,6 @@
 		B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FB24641E6400898BAD /* SnippetDetailViewController.swift */; };
 		B334D7FE24641EAB00898BAD /* SnippetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */; };
 		B334D8012464282900898BAD /* SnippetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D7FF2464282900898BAD /* SnippetCellView.swift */; };
-		B334D8072465193100898BAD /* SyntaxTextView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8062465193100898BAD /* SyntaxTextView+Rx.swift */; };
 		B334D80924651CF700898BAD /* TagListView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D80824651CF700898BAD /* TagListView+Rx.swift */; };
 		B334D80F24652E4700898BAD /* SQLSnippet+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D80E24652E4700898BAD /* SQLSnippet+Rx.swift */; };
 		B334D81D2465378A00898BAD /* SnippetListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B334D81A2465378A00898BAD /* SnippetListViewController.storyboard */; };
@@ -40,7 +37,6 @@
 		B334D82224654CD200898BAD /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82124654CD200898BAD /* EdgeInsetLabel.swift */; };
 		B334D8242465510300898BAD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8232465510300898BAD /* UIViewExtension.swift */; };
 		B334D8272465558E00898BAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D8262465558E00898BAD /* R.generated.swift */; };
-		B334D82B24656B5D00898BAD /* UICollectionViewFlowLayout+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82A24656B5D00898BAD /* UICollectionViewFlowLayout+Rx.swift */; };
 		B334D82F2465B17600898BAD /* UserDefaults+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B334D82E2465B17600898BAD /* UserDefaults+Rx.swift */; };
 		B34B0F602571F6E200FE0BDF /* Fuse+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0F5F2571F6E200FE0BDF /* Fuse+Rx.swift */; };
 		B34B0FDA25721F9700FE0BDF /* SingleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34B0FD925721F9700FE0BDF /* SingleExtension.swift */; };
@@ -71,8 +67,6 @@
 		B30BAE032461B6F000BF0AA6 /* SQLTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTag.swift; sourceTree = "<group>"; };
 		B30BAE052461B74700BF0AA6 /* SQLTagsIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLTagsIndex.swift; sourceTree = "<group>"; };
 		B316727524DD8D120037BD04 /* UIResponder+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Rx.swift"; sourceTree = "<group>"; };
-		B316727724DD9ABA0037BD04 /* UIPasteboard+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPasteboard+Rx.swift"; sourceTree = "<group>"; };
-		B329E763257398C700F9BC72 /* DisposeBagExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposeBagExtension.swift; sourceTree = "<group>"; };
 		B329E7672573A09100F9BC72 /* RxProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxProperty.swift; sourceTree = "<group>"; };
 		B329E76C2573A0A000F9BC72 /* RxTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTrigger.swift; sourceTree = "<group>"; };
 		B329E7742573A9F200F9BC72 /* CGSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSizeExtension.swift; sourceTree = "<group>"; };
@@ -88,7 +82,6 @@
 		B334D7FD24641EAB00898BAD /* SnippetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailViewModel.swift; sourceTree = "<group>"; };
 		B334D7FF2464282900898BAD /* SnippetCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetCellView.swift; sourceTree = "<group>"; };
 		B334D8002464282900898BAD /* SnippetCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnippetCellView.xib; sourceTree = "<group>"; };
-		B334D8062465193100898BAD /* SyntaxTextView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyntaxTextView+Rx.swift"; sourceTree = "<group>"; };
 		B334D80824651CF700898BAD /* TagListView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagListView+Rx.swift"; sourceTree = "<group>"; };
 		B334D80E24652E4700898BAD /* SQLSnippet+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SQLSnippet+Rx.swift"; sourceTree = "<group>"; };
 		B334D8182465378900898BAD /* SnippetDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SnippetDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -97,7 +90,6 @@
 		B334D82124654CD200898BAD /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		B334D8232465510300898BAD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		B334D8262465558E00898BAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		B334D82A24656B5D00898BAD /* UICollectionViewFlowLayout+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Rx.swift"; sourceTree = "<group>"; };
 		B334D82E2465B17600898BAD /* UserDefaults+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Rx.swift"; sourceTree = "<group>"; };
 		B34B0F5F2571F6E200FE0BDF /* Fuse+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fuse+Rx.swift"; sourceTree = "<group>"; };
 		B34B0FD925721F9700FE0BDF /* SingleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleExtension.swift; sourceTree = "<group>"; };
@@ -241,7 +233,6 @@
 				B329E7662573A08000F9BC72 /* PropertyWrapper */,
 				B35B4AB324F1AB0300C3DDCC /* Common */,
 				B35B4AB224F1AA9E00C3DDCC /* UIKit */,
-				B334D8062465193100898BAD /* SyntaxTextView+Rx.swift */,
 				B334D80824651CF700898BAD /* TagListView+Rx.swift */,
 				B334D80E24652E4700898BAD /* SQLSnippet+Rx.swift */,
 				B334D82E2465B17600898BAD /* UserDefaults+Rx.swift */,
@@ -255,8 +246,6 @@
 			children = (
 				B316727524DD8D120037BD04 /* UIResponder+Rx.swift */,
 				B39235B92467D81E009AEDB9 /* UIViewController+Rx.swift */,
-				B334D82A24656B5D00898BAD /* UICollectionViewFlowLayout+Rx.swift */,
-				B316727724DD9ABA0037BD04 /* UIPasteboard+Rx.swift */,
 				B3035D98257A8D4D00A148B8 /* UIScrollView+Rx.swift */,
 			);
 			path = UIKit;
@@ -269,7 +258,6 @@
 				B39235B42466E505009AEDB9 /* ObservableConvertible.swift */,
 				B334D7F62464071500898BAD /* ObservableTypeExtension.swift */,
 				B34B0FD925721F9700FE0BDF /* SingleExtension.swift */,
-				B329E763257398C700F9BC72 /* DisposeBagExtension.swift */,
 				B39FD37D25A8B40500F7F1FF /* ObservableType+Chaining.swift */,
 				B39FD38525A8C06800F7F1FF /* Observable+Just.swift */,
 			);
@@ -492,7 +480,6 @@
 				B316727624DD8D120037BD04 /* UIResponder+Rx.swift in Sources */,
 				B35420312502848300DBD3AB /* SnippetCellViewModel.swift in Sources */,
 				B34B0FFE2572968300FE0BDF /* StringExtension.swift in Sources */,
-				B329E764257398C700F9BC72 /* DisposeBagExtension.swift in Sources */,
 				B334D7FC24641E6400898BAD /* SnippetDetailViewController.swift in Sources */,
 				B334D8272465558E00898BAD /* R.generated.swift in Sources */,
 				B30BAE002461B3FE00BF0AA6 /* SQLSnippet.swift in Sources */,
@@ -507,7 +494,6 @@
 				B329E7752573A9F200F9BC72 /* CGSizeExtension.swift in Sources */,
 				B39FD38625A8C06800F7F1FF /* Observable+Just.swift in Sources */,
 				B39235BA2467D81E009AEDB9 /* UIViewController+Rx.swift in Sources */,
-				B316727824DD9ABB0037BD04 /* UIPasteboard+Rx.swift in Sources */,
 				B39235B52466E505009AEDB9 /* ObservableConvertible.swift in Sources */,
 				B354202B2502717700DBD3AB /* SnippetListModel.swift in Sources */,
 				B30BAE062461B74700BF0AA6 /* SQLTagsIndex.swift in Sources */,
@@ -516,7 +502,6 @@
 				B334D7F72464071500898BAD /* ObservableTypeExtension.swift in Sources */,
 				B3E77A34245AE65B001F08A4 /* AppDelegate.swift in Sources */,
 				B334D7EF2463AACA00898BAD /* DashLexer.swift in Sources */,
-				B334D82B24656B5D00898BAD /* UICollectionViewFlowLayout+Rx.swift in Sources */,
 				B34B0FDA25721F9700FE0BDF /* SingleExtension.swift in Sources */,
 				B34B0F602571F6E200FE0BDF /* Fuse+Rx.swift in Sources */,
 				B334D7E42463060600898BAD /* AnyObserverConvertible.swift in Sources */,
@@ -527,7 +512,6 @@
 				B334D7F32463E9CB00898BAD /* ColorHash.swift in Sources */,
 				B334D7F92464136100898BAD /* CodeView.swift in Sources */,
 				B334D80F24652E4700898BAD /* SQLSnippet+Rx.swift in Sources */,
-				B334D8072465193100898BAD /* SyntaxTextView+Rx.swift in Sources */,
 				B334D82F2465B17600898BAD /* UserDefaults+Rx.swift in Sources */,
 				B329E76F2573A0A000F9BC72 /* RxTrigger.swift in Sources */,
 				B30BAE022461B69C00BF0AA6 /* SQLSmartTag.swift in Sources */,
@@ -587,7 +571,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -641,7 +625,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -660,6 +644,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DD4ZUKAH26;
 				INFOPLIST_FILE = Snippets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -680,6 +665,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DD4ZUKAH26;
 				INFOPLIST_FILE = Snippets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

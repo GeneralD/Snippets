@@ -54,7 +54,7 @@ extension SnippetCellView: Configurable {
 		
 		disposeBag ~
 			output.titleText ~> titleLabel.rx.text ~
-			output.codeText ~> codeView.rx.text ~
+			output.codeText.filterNil() ~> codeView.rx.text ~
 			output.languageText ~> syntaxLabel.rx.text ~
 			output.languageHidden ~> syntaxLabel.rx.isHidden ~
 			output.languageBackgroundColor ~> syntaxLabel.rx.backgroundColor ~

@@ -1,10 +1,10 @@
-platform :ios, '13.4'
+platform :ios, '14.1'
 
 target 'Snippets' do
 	use_frameworks!
 	
 	# Reactive
-	pod 'RxSwift'
+	pod 'RxSwift', '~> 6'
 	pod 'RxCocoa'
 	pod 'RxBinding'
 	pod 'RxOptional'

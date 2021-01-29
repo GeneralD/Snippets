@@ -39,7 +39,7 @@ extension ObservableType {
 public extension ObservableType {
 	
 	func flatMap<Source>(_ selector: @escaping (Element) throws -> Source, errorJustReturn element: Source.Element) -> Observable<Source.Element> where Source: ObservableConvertibleType {
-		flatMap { try selector($0).asObservable().catchErrorJustReturn(element) }
+		flatMap { try selector($0).asObservable().catchAndReturn(element) }
 	}
 	
 	func flatMapTo<Result>(_ observable: Observable<Result>) -> Observable<Result> {
@@ -63,7 +63,7 @@ public extension ObservableType where Element: ObservableConvertibleType {
 public extension ObservableType {
 	
 	func concatMap<Source>(_ selector: @escaping (Element) throws -> Source, errorJustReturn element: Source.Element) -> Observable<Source.Element> where Source : ObservableConvertibleType {
-		concatMap { try selector($0).asObservable().catchErrorJustReturn(element) }
+		concatMap { try selector($0).asObservable().catchAndReturn(element) }
 	}
 }
 

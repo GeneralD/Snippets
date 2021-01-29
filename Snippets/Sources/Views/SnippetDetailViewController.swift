@@ -44,7 +44,7 @@ class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 		// Bind outputs
 		disposeBag ~
 			output.title ~> titleLabel.rx.text ~
-			output.code ~> codeView.rx.text ~
+			output.code.filterNil() ~> codeView.rx.text ~
 			output.tags ~> tagsView.rx.tags
 	}
 }

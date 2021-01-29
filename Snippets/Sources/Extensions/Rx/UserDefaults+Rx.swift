@@ -13,39 +13,39 @@ import RxCocoa
 public extension Reactive where Base: UserDefaults {
 	
 	func `default`<E: Equatable>(type _: E.Type) -> ReactiveUserDefaultsLoopup<E> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 	
 	var integer: ReactiveUserDefaultsLoopup<Int> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 	
 	var float: ReactiveUserDefaultsLoopup<Float> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 	
 	var double: ReactiveUserDefaultsLoopup<Double> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 	
 	var bool: ReactiveUserDefaultsLoopup<Bool> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 	
 	var string: ReactiveUserDefaultsLoopup<String> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 	
 	var data: ReactiveUserDefaultsLoopup<Data> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 	
 	var object: ReactiveUserDefaultsLoopup<AnyObject> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 	
 	var url: ReactiveUserDefaultsLoopup<URL> {
-		ReactiveUserDefaultsLoopup(base)
+		.init(base)
 	}
 }
 
@@ -99,7 +99,7 @@ public extension ReactiveUserDefaultsLoopup where T: Equatable {
 			defaults.set(value, forKey: key)
 		}
 		
-		return ControlProperty(values: source, valueSink: binder)
+		return .init(values: source, valueSink: binder)
 	}
 }
 
@@ -121,6 +121,6 @@ public extension ReactiveUserDefaultsLoopup where T == URL {
 			defaults.set(value, forKey: key)
 		}
 		
-		return ControlProperty(values: source, valueSink: binder)
+		return .init(values: source, valueSink: binder)
 	}
 }
