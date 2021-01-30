@@ -132,7 +132,12 @@ public extension ObservableType where Element == Bool {
 
 public extension ObservableType {
 	
-	func printConsole(onNext: ((Element) throws -> String)? = nil, afterNext: ((Element) throws -> String)? = nil, onError: ((Error) throws -> String)? = nil, afterError: ((Error) throws -> String)? = nil, onCompleted: (() throws -> String)? = nil, afterCompleted: (() throws -> String)? = nil, onSubscribe: (() -> String)? = nil, onSubscribed: (() -> String)? = nil, onDispose: (() -> String)? = nil)
+	func printConsole(
+		onNext: ((Element) throws -> String)? = nil, afterNext: ((Element) throws -> String)? = nil,
+		onError: ((Error) throws -> String)? = nil, afterError: ((Error) throws -> String)? = nil,
+		onCompleted: (() throws -> String)? = nil, afterCompleted: (() throws -> String)? = nil,
+		onSubscribe: (() -> String)? = nil, onSubscribed: (() -> String)? = nil,
+		onDispose: (() -> String)? = nil)
 	-> Observable<Element> {
 		`do`(onNext: { elem in try onNext.map { f in try print(f(elem)) }},
 			 afterNext: { elem in try afterNext.map { f in try print(f(elem)) }},

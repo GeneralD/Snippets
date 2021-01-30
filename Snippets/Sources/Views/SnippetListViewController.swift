@@ -45,6 +45,7 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 		collectionView.register(cellType: SnippetCellView.self)
 		
 		// This should be UICollectionViewFlowLayout, otherwise fix it on storyboard
+		// swiftlint:disable force_cast
 		let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		
 		// Bind inputs
