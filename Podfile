@@ -2,6 +2,7 @@ platform :ios, '14.1'
 
 target 'Snippets' do
 	use_frameworks!
+	inhibit_all_warnings!
 	
 	# Reactive
 	pod 'RxSwift', '~> 6'
@@ -28,7 +29,7 @@ target 'Snippets' do
 	pod 'EmptyDataSet-Swift'
 	
 	# Resource Utilities
-	pod 'R.swift'
+	pod 'R.swift.Library'
 	
 	# Coding
 	pod 'InstantiateStandard'

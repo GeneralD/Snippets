@@ -10,13 +10,12 @@ import Foundation
 import Sourceful
 
 class DashLexer: SourceCodeRegexLexer {
-	
 	private let baseLexer: RegexLexer
-	
+
 	init(baseLexer: RegexLexer) {
 		self.baseLexer = baseLexer
 	}
-	
+
 	func generators(source: String) -> [TokenGenerator] {
 		let delimiter = "__"
 		let dashGenerators = [
@@ -28,7 +27,7 @@ class DashLexer: SourceCodeRegexLexer {
 	}
 }
 
-fileprivate extension RegexLexer {
+private extension RegexLexer {
 	func regexGenerator(_ pattern: String, options: NSRegularExpression.Options = [], transformer: @escaping TokenTransformer) -> TokenGenerator? {
 		guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
 			return nil
@@ -37,13 +36,13 @@ fileprivate extension RegexLexer {
 	}
 }
 
-fileprivate extension SourceCodeRegexLexer {
+private extension SourceCodeRegexLexer {
 	func regexGenerator(_ pattern: String, options: NSRegularExpression.Options = [], tokenType: SourceCodeTokenType) -> TokenGenerator? {
 		regexGenerator(pattern, options: options, transformer: { range -> Token in
 			SimpleSourceCodeToken(type: tokenType, range: range)
 		})
 	}
-	
+
 	func keywordGenerator(_ words: [String], tokenType: SourceCodeTokenType) -> TokenGenerator {
 		.keywords(KeywordTokenGenerator(keywords: words, tokenTransformer: { range -> Token in
 			SimpleSourceCodeToken(type: tokenType, range: range)
@@ -51,20 +50,20 @@ fileprivate extension SourceCodeRegexLexer {
 	}
 }
 
-fileprivate protocol SourceCodeToken: Token {
+private protocol SourceCodeToken: Token {
 	var type: SourceCodeTokenType { get }
 }
 
-fileprivate struct SimpleSourceCodeToken: SourceCodeToken {
+private struct SimpleSourceCodeToken: SourceCodeToken {
 	let type: SourceCodeTokenType
 	let range: Range<String.Index>
 }
 
-fileprivate extension SourceCodeToken {
+private extension SourceCodeToken {
 	var isEditorPlaceholder: Bool {
 		type == .editorPlaceholder
 	}
-	
+
 	var isPlain: Bool {
 		type == .plain
 	}

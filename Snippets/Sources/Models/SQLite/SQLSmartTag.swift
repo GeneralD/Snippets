@@ -10,11 +10,10 @@ import Foundation
 import GRDB
 
 class SQLSmartTag: FetchableRecord {
-
 	var stid: Int64?
 	var name: String?
 	var query: String?
-	
+
 	required init(row: Row) {
 		stid = row["stid"]
 		name = row["name"]

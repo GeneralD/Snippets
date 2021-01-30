@@ -28,7 +28,7 @@ opt_in_rules:
   - extension_access_modifier
   - fallthrough
   - fatal_error_message
-  - file_header
+#   - file_header
   - file_name
   - first_where
   - flatmap_over_map_reduce
@@ -51,7 +51,7 @@ opt_in_rules:
   - prefer_self_type_over_type_of_self
   - private_action
   - private_outlet
-  - prohibited_interface_builder
+#   - prohibited_interface_builder
   - prohibited_super_call
   - quick_discouraged_call
   - quick_discouraged_focused_test
@@ -63,7 +63,7 @@ opt_in_rules:
   - sorted_first_last
   - sorted_imports
   - static_operator
-  - strong_iboutlet
+#   - strong_iboutlet
   - test_case_accessibility
   - toggle_bool
   - unavailable_function
@@ -81,6 +81,14 @@ identifier_name:
 
 number_separator:
   minimum_length: 5
+
+line_length:
+  warning: 200
+  ignores_comments: true
+  
+function_body_length:
+  warning: 200
+  error: 300
 
 file_name:
   excluded:

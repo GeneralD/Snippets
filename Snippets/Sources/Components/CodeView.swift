@@ -10,22 +10,21 @@ import Sourceful
 
 @IBDesignable
 class CodeView: SyntaxTextView, SyntaxTextViewDelegate {
-
 	private static let sharedTheme = PastelSourceColorTheme()
-	private static let sharedLexer =  DashLexer(baseLexer: SwiftLexer())
-	
+	private static let sharedLexer = DashLexer(baseLexer: SwiftLexer())
+
 	override func awakeFromNib() {
 		delegate = self
 		theme = type(of: self).sharedTheme
 	}
-	
+
 	func lexerForSource(_ source: String) -> Lexer {
 		type(of: self).sharedLexer
 	}
-	
+
 	@IBInspectable
 	var isEditable: Bool {
 		get { contentTextView.isEditable }
 		set { contentTextView.isEditable = newValue }
- 	}
+	}
 }

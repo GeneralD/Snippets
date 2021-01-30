@@ -1,0 +1,5 @@
+--exclude Carthage, Pods
+--swiftversion 5.2
+--indent tab
+--stripunusedargs closure-only
+--disable strongOutlets, trailingCommas

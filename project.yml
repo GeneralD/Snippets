@@ -12,13 +12,16 @@ targets:
     preBuildScripts:
       - name: Generate Resources with R.swift
         script: |
-          "$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/$PROJECT_NAME/R.generated.swift"
+          /usr/local/bin/mint run r.swift generate "$SRCROOT/$PROJECT_NAME/R.generated.swift"
         inputFiles:
           - $TEMP_DIR/rswift-lastrun
         outputFiles:
           - $SRCROOT/$PROJECT_NAME/R.generated.swift
+      - name: Format Codes
+        script: |
+          /usr/local/bin/mint run swiftformat .
       - name: SwiftLint
         script: |
-          /usr/local/bin/mint run swiftlint --config "$SRCROOT/swiftlint.yml"
+          /usr/local/bin/mint run swiftlint --config "$SRCROOT/.swiftlint.yml"
 options:
   postGenCommand: pod install

@@ -7,17 +7,16 @@
 //
 
 import Foundation
-import GRDB
 import Fuse
+import GRDB
 
 class SQLSnippet: FetchableRecord {
-	
 	var sid: Int64?
 	var title: String?
 	var body: String?
 	var syntax: String?
 	var usageCount: Int?
-	
+
 	required init(row: Row) {
 		sid = row["sid"]
 		title = row["title"]

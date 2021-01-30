@@ -6,15 +6,14 @@
 //  Copyright © 2020 ZYXW. All rights reserved.
 //
 
+import CollectionKit
 import Foundation
 import Fuse
 import RxSwift
-import CollectionKit
 
 extension Fuse: ReactiveCompatible {}
 
 public extension Reactive where Base: Fuse {
-	
 	func search(text: String, in aList: [Fuseable], chunkSize: Int = 100) -> Single<[Fuse.FusableSearchResult]> {
 		.create { observer in
 			base.search(text, in: aList, chunkSize: chunkSize) { results in
@@ -23,7 +22,7 @@ public extension Reactive where Base: Fuse {
 			return Disposables.create()
 		}
 	}
-	
+
 	func search<Item>(text: String, in aList: [Item], chunkSize: Int = 100, scoreSort: FuseSortByScore) -> Single<[Item]> where Item: Fuseable {
 		search(text: text, in: aList, chunkSize: chunkSize)
 			.map { $0.sorted(at: \.score, by: scoreSort.func) }
@@ -36,7 +35,7 @@ public enum FuseSortByScore {
 	case asc, desc
 }
 
-fileprivate extension FuseSortByScore {
+private extension FuseSortByScore {
 	var `func`: (Double, Double) -> Bool {
 		switch self {
 		case .asc:

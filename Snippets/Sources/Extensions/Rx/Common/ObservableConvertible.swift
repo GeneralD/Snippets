@@ -11,7 +11,7 @@ import RxSwift
 public extension Optional {
 	func asObservable() -> Observable<Wrapped> {
 		switch self {
-		case .some(let wrapped):
+		case let .some(wrapped):
 			return .just(wrapped)
 		case .none:
 			return .empty()
@@ -22,9 +22,9 @@ public extension Optional {
 public extension Result {
 	func asObservable() -> Observable<Success> {
 		switch self {
-		case .success(let success):
+		case let .success(success):
 			return .just(success)
-		case .failure(let error):
+		case let .failure(error):
 			return .error(error)
 		}
 	}

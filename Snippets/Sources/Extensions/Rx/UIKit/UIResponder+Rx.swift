@@ -6,14 +6,13 @@
 //  Copyright © 2020 ZYXW. All rights reserved.
 //
 
-import UIKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import UIKit
 
 public extension Reactive where Base: UIResponder {
-	
 	var isFirstResponder: Binder<Bool> {
-		.init(self.base) { responder, beFirstResponder in
+		.init(base) { responder, beFirstResponder in
 			if beFirstResponder {
 				responder.becomeFirstResponder()
 			} else {

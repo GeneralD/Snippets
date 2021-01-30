@@ -10,10 +10,9 @@ import Foundation
 import GRDB
 
 class SQLTagsIndex: FetchableRecord {
-
 	var tid: Int64?
 	var sid: Int?
-	
+
 	required init(row: Row) {
 		tid = row["tid"]
 		sid = row["sid"]

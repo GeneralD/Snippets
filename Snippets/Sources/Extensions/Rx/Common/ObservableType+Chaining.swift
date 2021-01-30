@@ -10,18 +10,18 @@ import RxSwift
 
 postfix operator *
 
-public postfix func *<O: ObservableType>(_ o: O) -> ObservableTypeMemberLookupReference<O> {
+public postfix func * <O: ObservableType>(_ o: O) -> ObservableTypeMemberLookupReference<O> {
 	.init(source: o)
 }
 
-public postfix func *<O: ObservableType>(_ o: O) -> ObservableTypeMemberLookupReference<Observable<O.Element.Element>> where O.Element: ObservableConvertibleType {
+public postfix func * <O: ObservableType>(_ o: O) -> ObservableTypeMemberLookupReference<Observable<O.Element.Element>> where O.Element: ObservableConvertibleType {
 	.init(source: o.flatMap { $0 })
 }
 
 @dynamicMemberLookup
 public struct ObservableTypeMemberLookupReference<O: ObservableType> {
 	fileprivate let source: O
-	
+
 	subscript<Property>(dynamicMember keyPath: KeyPath<O.Element, Property>) -> Observable<Property> {
 		source.map { t in t[keyPath: keyPath] }
 	}

@@ -10,6 +10,6 @@ import RxSwift
 
 prefix operator *
 
-public postfix func *<T>(_ value: T) -> Observable<T> {
+public postfix func * <T>(_ value: T) -> Observable<T> {
 	.just(value)
 }
