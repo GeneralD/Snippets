@@ -10,12 +10,15 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_OPTIMIZATION_LEVEL: "-Owholemodule"
     preBuildScripts:
-      - script: |
+      - name: Generate Resources with R.swift
+        script: |
           "$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/$PROJECT_NAME/R.generated.swift"
-        name: Generate Resources with R.swift
         inputFiles:
           - $TEMP_DIR/rswift-lastrun
         outputFiles:
           - $SRCROOT/$PROJECT_NAME/R.generated.swift
+      - name: SwiftLint
+        script: |
+          /usr/local/bin/mint run swiftlint --config "$SRCROOT/swiftlint.yml"
 options:
   postGenCommand: pod install
