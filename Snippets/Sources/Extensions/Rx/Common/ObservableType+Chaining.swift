@@ -10,12 +10,10 @@ import RxSwift
 
 postfix operator *
 
-// swiftlint:disable static_operator
 public postfix func * <O: ObservableType>(_ o: O) -> ObservableTypeMemberLookupReference<O> {
 	.init(source: o)
 }
 
-// swiftlint:disable static_operator
 public postfix func * <O: ObservableType>(_ o: O) -> ObservableTypeMemberLookupReference<Observable<O.Element.Element>> where O.Element: ObservableConvertibleType {
 	.init(source: o.flatMap { $0 })
 }

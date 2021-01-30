@@ -8,7 +8,6 @@
 
 import RxSwift
 
-// swiftlint:disable static_operator
 public postfix func * <T>(_ value: T) -> Observable<T> {
 	.just(value)
 }

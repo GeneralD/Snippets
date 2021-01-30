@@ -4,6 +4,7 @@ excluded:
   - Pods
   - Carthage
   - ./*/R.generated.swift
+  - ./*/Mock.generated.swift
 analyzer_rules:
   - unused_declaration
   - unused_import
@@ -31,8 +32,11 @@ opt_in_rules:
 #   - file_header
   - file_name
   - first_where
+  - force_cast
+  - force_try
   - flatmap_over_map_reduce
   - identical_operands
+#   - indentation_width
   - joined_default_parameter
   - last_where
   - legacy_multiple
@@ -41,6 +45,7 @@ opt_in_rules:
   - lower_acl_than_parent
   - modifier_order
   - nimble_operator
+  - nesting
   - nslocalizedstring_key
   - number_separator
   - object_literal
@@ -62,7 +67,7 @@ opt_in_rules:
   - single_test_class
   - sorted_first_last
   - sorted_imports
-  - static_operator
+#   - static_operator
 #   - strong_iboutlet
   - test_case_accessibility
   - toggle_bool
@@ -95,6 +100,12 @@ file_name:
     - main.swift
     - LinuxMain.swift
     - TestHelpers.swift
+
+nesting:
+  type_level:
+    warning: 1
+  function_level:
+    warning: 1
 
 large_tuple:
   warning: 3
