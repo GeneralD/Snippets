@@ -14,16 +14,16 @@ class CodeView: SyntaxTextView, SyntaxTextViewDelegate {
 	private static let sharedLexer = DashLexer(baseLexer: SwiftLexer())
 
 	override func awakeFromNib() {
+		super.awakeFromNib()
 		delegate = self
-		theme = type(of: self).sharedTheme
+		theme = Self.sharedTheme
 	}
 
 	func lexerForSource(_ source: String) -> Lexer {
-		type(of: self).sharedLexer
+		Self.sharedLexer
 	}
 
-	@IBInspectable
-	var isEditable: Bool {
+	@IBInspectable var isEditable: Bool {
 		get { contentTextView.isEditable }
 		set { contentTextView.isEditable = newValue }
 	}

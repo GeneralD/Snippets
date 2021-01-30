@@ -3,7 +3,7 @@ included:
 excluded:
   - Pods
   - Carthage
-  - Snippets/R.generated.swift
+  - ./*/R.generated.swift
 analyzer_rules:
   - unused_declaration
   - unused_import
@@ -95,4 +95,7 @@ file_name:
     - main.swift
     - LinuxMain.swift
     - TestHelpers.swift
-    - shim.swift
+
+large_tuple:
+  warning: 3
+  error: 4

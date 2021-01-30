@@ -27,28 +27,24 @@ class EdgeInsetLabel: UILabel {
 }
 
 extension EdgeInsetLabel {
-	@IBInspectable
-	var leftTextInset: CGFloat {
-		set { textInsets.left = newValue }
+	@IBInspectable var leftTextInset: CGFloat {
 		get { textInsets.left }
+		set { textInsets.left = newValue }
 	}
 
-	@IBInspectable
-	var rightTextInset: CGFloat {
-		set { textInsets.right = newValue }
+	@IBInspectable var rightTextInset: CGFloat {
 		get { textInsets.right }
+		set { textInsets.right = newValue }
 	}
 
-	@IBInspectable
-	var topTextInset: CGFloat {
-		set { textInsets.top = newValue }
+	@IBInspectable var topTextInset: CGFloat {
 		get { textInsets.top }
+		set { textInsets.top = newValue }
 	}
 
-	@IBInspectable
-	var bottomTextInset: CGFloat {
-		set { textInsets.bottom = newValue }
+	@IBInspectable var bottomTextInset: CGFloat {
 		get { textInsets.bottom }
+		set { textInsets.bottom = newValue }
 	}
 }
 

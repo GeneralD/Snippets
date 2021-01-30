@@ -19,7 +19,7 @@ class DashLexer: SourceCodeRegexLexer {
 	func generators(source: String) -> [TokenGenerator] {
 		let delimiter = "__"
 		let dashGenerators = [
-			regexGenerator("\(delimiter)[^\(delimiter)|\\n]*\(delimiter)", tokenType: .editorPlaceholder),
+			regexGenerator("\(delimiter)[^\(delimiter)|\\n]*\(delimiter)", tokenType: .editorPlaceholder)
 			//			keywordGenerator(["@clipboard", "@cursor", "@time", "@date"], tokenType: .editorPlaceholder)
 		].compactMap { $0 }
 		let baseGenerators = baseLexer.generators(source: source)
