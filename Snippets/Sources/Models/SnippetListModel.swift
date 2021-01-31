@@ -10,6 +10,5 @@ import Foundation
 import RxCocoa
 
 struct SnippetListModel {
-	typealias Property = ControlProperty<URL?>
-	var documentUrl: Property
+	var documentUrl: ControlProperty<URL?>
 }
