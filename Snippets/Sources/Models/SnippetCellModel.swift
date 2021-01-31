@@ -8,11 +8,6 @@
 
 import Foundation
 
-/// @mockable
-protocol SnippetCellModelProtocol {
-	var snippet: SQLSnippet { get }
-}
-
-struct SnippetCellModel: SnippetCellModelProtocol {
+struct SnippetCellModel {
 	let snippet: SQLSnippet
 }
