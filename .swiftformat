@@ -1,4 +1,4 @@
---exclude Carthage, Pods
+--exclude Pods, Carthage, **/*.generated.swift
 --swiftversion 5.2
 --indent tab
 --stripunusedargs closure-only

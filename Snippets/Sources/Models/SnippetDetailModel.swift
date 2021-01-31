@@ -8,7 +8,13 @@
 
 import Foundation
 
-struct SnippetDetailModel {
+/// @mockable
+protocol SnippetDetailModelProtocol {
+	var snippet: SQLSnippet { get }
+	var documentUrl: URL { get }
+}
+
+struct SnippetDetailModel: SnippetDetailModelProtocol {
 	let snippet: SQLSnippet
 	let documentUrl: URL
 }

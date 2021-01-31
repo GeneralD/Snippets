@@ -8,6 +8,9 @@ targets:
       - path: Snippets/R.generated.swift
         optional: true
         type: file
+      - path: Snippets/Mock.generated.swift
+        optional: true
+        type: file
     settings:
       base:
         INFOPLIST_FILE: Snippets/Info.plist
@@ -19,16 +22,22 @@ targets:
     preBuildScripts:
       - name: Generate Resources with R.swift
         script: |
-          /usr/local/bin/mint run r.swift generate "$SRCROOT/$PROJECT_NAME/R.generated.swift"
+          xcrun --sdk macosx mint run r.swift generate "$SRCROOT/$PROJECT_NAME/R.generated.swift"
         inputFiles:
           - $TEMP_DIR/rswift-lastrun
         outputFiles:
           - $SRCROOT/$PROJECT_NAME/R.generated.swift
+      - name: Generate Mock with Mockolo
+        script: |
+          rm -f $SRCROOT/$PROJECT_NAME/Mock.generated.swift
+          xcrun --sdk macosx mint run mockolo --sourcedirs $SRCROOT/$PROJECT_NAME --destination $SRCROOT/$PROJECT_NAME/Mock.generated.swift --mock-final
+        outputFiles:
+          - $SRCROOT/$PROJECT_NAME/Mock.generated.swift
       - name: Format Codes
         script: |
-          /usr/local/bin/mint run swiftformat .
+          xcrun --sdk macosx mint run swiftformat .
       - name: SwiftLint
         script: |
-          /usr/local/bin/mint run swiftlint --config "$SRCROOT/.swiftlint.yml"
+          xcrun --sdk macosx mint run swiftlint --config "$SRCROOT/.swiftlint.yml"
 options:
   postGenCommand: pod install

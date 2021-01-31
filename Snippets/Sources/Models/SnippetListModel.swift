@@ -8,7 +8,15 @@
 
 import Foundation
 import RxCocoa
+import RxSwift
 
-struct SnippetListModel {
-	let documentUrl: ControlProperty<URL?>
+/// @mockable(typealias: Property = BehaviorSubject<URL?>)
+protocol SnippetListModelProtocol {
+	associatedtype Property: ObserverType, ObservableType where Property.Element == URL?
+	var documentUrl: Property { get }
+}
+
+struct SnippetListModel: SnippetListModelProtocol {
+	typealias Property = ControlProperty<URL?>
+	var documentUrl: Property
 }
