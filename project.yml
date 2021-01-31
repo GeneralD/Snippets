@@ -3,9 +3,16 @@ targets:
   Snippets:
     type: application
     platform: iOS
-    sources: Snippets
+    sources:
+      - Snippets
+      - path: Snippets/R.generated.swift
+        optional: true
+        type: file
     settings:
       base:
+        INFOPLIST_FILE: Snippets/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Snippets/Snippets.entitlements
+        DEVELOPMENT_LANGUAGE: en
         PRODUCT_BUNDLE_IDENTIFIER: com.zyxw.Snippets
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_OPTIMIZATION_LEVEL: "-Owholemodule"
