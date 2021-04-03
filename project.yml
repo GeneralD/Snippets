@@ -42,6 +42,10 @@ targets:
           xcrun --sdk macosx mint run swiftlint --config "$SRCROOT/.swiftlint.yml"
     dependencies:
       - target: RxPropertyWrapper
+      - target: RxPropertyChaining
+  RxPropertyChaining:
+    templates: 
+      - EmbeddedFramework
   RxPropertyWrapper:
     templates: 
       - EmbeddedFramework

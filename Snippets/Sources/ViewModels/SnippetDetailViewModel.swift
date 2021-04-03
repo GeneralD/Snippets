@@ -8,6 +8,7 @@
 
 import Foundation
 import RxBinding
+import RxPropertyChaining
 import RxPropertyWrapper
 import RxRelay
 import RxSwift

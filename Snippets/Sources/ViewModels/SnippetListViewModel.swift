@@ -12,6 +12,7 @@ import Fuse
 import RxDocumentPicker
 import RxGRDB
 import RxOptional
+import RxPropertyChaining
 import RxPropertyWrapper
 import RxRelay
 import RxSwift

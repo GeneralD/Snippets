@@ -43,6 +43,13 @@ target 'Snippets' do
 	pod 'CollectionKit-Swift', :git => 'git@github.com:GeneralD/CollectionKit.git'
 end
 
+target 'RxPropertyChaining' do
+	use_frameworks!
+	inhibit_all_warnings!
+	
+	pod 'RxSwift', '~> 6'
+end
+
 target 'RxPropertyWrapper' do
 	use_frameworks!
 	inhibit_all_warnings!
