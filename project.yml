@@ -58,5 +58,5 @@ targetTemplates:
     sources:
       - path: ${target_name}
     settings:
-      INFOPLIST_FILE: ${target_name}/${target_name}-Info.plist
+      INFOPLIST_FILE: ${target_name}/Info.plist
 
