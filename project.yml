@@ -1,4 +1,5 @@
 name: Snippets
+
 targets:
   Snippets:
     type: application
@@ -39,5 +40,23 @@ targets:
       - name: SwiftLint
         script: |
           xcrun --sdk macosx mint run swiftlint --config "$SRCROOT/.swiftlint.yml"
+    dependencies:
+      - target: RxPropertyWrapper
+  RxPropertyWrapper:
+    templates: 
+      - EmbeddedFramework
+
 options:
+  xcodeVersion: "12.4"
+  bundleIdPrefix: com.zyxw
   postGenCommand: pod install
+
+targetTemplates:
+  EmbeddedFramework:
+    platform: iOS
+    type: framework
+    sources:
+      - path: ${target_name}
+    settings:
+      INFOPLIST_FILE: ${target_name}/${target_name}-Info.plist
+

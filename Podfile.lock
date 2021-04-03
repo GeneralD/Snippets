@@ -83,6 +83,7 @@ DEPENDENCIES:
   - RxDocumentPicker
   - RxGRDB
   - RxOptional
+  - RxRelay
   - RxSwift (~> 6)
   - RxSwiftExt
   - RxViewController
@@ -154,6 +155,6 @@ SPEC CHECKSUMS:
   Sourceful: f514447f2ee886f238face3ce8e8b5648c0dc365
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: c50a6fcd6e64ecd1f489a0394b7a8b7521cae783
+PODFILE CHECKSUM: 57ccdf1870345cc757c40a8730a151d3343fc840
 
 COCOAPODS: 1.10.1

@@ -18,6 +18,8 @@ extension BehaviorRelay: AnyObserverConvertible {}
 
 extension PublishRelay: AnyObserverConvertible {}
 
+extension ReplayRelay: AnyObserverConvertible {}
+
 public extension AnyObserverConvertible {
 	func asObserver() -> AnyObserver<Element> {
 		.init { event in

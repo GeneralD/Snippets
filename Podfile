@@ -41,7 +41,14 @@ target 'Snippets' do
 	pod 'Runes'
 	pod 'Curry'
 	pod 'CollectionKit-Swift', :git => 'git@github.com:GeneralD/CollectionKit.git'
+end
+
+target 'RxPropertyWrapper' do
+	use_frameworks!
+	inhibit_all_warnings!
 	
+	pod 'RxSwift', '~> 6'
+	pod 'RxRelay'
 end
 
 post_install do |installer|
