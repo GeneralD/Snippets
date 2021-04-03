@@ -7,6 +7,7 @@
 //
 
 import EmptyDataSet_Swift
+import Entity
 import Foundation
 import Fuse
 import RxDocumentPicker

@@ -9,22 +9,22 @@
 import Foundation
 import GRDB
 
-class SQLTagsIndex: FetchableRecord {
-	var tid: Int64?
-	var sid: Int?
+public class SQLTagsIndex: FetchableRecord {
+	public var tid: Int64?
+	public var sid: Int?
 
-	required init(row: Row) {
+	public required init(row: Row) {
 		tid = row["tid"]
 		sid = row["sid"]
 	}
 }
 
 extension SQLTagsIndex: TableRecord {
-	static var databaseTableName: String { "tagsIndex" }
+	public static var databaseTableName: String { "tagsIndex" }
 }
 
 extension SQLTagsIndex: PersistableRecord {
-	func encode(to container: inout PersistenceContainer) {
+	public func encode(to container: inout PersistenceContainer) {
 		container["tid"] = tid
 		container["sid"] = sid
 	}

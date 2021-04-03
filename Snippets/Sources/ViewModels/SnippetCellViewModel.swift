@@ -6,6 +6,7 @@
 //  Copyright © 2020 ZYXW. All rights reserved.
 //
 
+import Entity
 import Foundation
 import RxBinding
 import RxOptional
