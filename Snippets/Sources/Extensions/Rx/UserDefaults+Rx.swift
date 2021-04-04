@@ -74,7 +74,7 @@ public extension ReactiveUserDefaultsLoopup where T: AnyObject {
 			defaults.set(value, forKey: key)
 		}
 
-		return ControlProperty(values: source, valueSink: binder)
+		return .init(values: source, valueSink: binder)
 	}
 }
 
