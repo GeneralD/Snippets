@@ -27,14 +27,4 @@ public extension AnyObserverConvertible {
 			accept(element)
 		}
 	}
-
-	func callAsFunction(_ element: Element) {
-		accept(element)
-	}
-}
-
-public extension AnyObserverConvertible where Element == () {
-	func callAsFunction() {
-		accept(())
-	}
 }

@@ -1,4 +1,10 @@
-import Foundation
+//
+//  RxTrigger.swift
+//  RxPropertyWrapper
+//
+//  Created by Yumenosuke Koukata on 2021/04/04.
+//
+
 import RxRelay
 import RxSwift
 
