@@ -1,10 +1,7 @@
-included:
-  - Snippets
 excluded:
   - Pods
   - Carthage
-  - ./*/R.generated.swift
-  - ./*/Mock.generated.swift
+  - ./**/*.generated.swift
 analyzer_rules:
   - unused_declaration
   - unused_import
