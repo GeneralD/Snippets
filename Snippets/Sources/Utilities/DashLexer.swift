@@ -11,16 +11,20 @@ import Sourceful
 
 class DashLexer: SourceCodeRegexLexer {
 	private let baseLexer: RegexLexer
+	private let delimiter: String
+	private let enableKeywords: Bool
+	private let keywords = ["@clipboard", "@cursor", "@time", "@date"]
 
-	init(baseLexer: RegexLexer) {
+	init(baseLexer: RegexLexer, delimiter: String = "__", enableKeywords: Bool = false) {
 		self.baseLexer = baseLexer
+		self.delimiter = delimiter
+		self.enableKeywords = enableKeywords
 	}
 
 	func generators(source: String) -> [TokenGenerator] {
-		let delimiter = "__"
 		let dashGenerators = [
-			regexGenerator("\(delimiter)[^\(delimiter)|\\n]*\(delimiter)", tokenType: .editorPlaceholder)
-			//			keywordGenerator(["@clipboard", "@cursor", "@time", "@date"], tokenType: .editorPlaceholder)
+			regexGenerator("\(delimiter)[^\(delimiter)|\\n]*\(delimiter)", tokenType: .editorPlaceholder),
+			keywordGenerator(enableKeywords ? keywords : [], tokenType: .editorPlaceholder)
 		].compactMap { $0 }
 		let baseGenerators = baseLexer.generators(source: source)
 		return baseGenerators + dashGenerators
