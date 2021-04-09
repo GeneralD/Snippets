@@ -14,7 +14,7 @@ public struct RxMemory<Value> {
 	private let property: Observable<Value>
 
 	public init(buffer: Int? = nil) {
-		relay =  buffer.map(ReplayRelay.create(bufferSize: )) ?? .createUnbound()
+		relay = buffer.map(ReplayRelay.create(bufferSize:)) ?? .createUnbound()
 		property = relay.asObservable()
 	}
 
