@@ -1,0 +1,38 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import RxPropertyWrapper
+import RxRelay
+import RxSwift
+
+protocol {{ module_info.name }}ViewModelInput {
+	var buttonTapped: AnyObserver<Void> { get }
+}
+
+protocol {{ module_info.name }}ViewModelOutput {
+	var buttonTitle: Observable<String?> { get }
+}
+
+final class {{ module_info.name }}ViewModel: {{ module_info.name }}ViewModelInput, {{ module_info.name }}ViewModelOutput {
+	// MARK: Inputs
+	@RxTrigger var buttonTapped: AnyObserver<Void>
+
+	// MARK: Outputs
+	@RxProperty(value: nil) var buttonTitle: Observable<String?>
+
+	private let disposeBag = DisposeBag()
+
+	init(model: {{ module_info.name }}Model) {
+		disposeBag.insert {
+			$buttonTapped
+				.map { model.tappedMessage }
+				.bind(to: $buttonTitle)
+		}
+	}
+}

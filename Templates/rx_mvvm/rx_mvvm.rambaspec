@@ -1,0 +1,26 @@
+# Template information section
+name: "rx_mvvm"
+summary: "MVVM module template."
+author: "Yumenosuke Kokata"
+version: "1.0"
+license: "MIT"
+
+# The declarations for code files
+code_files:
+
+# Model layer
+- {name: Models/Model.swift, path: Code/Model/Model.swift.liquid}
+
+# View layer
+- {name: Views/ViewController.swift, path: Code/ViewController/ViewController.swift.liquid}
+- {name: Views/ViewController.storyboard, path: Code/ViewController/ViewController.storyboard.liquid}
+
+# ViewModel layer
+- {name: ViewModels/ViewModel.swift, path: Code/ViewModel/ViewModel.swift.liquid}
+
+# Template dependencies
+dependencies:
+- InstantiateStandard
+- RxBinding
+- RxCocoa
+- RxSwift

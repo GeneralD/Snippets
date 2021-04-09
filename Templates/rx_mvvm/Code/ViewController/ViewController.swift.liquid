@@ -1,0 +1,43 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Instantiate
+import InstantiateStandard
+import RxBinding
+import RxCocoa
+import RxSwift
+import UIKit
+
+class {{ module_info.name }}ViewController: UIViewController, StoryboardInstantiatable {
+	private typealias Input = {{ module_info.name }}ViewModelInput
+	private typealias Output = {{ module_info.name }}ViewModelOutput
+
+	@IBOutlet private weak var button: UIButton!
+
+	private var input: Input!
+	private var output: Output!
+	private let disposeBag = DisposeBag()
+
+	func inject(_ dependency: {{ module_info.name }}Model) {
+		let viewModel = {{ module_info.name }}ViewModel(model: dependency)
+		input = viewModel
+		output = viewModel
+	}
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		// Bind inputs
+		disposeBag ~
+			button.rx.tap ~> input.buttonTapped
+
+		// Bind outputs
+		disposeBag ~
+			output.buttonTitle ~> button.rx.title(for: .normal)
+	}
+}
