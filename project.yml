@@ -41,9 +41,14 @@ targets:
         script: |
           xcrun --sdk macosx mint run swiftlint --config "$SRCROOT/.swiftlint.yml"
     dependencies:
+      - target: DashSourceful
       - target: Entity
       - target: RxPropertyWrapper
       - target: RxPropertyChaining
+  DashSourceful:
+    templates: 
+      - EmbeddedFramework
+      - EmbeddedRSwift
   Entity:
     templates: 
       - EmbeddedFramework
@@ -67,4 +72,16 @@ targetTemplates:
       - path: ${target_name}
     settings:
       INFOPLIST_FILE: ${target_name}/Info.plist
-
+  EmbeddedRSwift:
+    sources:
+      - path: ${target_name}/${target_name}.R.generated.swift
+        optional: true
+        type: file
+    preBuildScripts:
+      - name: Generate Resources with R.swift
+        script: |
+          xcrun --sdk macosx mint run r.swift generate "$PRODUCT_NAME/$PRODUCT_NAME.R.generated.swift"
+        inputFiles:
+          - $TEMP_DIR/rswift-lastrun
+        outputFiles:
+          - "$PRODUCT_NAME/$(PRODUCT_NAME).R.generated.swift"

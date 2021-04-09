@@ -43,6 +43,14 @@ target 'Snippets' do
 	pod 'CollectionKit-Swift', :git => 'git@github.com:GeneralD/CollectionKit.git'
 end
 
+target 'DashSourceful' do
+	use_frameworks!
+	inhibit_all_warnings!
+	
+	pod 'Sourceful'
+	pod 'R.swift.Library'
+end
+
 target 'Entity' do
 	use_frameworks!
 	inhibit_all_warnings!
