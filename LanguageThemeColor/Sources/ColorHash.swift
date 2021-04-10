@@ -9,17 +9,19 @@
 import Foundation
 import UIKit
 
-public struct ColorHash {
-	public let seed: String
+struct ColorHash {
+	let seed: String
 	private let brightness: [CGFloat] = [0.35, 0.5, 0.65]
 	private let saturation: [CGFloat] = [0.35, 0.5, 0.65]
 
-	public var color: UIColor {
-		let (h, s, b) = HSB
-		return UIColor(hue: h, saturation: s, brightness: b, alpha: 1.0)
+	var color: UIColor {
+		let (h, s, b) = hsb
+		return .init(hue: h, saturation: s, brightness: b, alpha: 1.0)
 	}
+}
 
-	private var HSB: (CGFloat, CGFloat, CGFloat) {
+private extension ColorHash {
+	var hsb: (CGFloat, CGFloat, CGFloat) {
 		let full: CGFloat = 360
 		let hash = bkdrHash
 
@@ -29,7 +31,7 @@ public struct ColorHash {
 		return (h, s, b)
 	}
 
-	private var bkdrHash: CGFloat {
+	var bkdrHash: CGFloat {
 		let seed1: CGFloat = 131
 		let seed2: CGFloat = 137
 		let maxSafeInteger = 9_007_199_254_740_991 / seed2

@@ -8,6 +8,7 @@
 
 import Entity
 import Foundation
+import LanguageThemeColor
 import RxBinding
 import RxOptional
 import RxPropertyChaining
@@ -50,7 +51,7 @@ final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewMode
 
 		let color = snippet*.syntax
 			.replaceNilWith("")
-			.compactMap(UIColor.themeColor(for:))*.comfortable
+			.compactMap(UIColor.themeColor(for:))*.brightnessAdjusted
 			.share()
 
 		disposeBag.insert {
@@ -71,9 +72,7 @@ final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewMode
 
 			color ~> $languageBackgroundColor
 
-			color
-				.map { $0.adjustedAlpha(amount: -0.7) }
-				~> $contentViewBackgroundColor
+			color*.alphaAdjusted ~> $contentViewBackgroundColor
 		}
 	}
 }

@@ -16,13 +16,6 @@ target 'Snippets' do
 	pod 'RxDocumentPicker'
 	pod 'RxSwiftExt'
 	
-	# Encode/Decode
-	pod 'DynamicJSON'
-	
-	# UIColor
-	pod 'Hex'
-	pod 'DynamicColor'
-	
 	# UI Parts
 	pod 'Sourceful'
 	pod 'TagListView'
@@ -56,6 +49,16 @@ target 'Entity' do
 	inhibit_all_warnings!
 	
 	pod 'GRDB.swift'
+end
+
+target 'LanguageThemeColor' do
+	use_frameworks!
+	inhibit_all_warnings!
+	
+	pod 'DynamicColor'
+	pod 'DynamicJSON'
+	pod 'Hex'
+	pod 'R.swift.Library'
 end
 
 target 'RxPropertyChaining' do

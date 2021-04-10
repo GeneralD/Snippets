@@ -43,6 +43,7 @@ targets:
     dependencies:
       - target: DashSourceful
       - target: Entity
+      - target: LanguageThemeColor
       - target: RxPropertyWrapper
       - target: RxPropertyChaining
   DashSourceful:
@@ -52,6 +53,10 @@ targets:
   Entity:
     templates: 
       - EmbeddedFramework
+  LanguageThemeColor:
+    templates:
+      - EmbeddedFramework
+      - EmbeddedRSwift
   RxPropertyChaining:
     templates: 
       - EmbeddedFramework
