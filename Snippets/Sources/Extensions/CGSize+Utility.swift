@@ -1,5 +1,5 @@
 //
-//  CGSizeExtension.swift
+//  CGSize+Utility.swift
 //  Snippets
 //
 //  Created by Yumenosuke Koukata on 2020/11/29.

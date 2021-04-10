@@ -1,5 +1,5 @@
 //
-//  UIColorExtension.swift
+//  UIColor+LanguageTheme.swift
 //  Snippets
 //
 //  Created by Yumenosuke Koukata on 2020/05/07.

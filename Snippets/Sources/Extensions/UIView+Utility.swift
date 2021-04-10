@@ -1,5 +1,5 @@
 //
-//  UIViewExtension.swift
+//  UIView+Utility.swift
 //  Snippets
 //
 //  Created by Yumenosuke Koukata on 2020/05/08.
@@ -15,7 +15,8 @@ extension UIView {
 		}
 		set {
 			layer.cornerRadius = newValue
-			clipsToBounds = newValue > 0
+			guard newValue > 0 else { return }
+			clipsToBounds = true
 		}
 	}
 }

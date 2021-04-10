@@ -92,15 +92,15 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.bind(to: $isSearchBarHidden)
 
 			$searchBarText
-				.replaceNilWith(.empty)
-				.filter(.empty)
+				.replaceNilWith("")
+				.filter("")
 				.combineLatest(allItems)*.1
 				.mapMany(SnippetCellModel.init(snippet:))
 				.bind(to: $items)
 
 			$searchBarText
-				.replaceNilWith(.empty)
-				.ignore(.empty)
+				.replaceNilWith("")
+				.ignore("")
 				.debounce(.milliseconds(300), scheduler: MainScheduler.instance)
 				.combineLatest(allItems)
 				.flatMapLatest { Fuse(threshold: 0.3, tokenize: true).rx.search(text: $0.0, in: $0.1, scoreSort: .desc) }

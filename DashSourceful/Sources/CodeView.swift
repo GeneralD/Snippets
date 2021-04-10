@@ -8,7 +8,8 @@
 
 import Sourceful
 
-@IBDesignable public class CodeView: SyntaxTextView, SyntaxTextViewDelegate {
+@IBDesignable
+public class CodeView: SyntaxTextView, SyntaxTextViewDelegate {
 	private static let sharedTheme = PastelSourceColorTheme()
 	private static let sharedLexer = DashLexer(baseLexer: SwiftLexer())
 
