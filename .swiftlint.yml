@@ -97,6 +97,13 @@ file_name:
     - main.swift
     - LinuxMain.swift
     - TestHelpers.swift
+    - ObservableType+Chaining.swift
+    - TagListView+Rx.swift
+    - UIResponder+Rx.swift
+    - UIScrollView+Rx.swift
+    - UIViewController+Rx.swift
+    - UserDefaults+Rx.swift
+  suffix_pattern: "Extensions?|\\+.*"
 
 nesting:
   type_level:
