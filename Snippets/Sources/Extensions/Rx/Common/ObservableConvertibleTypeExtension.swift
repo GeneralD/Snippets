@@ -1,5 +1,5 @@
 //
-//  ObservableTypeExtension.swift
+//  ObservableConvertibleTypeExtension.swift
 //  Snippets
 //
 //  Created by Yumenosuke Koukata on 2020/05/07.
@@ -94,6 +94,10 @@ public extension ObservableConvertibleType where Self.Element: Collection {
 // MARK: MapMany
 
 public extension ObservableConvertibleType where Element: Collection {
+	func mapMany<Result>(_ transform: @escaping (Element.Element) throws -> Result) -> Observable<[Result]> {
+		asObservable().map { try $0.map(transform) }
+	}
+	
 	func compactMapMany<Result>(_ transform: @escaping (Element.Element) throws -> Result?) -> Observable<[Result]> {
 		asObservable().map { try $0.compactMap(transform) }
 	}

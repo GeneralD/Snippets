@@ -28,6 +28,7 @@ public extension Reactive where Base: Fuse {
 			.map { $0.sorted(at: \.score, by: scoreSort.func) }
 			.mapMany(\.index)
 			.mapMany { aList[$0] }
+			.asSingle()
 	}
 }
 
