@@ -103,7 +103,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.ignore("")
 				.debounce(.milliseconds(300), scheduler: MainScheduler.instance)
 				.combineLatest(allItems)
-				.flatMapLatest { Fuse(threshold: 0.3, tokenize: true).rx.search(text: $0.0, in: $0.1, scoreSort: .desc) }
+				.flatMapLatest { text, items in Fuse(threshold: 0.3, tokenize: true).rx.search(text: text, in: items, scoreSort: .desc) }
 				.mapMany(SnippetCellModel.init(snippet:))
 				.bind(to: $items)
 

@@ -97,7 +97,7 @@ public extension ObservableConvertibleType where Element: Collection {
 	func mapMany<Result>(_ transform: @escaping (Element.Element) throws -> Result) -> Observable<[Result]> {
 		asObservable().map { try $0.map(transform) }
 	}
-	
+
 	func compactMapMany<Result>(_ transform: @escaping (Element.Element) throws -> Result?) -> Observable<[Result]> {
 		asObservable().map { try $0.compactMap(transform) }
 	}
