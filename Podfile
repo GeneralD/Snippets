@@ -61,6 +61,14 @@ target 'LanguageThemeColor' do
 	pod 'R.swift.Library'
 end
 
+target 'RxActivityIndicator' do
+	use_frameworks!
+	inhibit_all_warnings!
+	
+	pod 'RxSwift', '~> 6'
+	pod 'RxCocoa'
+end
+
 target 'RxPropertyChaining' do
 	use_frameworks!
 	inhibit_all_warnings!

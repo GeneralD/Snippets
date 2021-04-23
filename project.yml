@@ -44,8 +44,9 @@ targets:
       - target: DashSourceful
       - target: Entity
       - target: LanguageThemeColor
-      - target: RxPropertyWrapper
+      - target: RxActivityIndicator
       - target: RxPropertyChaining
+      - target: RxPropertyWrapper
   DashSourceful:
     templates: 
       - EmbeddedFramework
@@ -57,6 +58,9 @@ targets:
     templates:
       - EmbeddedFramework
       - EmbeddedRSwift
+  RxActivityIndicator:
+    templates:
+      - EmbeddedFramework
   RxPropertyChaining:
     templates: 
       - EmbeddedFramework
