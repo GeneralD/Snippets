@@ -30,8 +30,8 @@ protocol SnippetListViewModelInput {
 }
 
 protocol SnippetListViewModelOutput {
-	var items: Observable<[SnippetCellModel]> { get }
 	var isRefreshing: Observable<Bool> { get }
+	var items: Observable<[SnippetCellModel]> { get }
 	var isSearchBarHidden: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
 	var presentView: Observable<UIViewController?> { get }
@@ -50,8 +50,8 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 
 	// MARK: Outputs
 
-	@RxProperty(value: []) var items: Observable<[SnippetCellModel]>
 	@RxTracking var isRefreshing: Observable<Bool>
+	@RxProperty(value: []) var items: Observable<[SnippetCellModel]>
 	@RxProperty(value: true) var isSearchBarHidden: Observable<Bool>
 	@RxProperty(value: .square(1)) var itemSize: Observable<CGSize>
 	@RxProperty(value: nil) var presentView: Observable<UIViewController?>
