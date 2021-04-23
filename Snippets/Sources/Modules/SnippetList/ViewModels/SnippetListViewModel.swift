@@ -10,6 +10,7 @@ import EmptyDataSet_Swift
 import Entity
 import Foundation
 import Fuse
+import RxActivityIndicator
 import RxDocumentPicker
 import RxGRDB
 import RxOptional
@@ -50,7 +51,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	// MARK: Outputs
 
 	@RxProperty(value: []) var items: Observable<[SnippetCellModel]>
-	@RxProperty(value: false) var isRefreshing: Observable<Bool>
+	@RxTracking var isRefreshing: Observable<Bool>
 	@RxProperty(value: true) var isSearchBarHidden: Observable<Bool>
 	@RxProperty(value: .square(1)) var itemSize: Observable<CGSize>
 	@RxProperty(value: nil) var presentView: Observable<UIViewController?>
@@ -76,7 +77,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 		disposeBag.insert {
 			loadUrl
 				.filterNil()
-				.concatMap(SQLSnippet.rx.all(url:), errorJustReturn: [])
+				.concatMap(withLock: $isRefreshing, SQLSnippet.rx.all(url:), errorJustReturn: [])
 				.bind(to: allItems)
 
 			$itemSelected*.row
@@ -106,17 +107,6 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.flatMapLatest { text, items in Fuse(threshold: 0.3, tokenize: true).rx.search(text: text, in: items, scoreSort: .desc) }
 				.mapMany(SnippetCellModel.init(snippet:))
 				.bind(to: $items)
-
-			// If failed to pick an URL, hide loading indicator
-			loadUrl
-				.filter(.none)
-				.mapTo(false)
-				.bind(to: $isRefreshing)
-
-			// If items are loaded, hide loading indicator
-			$items
-				.mapTo(false)
-				.bind(to: $isRefreshing)
 
 			picker
 				.ofType(UIViewController.self)
