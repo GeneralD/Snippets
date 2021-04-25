@@ -33,6 +33,7 @@ protocol SnippetListViewModelOutput {
 	var isRefreshing: Observable<Bool> { get }
 	var items: Observable<[SnippetCellModel]> { get }
 	var isSearchBarHidden: Observable<Bool> { get }
+	var isSearchBarFirstResponder: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
 	var presentView: Observable<UIViewController?> { get }
 	var emptyDataSetView: Observable<(EmptyDataSetView) -> Void> { get }
@@ -53,6 +54,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 	@RxTracking var isRefreshing: Observable<Bool>
 	@RxProperty(value: []) var items: Observable<[SnippetCellModel]>
 	@RxProperty(value: true) var isSearchBarHidden: Observable<Bool>
+	@RxProperty(value: false) var isSearchBarFirstResponder: Observable<Bool>
 	@RxProperty(value: .square(1)) var itemSize: Observable<CGSize>
 	@RxProperty(value: nil) var presentView: Observable<UIViewController?>
 	@RxProperty(value: { _ in }) var emptyDataSetView: Observable<(EmptyDataSetView) -> Void>
@@ -91,6 +93,10 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.map { $0 > 0 }
 				.combineLatest(allItems*.isEmpty, resultSelector: !(||))
 				.bind(to: $isSearchBarHidden)
+
+			$isSearchBarHidden
+				.not()
+				.bind(to: $isSearchBarFirstResponder)
 
 			$searchBarText
 				.replaceNilWith("")

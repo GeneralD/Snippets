@@ -61,7 +61,7 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 			output.items ~> collectionView.rx.cells(SnippetCellView.self) ~
 			output.isRefreshing ~> refreshControl.rx.isRefreshing ~
 			output.isSearchBarHidden ~> searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive ~
-			output.isSearchBarHidden.not() ~> searchBar.rx.isFirstResponder ~
+			output.isSearchBarFirstResponder ~> searchBar.rx.isFirstResponder ~
 			output.itemSize ~> layout.rx.itemSize ~
 			output.presentView ~> rx.present ~
 			output.emptyDataSetView ~> collectionView.rx.emptyDataSetView
