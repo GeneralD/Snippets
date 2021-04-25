@@ -13,7 +13,6 @@ import RxBinding
 import RxCells
 import RxCocoa
 import RxSwift
-import RxSwiftExt
 import RxViewController
 import UIKit
 
