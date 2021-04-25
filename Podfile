@@ -32,7 +32,6 @@ target 'Snippets' do
 	
 	# Functional
 	pod 'Runes'
-	pod 'Curry'
 	pod 'CollectionKit-Swift', :git => 'git@github.com:GeneralD/CollectionKit.git'
 end
 
