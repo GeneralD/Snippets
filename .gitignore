@@ -230,3 +230,6 @@ iOSInjectionProject/
 
 # Manually added
 *.generated.swift
+
+# Generamba temporary directory
+Templates/

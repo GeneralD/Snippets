@@ -20,4 +20,4 @@ podfile_path: Podfile
 
 ### Templates
 templates:
-- {name: rx_mvvm}
+- {name: rx_mvvm, local: 'Local Templates/rx_mvvm'}
