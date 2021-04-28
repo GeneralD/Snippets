@@ -6,6 +6,7 @@
 //  Copyright © 2020 ZYXW. All rights reserved.
 //
 
+import CollectionKit
 import DashSourceful
 import Instantiate
 import InstantiateStandard
@@ -45,6 +46,7 @@ class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 		disposeBag ~
 			output.title ~> titleLabel.rx.text ~
 			output.code.filterNil() ~> codeView.rx.text ~
-			output.tags ~> tagsView.rx.tags
+			output.tags ~> tagsView.rx.tags ~
+			output.tagColors ~> tagsView.rx.tagBackgroundColors
 	}
 }

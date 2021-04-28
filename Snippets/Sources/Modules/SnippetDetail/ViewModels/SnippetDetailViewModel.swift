@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LanguageThemeColor
 import RxBinding
 import RxPropertyChaining
 import RxPropertyWrapper
@@ -21,6 +22,7 @@ protocol SnippetDetailViewModelOutput {
 	var title: Observable<String?> { get }
 	var code: Observable<String?> { get }
 	var tags: Observable<[String]> { get }
+	var tagColors: Observable<[UIColor]> { get }
 }
 
 final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {
@@ -33,6 +35,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 	@RxProperty(value: nil) var title: Observable<String?>
 	@RxProperty(value: nil) var code: Observable<String?>
 	@RxProperty(value: []) var tags: Observable<[String]>
+	@RxProperty(value: []) var tagColors: Observable<[UIColor]>
 
 	private let disposeBag = DisposeBag()
 
@@ -51,6 +54,11 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 			$copyButtonTap
 				.withLatestFrom($code)
 				~> UIPasteboard.general.rx.string
+
+			$tags
+				.delay(.nanoseconds(0), scheduler: MainScheduler.instance) // wait a frame
+				.mapMany(UIColor.themeColor(for:))
+				~> $tagColors
 		}
 	}
 }
