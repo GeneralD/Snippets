@@ -16,6 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7n-KR-aKd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3k4-pd-o4e">
                                 <rect key="frame" x="8" y="52" width="375" height="20.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -24,7 +28,6 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVH-g1-ZRd" customClass="TagListView" customModule="TagListView">
                                 <rect key="frame" x="8" y="80.666666666666671" width="375" height="16"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="has-K4-z5J"/>
                                 </constraints>
@@ -53,20 +56,25 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3k4-pd-o4e" firstAttribute="leading" secondItem="mAO-Jt-Sjb" secondAttribute="leading" constant="8" id="6g4-xJ-c4w"/>
+                            <constraint firstItem="m7n-KR-aKd" firstAttribute="top" secondItem="jvd-LT-PrR" secondAttribute="top" id="96b-Fn-T6t"/>
                             <constraint firstItem="3k4-pd-o4e" firstAttribute="trailing" secondItem="mAO-Jt-Sjb" secondAttribute="trailing" constant="8" id="DPs-fy-SNA"/>
                             <constraint firstItem="KVH-g1-ZRd" firstAttribute="leading" secondItem="mAO-Jt-Sjb" secondAttribute="leading" constant="8" id="Kus-kr-uA5"/>
+                            <constraint firstItem="m7n-KR-aKd" firstAttribute="leading" secondItem="mAO-Jt-Sjb" secondAttribute="leading" id="QOv-hB-jaz"/>
+                            <constraint firstItem="mAO-Jt-Sjb" firstAttribute="trailing" secondItem="m7n-KR-aKd" secondAttribute="trailing" id="SSH-J7-6Bu"/>
                             <constraint firstItem="KVH-g1-ZRd" firstAttribute="top" secondItem="3k4-pd-o4e" secondAttribute="bottom" constant="8" id="ST8-bk-PVA"/>
                             <constraint firstItem="seL-4s-TDf" firstAttribute="trailing" secondItem="mAO-Jt-Sjb" secondAttribute="trailing" id="VKM-0D-FfH"/>
                             <constraint firstAttribute="bottom" secondItem="t5b-OE-M56" secondAttribute="bottom" constant="16" id="cGE-eA-TJu"/>
                             <constraint firstItem="seL-4s-TDf" firstAttribute="leading" secondItem="mAO-Jt-Sjb" secondAttribute="leading" id="gXg-TP-RFJ"/>
                             <constraint firstItem="seL-4s-TDf" firstAttribute="top" secondItem="KVH-g1-ZRd" secondAttribute="bottom" constant="8" id="luN-L7-7Cu"/>
                             <constraint firstItem="t5b-OE-M56" firstAttribute="centerX" secondItem="jvd-LT-PrR" secondAttribute="centerX" id="qpD-mP-rzY"/>
+                            <constraint firstAttribute="bottom" secondItem="m7n-KR-aKd" secondAttribute="bottom" id="ryU-e5-PP9"/>
                             <constraint firstItem="t5b-OE-M56" firstAttribute="top" secondItem="seL-4s-TDf" secondAttribute="bottom" constant="8" id="tof-IZ-Rcl"/>
                             <constraint firstItem="3k4-pd-o4e" firstAttribute="top" secondItem="mAO-Jt-Sjb" secondAttribute="top" constant="8" id="w1L-a0-9ca"/>
                             <constraint firstItem="KVH-g1-ZRd" firstAttribute="trailing" secondItem="mAO-Jt-Sjb" secondAttribute="trailing" constant="8" id="yYe-h3-209"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="m7n-KR-aKd" id="GED-e8-GZJ"/>
                         <outlet property="codeView" destination="seL-4s-TDf" id="iFX-m3-ykE"/>
                         <outlet property="copyButton" destination="t5b-OE-M56" id="j9O-LV-T23"/>
                         <outlet property="tagsView" destination="KVH-g1-ZRd" id="xn7-2h-m79"/>
@@ -75,9 +83,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szq-8o-r1K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005.6" y="1534.729064039409"/>
+            <point key="canvasLocation" x="1005.6" y="1406.8965517241379"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="KVH-g1-ZRd">
+            <size key="intrinsicContentSize" width="375" height="16"/>
+        </designable>
+    </designables>
     <resources>
         <image name="doc.on.clipboard.fill" catalog="system" width="116" height="128"/>
         <systemColor name="linkColor">

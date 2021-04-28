@@ -20,6 +20,7 @@ class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 	private typealias Input = SnippetDetailViewModelInput
 	private typealias Output = SnippetDetailViewModelOutput
 
+	@IBOutlet private weak var backgroundView: UIView!
 	@IBOutlet private weak var titleLabel: UILabel!
 	@IBOutlet private weak var tagsView: TagListView!
 	@IBOutlet private weak var codeView: CodeView!
@@ -47,6 +48,7 @@ class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 			output.title ~> titleLabel.rx.text ~
 			output.code.filterNil() ~> codeView.rx.text ~
 			output.tags ~> tagsView.rx.tags ~
-			output.tagColors ~> tagsView.rx.tagBackgroundColors
+			output.tagColors ~> tagsView.rx.tagBackgroundColors ~
+			output.viewColor ~> backgroundView.rx.backgroundColor
 	}
 }

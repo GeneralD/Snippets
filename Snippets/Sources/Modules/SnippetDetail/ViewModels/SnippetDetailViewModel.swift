@@ -9,6 +9,7 @@
 import Foundation
 import LanguageThemeColor
 import RxBinding
+import RxOptional
 import RxPropertyChaining
 import RxPropertyWrapper
 import RxRelay
@@ -23,6 +24,7 @@ protocol SnippetDetailViewModelOutput {
 	var code: Observable<String?> { get }
 	var tags: Observable<[String]> { get }
 	var tagColors: Observable<[UIColor]> { get }
+	var viewColor: Observable<UIColor?> { get }
 }
 
 final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {
@@ -36,6 +38,7 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 	@RxProperty(value: nil) var code: Observable<String?>
 	@RxProperty(value: []) var tags: Observable<[String]>
 	@RxProperty(value: []) var tagColors: Observable<[UIColor]>
+	@RxProperty(value: nil) var viewColor: Observable<UIColor?>
 
 	private let disposeBag = DisposeBag()
 
@@ -46,6 +49,11 @@ final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailVi
 			snippet*.title ~> $title
 
 			snippet*.body ~> $code
+
+			snippet*.syntax
+				.replaceNilWith("")
+				.compactMap(UIColor.themeColor(for:))*.alphaAdjusted
+				~> $viewColor
 
 			snippet
 				.flatMap { $0.rx.tags(url: model.documentUrl) }
