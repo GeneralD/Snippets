@@ -233,3 +233,7 @@ iOSInjectionProject/
 
 # Generamba temporary directory
 Templates/
+
+# Bundler
+.bundle/config
+vendor/bundle/
