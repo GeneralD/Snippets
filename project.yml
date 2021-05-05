@@ -95,3 +95,15 @@ targetTemplates:
           - $TEMP_DIR/rswift-lastrun
         outputFiles:
           - "$PRODUCT_NAME/$(PRODUCT_NAME).R.generated.swift"
+  EmbeddedMock:
+    sources:
+      - path: ${target_name}/${target_name}.Mock.generated.swift
+        optional: true
+        type: file
+    preBuildScripts:
+      - name: Generate Mock with Mockolo
+        script: |
+          rm -f $PRODUCT_NAME/$PRODUCT_NAME.Mock.generated.swift
+          xcrun --sdk macosx mint run mockolo --sourcedirs $PRODUCT_NAME --destination $PRODUCT_NAME/$PRODUCT_NAME.Mock.generated.swift --mock-final
+        outputFiles:
+          - "$PRODUCT_NAME/($PRODUCT_NAME).Mock.generated.swift"
