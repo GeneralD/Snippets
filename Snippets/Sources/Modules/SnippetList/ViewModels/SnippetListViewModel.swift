@@ -31,7 +31,6 @@ protocol SnippetListViewModelInput {
 
 protocol SnippetListViewModelOutput {
 	var isRefreshing: Observable<Bool> { get }
-	var items: Observable<[SnippetCellModel]> { get }
 	var cellModelItems: Observable<[SnippetCellViewModelInterface]> { get }
 	var isSearchBarHidden: Observable<Bool> { get }
 	var isSearchBarFirstResponder: Observable<Bool> { get }
@@ -56,7 +55,6 @@ final class SnippetListViewModel: SnippetListViewModelInterface {
 	// MARK: Outputs
 
 	@RxTracking var isRefreshing: Observable<Bool>
-	@RxProperty(value: []) var items: Observable<[SnippetCellModel]>
 	@RxProperty(value: []) var cellModelItems: Observable<[SnippetCellViewModelInterface]>
 	@RxProperty(value: true) var isSearchBarHidden: Observable<Bool>
 	@RxProperty(value: false) var isSearchBarFirstResponder: Observable<Bool>
@@ -68,7 +66,8 @@ final class SnippetListViewModel: SnippetListViewModelInterface {
 
 	init(model: SnippetListModel) {
 		let emptyDataSetViewTapped = PublishRelay<Void>()
-		let allItems = BehaviorRelay<[SQLSnippet]>(value: [])
+		let allISnippets = BehaviorRelay<[SQLSnippet]>(value: [])
+		let snippets = BehaviorRelay<[SQLSnippet]>(value: [])
 
 		// Bind them
 		let loadUrl = ()* // to trigger immediately
@@ -85,10 +84,10 @@ final class SnippetListViewModel: SnippetListViewModelInterface {
 			loadUrl
 				.filterNil()
 				.concatMap(withLock: $isRefreshing, SQLSnippet.rx.all(url:), errorJustReturn: [])
-				.bind(to: allItems)
+				.bind(to: allISnippets)
 
 			$itemSelected*.row
-				.withLatestFrom($items) { $1[$0] }*.snippet
+				.withLatestFrom(snippets) { $1[$0] }
 				.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl:))
 				.map(SnippetDetailViewModel.init(model:))
 				.map(SnippetDetailViewController.init(with:))
@@ -97,7 +96,7 @@ final class SnippetListViewModel: SnippetListViewModelInterface {
 			$contentOffset*.y
 				.ignore(0)
 				.map { $0 > 0 }
-				.combineLatest(allItems*.isEmpty, resultSelector: !(||))
+				.combineLatest(allISnippets*.isEmpty, resultSelector: !(||))
 				.bind(to: $isSearchBarHidden)
 
 			$isSearchBarHidden
@@ -107,22 +106,20 @@ final class SnippetListViewModel: SnippetListViewModelInterface {
 			$searchBarText
 				.replaceNilWith("")
 				.filter("")
-				.combineLatest(allItems)*.1
-				.mapMany(SnippetCellModel.init(snippet:))
-				.bind(to: $items)
+				.combineLatest(allISnippets)*.1
+				.bind(to: snippets)
 
 			$searchBarText
 				.replaceNilWith("")
 				.ignore("")
 				.debounce(.milliseconds(300), scheduler: MainScheduler.instance)
-				.combineLatest(allItems)
+				.combineLatest(allISnippets)
 				.flatMapLatest { text, items in Fuse(threshold: 0.3, tokenize: true).rx.search(text: text, in: items, scoreSort: .desc) }
-				.mapMany(SnippetCellModel.init(snippet:))
-				.bind(to: $items)
+				.bind(to: snippets)
 
-			$items
+			snippets
+				.mapMany(SnippetCellModel.init(snippet:))
 				.mapMany(SnippetCellViewModel.init(model:))
-				.mapMany { $0 as SnippetCellViewModelInterface }
 				.bind(to: $cellModelItems)
 
 			picker
@@ -139,7 +136,7 @@ final class SnippetListViewModel: SnippetListViewModelInterface {
 				.map { insets in CGSize(width: UIScreen.main.bounds.width - insets.left - insets.right, height: 200) }
 				.bind(to: $itemSize)
 
-			allItems*.isEmpty
+			allISnippets*.isEmpty
 				.map { noItem in
 					noItem ? { view in view
 						.titleLabelString(.init(string: R.string.localizable.snippetFileNotOpenedTitleLabel()))
