@@ -86,14 +86,14 @@ final class SnippetListViewModel: SnippetListViewModelInterface {
 				.filterNil()
 				.concatMap(withLock: $isRefreshing, SQLSnippet.rx.all(url:), errorJustReturn: [])
 				.bind(to: allItems)
-//
+
 			$itemSelected*.row
 				.withLatestFrom($items) { $1[$0] }*.snippet
 				.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl:))
 				.map(SnippetDetailViewModel.init(model:))
 				.map(SnippetDetailViewController.init(with:))
 				.bind(to: $presentView)
-//
+
 			$contentOffset*.y
 				.ignore(0)
 				.map { $0 > 0 }
