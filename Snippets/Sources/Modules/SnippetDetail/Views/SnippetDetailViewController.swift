@@ -30,10 +30,9 @@ class SnippetDetailViewController: UIViewController, StoryboardInstantiatable {
 	private var output: Output!
 	private let disposeBag = DisposeBag()
 
-	func inject(_ dependency: SnippetDetailModel) {
-		let viewModel = SnippetDetailViewModel(model: dependency)
-		input = viewModel
-		output = viewModel
+	func inject(_ dependency: SnippetDetailViewModelInterface) {
+		input = dependency
+		output = dependency
 	}
 
 	override func viewDidLoad() {

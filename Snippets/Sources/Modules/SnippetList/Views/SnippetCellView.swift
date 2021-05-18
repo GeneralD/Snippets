@@ -40,10 +40,9 @@ class SnippetCellView: UICollectionViewCell {
 extension SnippetCellView: NibLoadable, Reusable {}
 
 extension SnippetCellView: Configurable {
-	func configure(with model: SnippetCellModel) {
-		let viewModel = SnippetCellViewModel(model: model)
-		input = viewModel
-		output = viewModel
+	func configure(with model: SnippetCellViewModelInterface) {
+		input = model
+		output = model
 
 		// Unbind all
 		disposeBag = .init()

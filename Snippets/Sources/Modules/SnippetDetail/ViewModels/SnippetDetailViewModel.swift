@@ -27,7 +27,10 @@ protocol SnippetDetailViewModelOutput {
 	var viewColor: Observable<UIColor?> { get }
 }
 
-final class SnippetDetailViewModel: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {
+/// @mockable
+protocol SnippetDetailViewModelInterface: SnippetDetailViewModelInput, SnippetDetailViewModelOutput {}
+
+final class SnippetDetailViewModel: SnippetDetailViewModelInterface {
 	// MARK: Inputs
 
 	@RxTrigger var copyButtonTap: AnyObserver<Void>

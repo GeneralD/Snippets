@@ -32,6 +32,7 @@ protocol SnippetListViewModelInput {
 protocol SnippetListViewModelOutput {
 	var isRefreshing: Observable<Bool> { get }
 	var items: Observable<[SnippetCellModel]> { get }
+	var cellModelItems: Observable<[SnippetCellViewModelInterface]> { get }
 	var isSearchBarHidden: Observable<Bool> { get }
 	var isSearchBarFirstResponder: Observable<Bool> { get }
 	var itemSize: Observable<CGSize> { get }
@@ -39,7 +40,10 @@ protocol SnippetListViewModelOutput {
 	var emptyDataSetView: Observable<(EmptyDataSetView) -> Void> { get }
 }
 
-final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewModelOutput {
+/// @mockable
+protocol SnippetListViewModelInterface: SnippetListViewModelInput, SnippetListViewModelOutput {}
+
+final class SnippetListViewModel: SnippetListViewModelInterface {
 	// MARK: Inputs
 
 	@RxTrigger var itemSelected: AnyObserver<IndexPath>
@@ -53,6 +57,7 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 
 	@RxTracking var isRefreshing: Observable<Bool>
 	@RxProperty(value: []) var items: Observable<[SnippetCellModel]>
+	@RxProperty(value: []) var cellModelItems: Observable<[SnippetCellViewModelInterface]>
 	@RxProperty(value: true) var isSearchBarHidden: Observable<Bool>
 	@RxProperty(value: false) var isSearchBarFirstResponder: Observable<Bool>
 	@RxProperty(value: .square(1)) var itemSize: Observable<CGSize>
@@ -81,13 +86,14 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.filterNil()
 				.concatMap(withLock: $isRefreshing, SQLSnippet.rx.all(url:), errorJustReturn: [])
 				.bind(to: allItems)
-
+//
 			$itemSelected*.row
 				.withLatestFrom($items) { $1[$0] }*.snippet
 				.withLatestFrom(model.documentUrl.unwrap(), resultSelector: SnippetDetailModel.init(snippet: documentUrl:))
+				.map(SnippetDetailViewModel.init(model:))
 				.map(SnippetDetailViewController.init(with:))
 				.bind(to: $presentView)
-
+//
 			$contentOffset*.y
 				.ignore(0)
 				.map { $0 > 0 }
@@ -113,6 +119,11 @@ final class SnippetListViewModel: SnippetListViewModelInput, SnippetListViewMode
 				.flatMapLatest { text, items in Fuse(threshold: 0.3, tokenize: true).rx.search(text: text, in: items, scoreSort: .desc) }
 				.mapMany(SnippetCellModel.init(snippet:))
 				.bind(to: $items)
+
+			$items
+				.mapMany(SnippetCellViewModel.init(model:))
+				.mapMany { $0 as SnippetCellViewModelInterface }
+				.bind(to: $cellModelItems)
 
 			picker
 				.ofType(UIViewController.self)

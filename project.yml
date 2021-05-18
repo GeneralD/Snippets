@@ -29,8 +29,8 @@ targets:
           - $SRCROOT/$PROJECT_NAME/R.generated.swift
       - name: Generate Mock with Mockolo
         script: |
-          rm -f $SRCROOT/$PROJECT_NAME/Mock.generated.swift
-          xcrun --sdk macosx mint run mockolo --sourcedirs $SRCROOT/$PROJECT_NAME --destination $SRCROOT/$PROJECT_NAME/Mock.generated.swift --mock-final
+          rm -f "$SRCROOT/$PROJECT_NAME/Mock.generated.swift"
+          xcrun --sdk macosx mint run mockolo --sourcedirs "$SRCROOT/$PROJECT_NAME" --destination "$SRCROOT/$PROJECT_NAME/Mock.generated.swift" --mock-final
         outputFiles:
           - $SRCROOT/$PROJECT_NAME/Mock.generated.swift
       - name: Format Codes
@@ -103,7 +103,7 @@ targetTemplates:
     preBuildScripts:
       - name: Generate Mock with Mockolo
         script: |
-          rm -f $PRODUCT_NAME/$PRODUCT_NAME.Mock.generated.swift
-          xcrun --sdk macosx mint run mockolo --sourcedirs $PRODUCT_NAME --destination $PRODUCT_NAME/$PRODUCT_NAME.Mock.generated.swift --mock-final
+          rm -f "$PRODUCT_NAME/$PRODUCT_NAME.Mock.generated.swift"
+          xcrun --sdk macosx mint run mockolo --sourcedirs "$PRODUCT_NAME" --destination "$PRODUCT_NAME/$PRODUCT_NAME.Mock.generated.swift" --mock-final
         outputFiles:
           - "$PRODUCT_NAME/($PRODUCT_NAME).Mock.generated.swift"

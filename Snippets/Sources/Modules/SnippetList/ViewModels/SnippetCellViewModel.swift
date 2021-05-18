@@ -30,7 +30,10 @@ protocol SnippetCellViewModelOutput {
 	var contentViewBackgroundColor: Observable<UIColor?> { get }
 }
 
-final class SnippetCellViewModel: SnippetCellViewModelInput, SnippetCellViewModelOutput {
+/// @mockable
+protocol SnippetCellViewModelInterface: SnippetCellViewModelInput, SnippetCellViewModelOutput {}
+
+final class SnippetCellViewModel: SnippetCellViewModelInterface {
 	// MARK: Inputs
 
 	@RxTrigger var copyButtonTap: AnyObserver<Void>

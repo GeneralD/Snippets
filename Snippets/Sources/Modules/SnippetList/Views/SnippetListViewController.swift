@@ -29,10 +29,9 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 	private var output: Output!
 	private let disposeBag = DisposeBag()
 
-	func inject(_ dependency: SnippetListModel) {
-		let viewModel = SnippetListViewModel(model: dependency)
-		input = viewModel
-		output = viewModel
+	func inject(_ dependency: SnippetListViewModelInterface) {
+		input = dependency
+		output = dependency
 	}
 
 	override func viewDidLoad() {
@@ -57,7 +56,7 @@ class SnippetListViewController: UIViewController, StoryboardInstantiatable {
 
 		// Bind outputs
 		disposeBag ~
-			output.items ~> collectionView.rx.cells(SnippetCellView.self) ~
+			output.cellModelItems ~> collectionView.rx.cells(SnippetCellView.self) ~
 			output.isRefreshing ~> refreshControl.rx.isRefreshing ~
 			output.isSearchBarHidden ~> searchBarHideConstraint.rx.animated.layout(duration: 0.3).isActive ~
 			output.isSearchBarFirstResponder ~> searchBar.rx.isFirstResponder ~
